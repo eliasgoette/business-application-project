@@ -14,7 +14,7 @@ namespace BusinessApplicationProject.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        Address? CustomerAddress { get; set; }
+        public Address? CustomerAddress { get; set; }
         public string CustomerNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
