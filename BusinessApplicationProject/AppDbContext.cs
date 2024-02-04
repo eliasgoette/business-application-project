@@ -16,6 +16,7 @@ namespace BusinessApplicationProject
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Position> Positions { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
