@@ -14,7 +14,7 @@ namespace BusinessApplicationProject.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public required string PositionNumber { get; set; }
+        public required int PositionNumber { get; set; }
         public required Article ArticleDetails { get; set; }
         public int Quantity { get; set; }
         public double PurchasePrice { get; set; }

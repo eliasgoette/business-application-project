@@ -16,7 +16,6 @@ namespace BusinessApplicationProject.Model
         public double TaxPercentage { get; set; }
         public string PaymentMethod { get; set; }
         public string PaymentStatus { get; set; }
-        public double GrossPrice { get; set; }
         public Order OrderInformations { get; set; }
     }
 }
