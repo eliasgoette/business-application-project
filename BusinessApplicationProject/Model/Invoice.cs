@@ -9,13 +9,13 @@ namespace BusinessApplicationProject.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string InvoiceNumber { get; set; }
+        public required string InvoiceNumber { get; set; }
         public DateTime DueDate { get; set; }
-        public Address BillingAddress { get; set; }
+        public required Address BillingAddress { get; set; }
         public double Discount { get; set; }
         public double TaxPercentage { get; set; }
-        public string PaymentMethod { get; set; }
-        public string PaymentStatus { get; set; }
-        public Order OrderInformations { get; set; }
+        public required string PaymentMethod { get; set; }
+        public required string PaymentStatus { get; set; }
+        public required Order OrderInformations { get; set; }
     }
 }

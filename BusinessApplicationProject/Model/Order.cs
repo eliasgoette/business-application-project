@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessApplicationProject.Model
 {
@@ -14,9 +9,9 @@ namespace BusinessApplicationProject.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string OrderNumber { get; set; }
+        public required string OrderNumber { get; set; }
         public DateTime Date { get; set; }
-        public Customer CustomerDetails { get; set; }
-        public List<Position> Positions { get; set; }
+        public required Customer CustomerDetails { get; set; }
+        public required List<Position> Positions { get; set; }
     }
 }

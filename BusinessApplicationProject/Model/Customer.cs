@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessApplicationProject.Model
 {
@@ -15,9 +10,9 @@ namespace BusinessApplicationProject.Model
         public int Id { get; set; }
 
         public Address? CustomerAddress { get; set; }
-        public string CustomerNumber { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public required string CustomerNumber { get; set; }
+        public required string FirstName { get; set; }
+        public required string LastName { get; set; }
         public string? Email { get; set; }
         public string? Website { get; set; }
         public string? PasswordHash { get; set; }

@@ -1,7 +1,3 @@
-using BusinessApplicationProject.Model;
-using BusinessApplicationProject.Repository;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
 namespace BusinessApplicationProject
 {
     internal static class Program
