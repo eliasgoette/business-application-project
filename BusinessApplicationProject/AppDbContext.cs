@@ -22,5 +22,12 @@ namespace BusinessApplicationProject
         {
             optionsBuilder.UseSqlServer("Server=localhost,1433;Database=BusinessApplicationProjectDb;User Id=businessapplicationproject_client;Password=Password123;Encrypt=no");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            DataSeeder.InsertSeedData(this);
+        }
     }
 }
