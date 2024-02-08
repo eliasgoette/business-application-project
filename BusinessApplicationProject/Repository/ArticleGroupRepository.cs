@@ -21,9 +21,7 @@ namespace BusinessApplicationProject.Repository
                 )
                 SELECT * FROM ArticleGroupHierarchy";
 
-            List<ArticleGroup> cteRes = Context.ArticleGroups.FromSqlRaw(cteQuery).ToList();
-
-            return cteRes;
+            return Context.ArticleGroups.FromSqlRaw(cteQuery).ToList();
         }
     }
 }
