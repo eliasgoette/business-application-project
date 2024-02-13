@@ -1,8 +1,8 @@
 namespace BusinessApplicationProject
 {
-    public partial class Form1 : Form
+    public partial class FormCustomers : Form
     {
-        public Form1()
+        public FormCustomers()
         {
             InitializeComponent();
         }
