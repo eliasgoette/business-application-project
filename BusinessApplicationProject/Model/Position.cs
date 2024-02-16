@@ -12,6 +12,5 @@ namespace BusinessApplicationProject.Model
         public required int PositionNumber { get; set; }
         public required Article ArticleDetails { get; set; }
         public int Quantity { get; set; }
-        public double PurchasePrice { get; set; }
     }
 }

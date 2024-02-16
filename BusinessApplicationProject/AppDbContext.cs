@@ -15,12 +15,18 @@ namespace BusinessApplicationProject
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=BusinessApplicationProjectDb;User Id=businessapplicationproject_client;Password=Password123;Encrypt=no");
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=BusinessApplicationProjectDb;User Id=sa;Password=Password123;Encrypt=no");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Address>()
+                .ToTable(nameof(Addresses), x => x.IsTemporal());
+
+            modelBuilder.Entity<Article>()
+                .ToTable(nameof(Articles), x => x.IsTemporal());
 
             DataSeeder.InsertSeedData(this);
         }
