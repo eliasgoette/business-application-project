@@ -18,6 +18,4 @@ namespace BusinessApplicationProject.Model
         public required string PaymentStatus { get; set; }
         public required Order OrderInformations { get; set; }
     }
-
-    // TODO: create enums for PaymentStatuses and PaymentMethods
 }
