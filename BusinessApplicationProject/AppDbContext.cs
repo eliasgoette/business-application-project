@@ -25,7 +25,7 @@ namespace BusinessApplicationProject
             modelBuilder.Entity<Address>().ToTable(nameof(Addresses), b => b.IsTemporal());
             modelBuilder.Entity<Article>().ToTable(nameof(Articles), b => b.IsTemporal());
 
-            //DataSeeder.InsertSeedData(this);
+            DataSeeder.InsertSeedData(this);
         }
     }
 }
