@@ -68,14 +68,12 @@ namespace BusinessApplicationProject
                     PositionNumber = 0,
                     ArticleDetails = art1,
                     Quantity = 1,
-                    PurchasePrice = art1.Price
                 },
                 new Position
                 {
                     PositionNumber = 1,
                     ArticleDetails = art2,
                     Quantity = 1,
-                    PurchasePrice = art2.Price
                 }
             };
 
@@ -85,7 +83,6 @@ namespace BusinessApplicationProject
                     PositionNumber = 0,
                     ArticleDetails = art2,
                     Quantity = 12,
-                    PurchasePrice = 12 * art2.Price
                 }
             };
 

@@ -22,7 +22,10 @@ namespace BusinessApplicationProject
         {
             base.OnModelCreating(modelBuilder);
 
-            DataSeeder.InsertSeedData(this);
+            modelBuilder.Entity<Address>().ToTable(nameof(Addresses), b => b.IsTemporal());
+            modelBuilder.Entity<Article>().ToTable(nameof(Articles), b => b.IsTemporal());
+
+            //DataSeeder.InsertSeedData(this);
         }
     }
 }
