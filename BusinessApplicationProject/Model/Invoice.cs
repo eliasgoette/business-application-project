@@ -14,10 +14,8 @@ namespace BusinessApplicationProject.Model
         public required Address BillingAddress { get; set; }
         public double Discount { get; set; }
         public double TaxPercentage { get; set; }
-        public required string PaymentMethod { get; set; }
-        public required string PaymentStatus { get; set; }
+        public required string PaymentMethod { get; set; } // Use PaymentInformationConstants for consistency
+        public required string PaymentStatus { get; set; } // Use PaymentInformationConstants for consistency
         public required Order OrderInformations { get; set; }
     }
-
-    // TODO: create enums for PaymentStatuses and PaymentMethods
 }

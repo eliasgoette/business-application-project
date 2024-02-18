@@ -107,8 +107,8 @@ namespace BusinessApplicationProject
                 InvoiceNumber = "I-00001",
                 BillingAddress = ord1.CustomerDetails.CustomerAddress,
                 DueDate = ord1.Date.AddDays(30),
-                PaymentMethod = "Credit Card",
-                PaymentStatus = "Paid",
+                PaymentMethod = PaymentInformationConstants.PaymentMethods.ApplePay,
+                PaymentStatus = PaymentInformationConstants.PaymentStatuses.Paid,
                 OrderInformations = ord1
             };
 
@@ -117,8 +117,8 @@ namespace BusinessApplicationProject
                 InvoiceNumber = "I-00002",
                 BillingAddress = ord2.CustomerDetails.CustomerAddress,
                 DueDate = ord2.Date.AddDays(30),
-                PaymentMethod = "Credit Card",
-                PaymentStatus = "Pending",
+                PaymentMethod = PaymentInformationConstants.PaymentMethods.CreditCard,
+                PaymentStatus = PaymentInformationConstants.PaymentStatuses.Pending,
                 OrderInformations = ord2
             };
 
