@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessApplicationProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240203230138_AddAddressToCustomer")]
-    partial class AddAddressToCustomer
+    [Migration("20240218160749_InitialCreateWithTemporalCapabilities")]
+    partial class InitialCreateWithTemporalCapabilities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,16 @@ namespace BusinessApplicationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PeriodEnd")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodEnd");
+
+                    b.Property<DateTime>("PeriodStart")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodStart");
+
                     b.Property<string>("StreetAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -51,7 +61,18 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
+
+                    b.ToTable(tb => tb.IsTemporal(ttb =>
+                            {
+                                ttb.UseHistoryTable("AddressesHistory");
+                                ttb
+                                    .HasPeriodStart("PeriodStart")
+                                    .HasColumnName("PeriodStart");
+                                ttb
+                                    .HasPeriodEnd("PeriodEnd")
+                                    .HasColumnName("PeriodEnd");
+                            }));
                 });
 
             modelBuilder.Entity("BusinessApplicationProject.Model.Article", b =>
@@ -73,6 +94,16 @@ namespace BusinessApplicationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PeriodEnd")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodEnd");
+
+                    b.Property<DateTime>("PeriodStart")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodStart");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -80,7 +111,18 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
+
+                    b.ToTable(tb => tb.IsTemporal(ttb =>
+                            {
+                                ttb.UseHistoryTable("ArticlesHistory");
+                                ttb
+                                    .HasPeriodStart("PeriodStart")
+                                    .HasColumnName("PeriodStart");
+                                ttb
+                                    .HasPeriodEnd("PeriodEnd")
+                                    .HasColumnName("PeriodEnd");
+                            }));
                 });
 
             modelBuilder.Entity("BusinessApplicationProject.Model.ArticleGroup", b =>
@@ -113,7 +155,7 @@ namespace BusinessApplicationProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CustomerAddressId")
+                    b.Property<int>("CustomerAddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerNumber")
@@ -142,6 +184,50 @@ namespace BusinessApplicationProject.Migrations
                     b.HasIndex("CustomerAddressId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("BusinessApplicationProject.Model.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BillingAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InvoiceNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderInformationsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TaxPercentage")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillingAddressId");
+
+                    b.HasIndex("OrderInformationsId");
+
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("BusinessApplicationProject.Model.Order", b =>
@@ -183,12 +269,8 @@ namespace BusinessApplicationProject.Migrations
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PositionNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("PurchasePrice")
-                        .HasColumnType("float");
+                    b.Property<int>("PositionNumber")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -226,9 +308,30 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.Address", "CustomerAddress")
                         .WithMany()
-                        .HasForeignKey("CustomerAddressId");
+                        .HasForeignKey("CustomerAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("CustomerAddress");
+                });
+
+            modelBuilder.Entity("BusinessApplicationProject.Model.Invoice", b =>
+                {
+                    b.HasOne("BusinessApplicationProject.Model.Address", "BillingAddress")
+                        .WithMany()
+                        .HasForeignKey("BillingAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BusinessApplicationProject.Model.Order", "OrderInformations")
+                        .WithMany()
+                        .HasForeignKey("OrderInformationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BillingAddress");
+
+                    b.Navigation("OrderInformations");
                 });
 
             modelBuilder.Entity("BusinessApplicationProject.Model.Order", b =>

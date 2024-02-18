@@ -38,6 +38,16 @@ namespace BusinessApplicationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PeriodEnd")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodEnd");
+
+                    b.Property<DateTime>("PeriodStart")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodStart");
+
                     b.Property<string>("StreetAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,7 +58,18 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
+
+                    b.ToTable(tb => tb.IsTemporal(ttb =>
+                            {
+                                ttb.UseHistoryTable("AddressesHistory");
+                                ttb
+                                    .HasPeriodStart("PeriodStart")
+                                    .HasColumnName("PeriodStart");
+                                ttb
+                                    .HasPeriodEnd("PeriodEnd")
+                                    .HasColumnName("PeriodEnd");
+                            }));
                 });
 
             modelBuilder.Entity("BusinessApplicationProject.Model.Article", b =>
@@ -70,6 +91,16 @@ namespace BusinessApplicationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PeriodEnd")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodEnd");
+
+                    b.Property<DateTime>("PeriodStart")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodStart");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -77,7 +108,18 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
+
+                    b.ToTable(tb => tb.IsTemporal(ttb =>
+                            {
+                                ttb.UseHistoryTable("ArticlesHistory");
+                                ttb
+                                    .HasPeriodStart("PeriodStart")
+                                    .HasColumnName("PeriodStart");
+                                ttb
+                                    .HasPeriodEnd("PeriodEnd")
+                                    .HasColumnName("PeriodEnd");
+                            }));
                 });
 
             modelBuilder.Entity("BusinessApplicationProject.Model.ArticleGroup", b =>
@@ -110,7 +152,7 @@ namespace BusinessApplicationProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CustomerAddressId")
+                    b.Property<int>("CustomerAddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerNumber")
@@ -227,9 +269,6 @@ namespace BusinessApplicationProject.Migrations
                     b.Property<int>("PositionNumber")
                         .HasColumnType("int");
 
-                    b.Property<double>("PurchasePrice")
-                        .HasColumnType("float");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -266,7 +305,9 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.Address", "CustomerAddress")
                         .WithMany()
-                        .HasForeignKey("CustomerAddressId");
+                        .HasForeignKey("CustomerAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("CustomerAddress");
                 });
