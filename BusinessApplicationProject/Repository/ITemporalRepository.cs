@@ -4,6 +4,6 @@
     {
         public IEnumerable<T> GetAllAsOf(DateTime timestamp);
 
-        public IEnumerable<T> GetWhereAsOf(DateTime timestamp, Func<T, bool> condition);
+        public IEnumerable<T> FindAsOf(DateTime timestamp, Func<T, bool> condition);
     }
 }

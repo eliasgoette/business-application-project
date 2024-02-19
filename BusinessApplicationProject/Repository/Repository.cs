@@ -22,9 +22,9 @@ namespace BusinessApplicationProject.Repository
             return await Context.Set<T>().ToListAsync();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> searchTerm)
+        public IEnumerable<T> Find(Expression<Func<T, bool>> condition)
         {
-            return Context.Set<T>().Where(searchTerm);
+            return Context.Set<T>().Where(condition);
         }
 
         public async Task AddAsync(T entity)
