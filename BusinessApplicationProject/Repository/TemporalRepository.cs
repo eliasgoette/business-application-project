@@ -6,9 +6,14 @@ namespace BusinessApplicationProject.Repository
     {
         public TemporalRepository(AppDbContext context) : base(context) { }
 
-        public IEnumerable<T> GetDataAsOf(DateTime timestamp)
+        public IEnumerable<T> GetAllAsOf(DateTime timestamp)
         {
             return Context.Set<T>().TemporalAsOf(timestamp);
+        }
+
+        public IEnumerable<T> GetWhereAsOf(DateTime timestamp, Func<T, bool> condition)
+        {
+            return Context.Set<T>().TemporalAsOf(timestamp).Where<T>(condition);
         }
     }
 }
