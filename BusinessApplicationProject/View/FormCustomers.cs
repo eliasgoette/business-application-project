@@ -71,7 +71,9 @@ namespace BusinessApplicationProject
             DataGridViewCustomersResults.DataSource = null;
             DataGridViewCustomersResults.Columns.Clear();
 
-            var searchResults = new List<Customer> { customerController.FindSingle(x => x.Id == 1) };
+            var searchResults = new List<Customer>();
+
+            if (/* filters all clear */ true) searchResults = customerController.GetAll();
 
             if (searchResults.Count > 0)
             {

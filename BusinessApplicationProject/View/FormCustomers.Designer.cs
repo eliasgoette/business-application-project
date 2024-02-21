@@ -183,6 +183,7 @@
             DataGridViewCustomersResults.RowHeadersWidth = 62;
             DataGridViewCustomersResults.Size = new Size(737, 547);
             DataGridViewCustomersResults.TabIndex = 1;
+            DataGridViewCustomersResults.AutoGenerateColumns = false;
             // 
             // CmdShowAllCustomers
             // 

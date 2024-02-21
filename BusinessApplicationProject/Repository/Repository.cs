@@ -61,9 +61,37 @@ namespace BusinessApplicationProject.Repository
         {
             var res = new List<string>();
 
-            if (type == typeof(Customer))
+            switch (type.Name)
             {
-                res.Add("CustomerAddress");
+                case nameof(Article):
+                    res.Add("Group.Parent");
+                    break;
+
+                case nameof(ArticleGroup):
+                    res.Add("Parent");
+                    break;
+
+                case nameof(Customer):
+                    res.Add("CustomerAddress");
+                    break;
+
+                case nameof(Invoice):
+                    res.Add("BillingAddress");
+                    res.Add("OrderInformations.CustomerDetails.CustomerAddress");
+                    res.Add("OrderInformations.Positions.ArticleDetails.Group.Parent");
+                    break;
+
+                case nameof(Order):
+                    res.Add("CustomerDetails.CustomerAddress");
+                    res.Add("Positions.ArticleDetails.Group.Parent");
+                    break;
+
+                case nameof(Position):
+                    res.Add("ArticleDetails.Group.Parent");
+                    break;
+
+                default:
+                    break;
             }
 
             return res;
