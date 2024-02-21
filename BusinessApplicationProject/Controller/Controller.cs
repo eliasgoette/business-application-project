@@ -12,14 +12,14 @@ namespace BusinessApplicationProject.Controller
         public AppDbContextFactory getContext { get; init; }
         public RepositoryFactory getRepository { get; init; }
 
-        public List<T> GetAllAsync()
+        public List<T> GetAll()
         {
             List<T> result = new List<T>();
 
             using (var context = getContext())
             {
                 var repository = getRepository(context);
-                result = repository.GetAllAsync().Result.ToList();
+                result = repository.GetAll();
             }
 
             return result;
@@ -33,6 +33,19 @@ namespace BusinessApplicationProject.Controller
             {
                 var repository = getRepository(context);
                 result = repository.Find(condition).ToList();
+            }
+
+            return result;
+        }
+
+        public T? FindSingle(Expression<Func<T, bool>> condition)
+        {
+            T? result = null;
+
+            using(var context = getContext())
+            {
+                var repository = getRepository(context);
+                result = repository.Find(condition).FirstOrDefault();
             }
 
             return result;

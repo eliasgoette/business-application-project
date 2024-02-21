@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BusinessApplicationProject.Model;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.Repository
@@ -12,19 +13,21 @@ namespace BusinessApplicationProject.Repository
             Context = context;
         }
 
-        public async Task<T> GetByIdAsync(int id)
-        {
-            return await Context.Set<T>().FindAsync(id);
-        }
+        //public T? GetById(int id)
+        //{
+        //    return Find(x => x.Id == id).FirstOrDefault();
+        //}
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public List<T> GetAll()
         {
-            return await Context.Set<T>().ToListAsync();
+            var query = AddIncludes(typeof(T), Context.Set<T>());
+            return query.ToList();
         }
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> condition)
         {
-            return Context.Set<T>().Where(condition);
+            var query = AddIncludes(typeof(T), Context.Set<T>());
+            return query.Where(condition);
         }
 
         public async Task AddAsync(T entity)
@@ -40,6 +43,30 @@ namespace BusinessApplicationProject.Repository
         public void Update(T entity)
         {
             Context.Set<T>().Update(entity);
+        }
+
+        public IQueryable<T> AddIncludes(Type type, IQueryable<T> query)
+        {
+            var includes = GetAllNavigationPropertyNames(typeof(T));
+
+            foreach (var propertyName in includes)
+            {
+                query = query.Include(propertyName);
+            }
+
+            return query;
+        }
+
+        public List<string> GetAllNavigationPropertyNames(Type type)
+        {
+            var res = new List<string>();
+
+            if (type == typeof(Customer))
+            {
+                res.Add("CustomerAddress");
+            }
+
+            return res;
         }
     }
 }

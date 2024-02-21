@@ -1,7 +1,18 @@
+using BusinessApplicationProject.Controller;
+using BusinessApplicationProject.Model;
+using BusinessApplicationProject.Repository;
+using Microsoft.EntityFrameworkCore;
+
 namespace BusinessApplicationProject
 {
     public partial class FormCustomers : Form
     {
+        private Controller<Customer> customerController = new Controller<Customer>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Customer>(context)
+        };
+
         public FormCustomers()
         {
             InitializeComponent();
@@ -57,8 +68,12 @@ namespace BusinessApplicationProject
         //muss noch verschoben werden in andere Klasse
         private void DisplaySearchResults()
         {
+            DataGridViewCustomersResults.DataSource = null;
+            DataGridViewCustomersResults.Columns.Clear();
 
-            if (/*searchResults != null*/ true)
+            var searchResults = new List<Customer> { customerController.FindSingle(x => x.Id == 1) };
+
+            if (searchResults.Count > 0)
             {
                 DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
                 {
@@ -85,10 +100,8 @@ namespace BusinessApplicationProject
                 DataGridViewCustomersResults.Columns.Add(firstNameColumn);
                 DataGridViewCustomersResults.Columns.Add(lastNameColumn);
 
-
-
+                DataGridViewCustomersResults.DataSource = searchResults;
             }
-
         }
 
 

@@ -12,6 +12,6 @@ namespace BusinessApplicationProject.Model
         public required string ArticleNumber { get; set; }
         public required string Name { get; set; }
         public required double Price { get; set; }
-        public required virtual ArticleGroup Group { get; set; }
+        public required ArticleGroup? Group { get; set; }
     }
 }
