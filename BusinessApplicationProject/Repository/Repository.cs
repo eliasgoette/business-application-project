@@ -33,19 +33,22 @@ namespace BusinessApplicationProject.Repository
         public async Task AddAsync(T entity)
         {
             await Context.Set<T>().AddAsync(entity);
+            await Context.SaveChangesAsync();
         }
 
         public void Remove(T entity)
         {
             Context.Set<T>().Remove(entity);
+            Context.SaveChanges();
         }
 
         public void Update(T entity)
         {
             Context.Set<T>().Update(entity);
+            Context.SaveChanges();
         }
 
-        public IQueryable<T> AddIncludes(Type type, IQueryable<T> query)
+        private IQueryable<T> AddIncludes(Type type, IQueryable<T> query)
         {
             var includes = GetAllNavigationPropertyNames(typeof(T));
 
@@ -57,7 +60,7 @@ namespace BusinessApplicationProject.Repository
             return query;
         }
 
-        public List<string> GetAllNavigationPropertyNames(Type type)
+        private List<string> GetAllNavigationPropertyNames(Type type)
         {
             var res = new List<string>();
 

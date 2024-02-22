@@ -22,6 +22,38 @@ namespace BusinessApplicationProject
         {
             base.OnModelCreating(modelBuilder);
 
+            #region Configure PKs
+
+            modelBuilder.Entity<Address>()
+                .Property(a => a.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Article>()
+                .Property(a => a.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<ArticleGroup>()
+                .Property(a => a.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Customer>()
+                .Property(c => c.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Invoice>()
+                .Property(i => i.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Order>()
+                .Property (o => o.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Position>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+
+            #endregion
+
             #region Configure Navigation Properties
 
             modelBuilder.Entity<Article>()

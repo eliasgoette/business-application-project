@@ -50,5 +50,29 @@ namespace BusinessApplicationProject.Controller
 
             return result;
         }
+
+        public async Task AddAsync(T newItem) {
+            using (var context = getContext())
+            {
+                var repository = getRepository(context);
+                await repository.AddAsync(newItem);
+            }
+        }
+
+        public void Remove(T item) {
+            using (var context = getContext())
+            {
+                var repository = getRepository(context);
+                repository.Remove(item);
+            }
+        }
+
+        public void Update(T item) {
+            using (var context = getContext())
+            {
+                var repository = getRepository(context);
+                repository.Update(item);
+            }
+        }
     }
 }
