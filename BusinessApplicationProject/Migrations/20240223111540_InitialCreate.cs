@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessApplicationProject.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateWithTemporalCapabilities : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -75,26 +75,18 @@ namespace BusinessApplicationProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ArticleGroups", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ArticleGroups_ArticleGroups_ParentId",
-                        column: x => x.ParentId,
-                        principalTable: "ArticleGroups",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerAddressId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     CustomerNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -106,8 +98,8 @@ namespace BusinessApplicationProject.Migrations
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_Addresses_CustomerAddressId",
-                        column: x => x.CustomerAddressId,
+                        name: "FK_Customers_Addresses_Id",
+                        column: x => x.Id,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -118,7 +110,6 @@ namespace BusinessApplicationProject.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
                         .Annotation("SqlServer:IsTemporal", true)
                         .Annotation("SqlServer:TemporalHistoryTableName", "ArticlesHistory")
                         .Annotation("SqlServer:TemporalHistoryTableSchema", null)
@@ -142,12 +133,6 @@ namespace BusinessApplicationProject.Migrations
                         .Annotation("SqlServer:TemporalHistoryTableSchema", null)
                         .Annotation("SqlServer:TemporalPeriodEndColumnName", "PeriodEnd")
                         .Annotation("SqlServer:TemporalPeriodStartColumnName", "PeriodStart"),
-                    GroupId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:IsTemporal", true)
-                        .Annotation("SqlServer:TemporalHistoryTableName", "ArticlesHistory")
-                        .Annotation("SqlServer:TemporalHistoryTableSchema", null)
-                        .Annotation("SqlServer:TemporalPeriodEndColumnName", "PeriodEnd")
-                        .Annotation("SqlServer:TemporalPeriodStartColumnName", "PeriodStart"),
                     PeriodEnd = table.Column<DateTime>(type: "datetime2", nullable: false)
                         .Annotation("SqlServer:IsTemporal", true)
                         .Annotation("SqlServer:TemporalHistoryTableName", "ArticlesHistory")
@@ -165,11 +150,10 @@ namespace BusinessApplicationProject.Migrations
                 {
                     table.PrimaryKey("PK_Articles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Articles_ArticleGroups_GroupId",
-                        column: x => x.GroupId,
+                        name: "FK_Articles_ArticleGroups_Id",
+                        column: x => x.Id,
                         principalTable: "ArticleGroups",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("SqlServer:IsTemporal", true)
                 .Annotation("SqlServer:TemporalHistoryTableName", "ArticlesHistory")
@@ -181,18 +165,16 @@ namespace BusinessApplicationProject.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     OrderNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerDetailsId = table.Column<int>(type: "int", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerDetailsId",
-                        column: x => x.CustomerDetailsId,
+                        name: "FK_Orders_Customers_Id",
+                        column: x => x.Id,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -202,29 +184,26 @@ namespace BusinessApplicationProject.Migrations
                 name: "Invoices",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     InvoiceNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BillingAddressId = table.Column<int>(type: "int", nullable: false),
                     Discount = table.Column<double>(type: "float", nullable: false),
                     TaxPercentage = table.Column<double>(type: "float", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderInformationsId = table.Column<int>(type: "int", nullable: false)
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Invoices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Invoices_Addresses_BillingAddressId",
-                        column: x => x.BillingAddressId,
+                        name: "FK_Invoices_Addresses_Id",
+                        column: x => x.Id,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Invoices_Orders_OrderInformationsId",
-                        column: x => x.OrderInformationsId,
+                        name: "FK_Invoices_Orders_Id",
+                        column: x => x.Id,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
@@ -234,68 +213,26 @@ namespace BusinessApplicationProject.Migrations
                 name: "Positions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     PositionNumber = table.Column<int>(type: "int", nullable: false),
-                    ArticleDetailsId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: true)
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Positions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Positions_Articles_ArticleDetailsId",
-                        column: x => x.ArticleDetailsId,
+                        name: "FK_Positions_Articles_Id",
+                        column: x => x.Id,
                         principalTable: "Articles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Positions_Orders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_Positions_Orders_Id",
+                        column: x => x.Id,
                         principalTable: "Orders",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArticleGroups_ParentId",
-                table: "ArticleGroups",
-                column: "ParentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Articles_GroupId",
-                table: "Articles",
-                column: "GroupId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Customers_CustomerAddressId",
-                table: "Customers",
-                column: "CustomerAddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_BillingAddressId",
-                table: "Invoices",
-                column: "BillingAddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_OrderInformationsId",
-                table: "Invoices",
-                column: "OrderInformationsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerDetailsId",
-                table: "Orders",
-                column: "CustomerDetailsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Positions_ArticleDetailsId",
-                table: "Positions",
-                column: "ArticleDetailsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Positions_OrderId",
-                table: "Positions",
-                column: "OrderId");
         }
 
         /// <inheritdoc />

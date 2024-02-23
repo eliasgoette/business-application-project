@@ -15,44 +15,12 @@ namespace BusinessApplicationProject
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=BusinessApplicationProjectDb;User Id=businessapplicationproject_client;Password=Password123;Encrypt=no");
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=BusinessApplicationProjectDb;User Id=sa;Password=Password123;Encrypt=no");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            #region Configure PKs
-
-            modelBuilder.Entity<Address>()
-                .Property(a => a.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Article>()
-                .Property(a => a.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<ArticleGroup>()
-                .Property(a => a.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Customer>()
-                .Property(c => c.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Invoice>()
-                .Property(i => i.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Order>()
-                .Property (o => o.Id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Position>()
-                .Property(p => p.Id)
-                .ValueGeneratedOnAdd();
-
-            #endregion
 
             #region Configure Navigation Properties
 
