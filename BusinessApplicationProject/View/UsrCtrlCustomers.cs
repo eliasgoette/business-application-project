@@ -1,52 +1,23 @@
-using BusinessApplicationProject.Controller;
+﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
-using BusinessApplicationProject.View;
-using Microsoft.EntityFrameworkCore;
 
-namespace BusinessApplicationProject
+namespace BusinessApplicationProject.View
 {
-    public partial class FormCustomers : Form
+    public partial class UsrCtrlCustomers : UserControl
     {
+        public static UsrCtrlCustomers instance = new();
+
+        public UsrCtrlCustomers()
+        {
+            InitializeComponent();
+        }
+
         private Controller<Customer> customerController = new Controller<Customer>
         {
             getContext = () => new AppDbContext(),
             getRepository = context => new Repository<Customer>(context)
         };
-
-        public FormCustomers()
-        {
-            InitializeComponent();
-        }
-
-        #region Navigation
-        private void CmdArticles_Click(object sender, EventArgs e)
-        {
-            FormArticles formArticles = new FormArticles();
-            formArticles.Show(this);
-            this.Hide();
-
-            //Evt. Methode um Fenster zu wechseln
-        }
-
-        private void CmdCustomers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmdOrders_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmdCloseProgram_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-
-        #endregion
-
 
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
@@ -203,11 +174,5 @@ namespace BusinessApplicationProject
 
 
         #endregion
-
-        private void CmdInvoices_Click(object sender, EventArgs e)
-        {
-            var formInvoices = new FormInvoices();
-            formInvoices.ShowDialog();
-        }
     }
 }
