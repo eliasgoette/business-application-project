@@ -1,6 +1,7 @@
 using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
+using BusinessApplicationProject.View;
 using Microsoft.EntityFrameworkCore;
 
 namespace BusinessApplicationProject
@@ -203,5 +204,10 @@ namespace BusinessApplicationProject
 
         #endregion
 
+        private void CmdInvoices_Click(object sender, EventArgs e)
+        {
+            var formInvoices = new FormInvoices();
+            formInvoices.ShowDialog();
+        }
     }
 }

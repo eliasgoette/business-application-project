@@ -87,6 +87,7 @@
             LblInfoSearchCustomerEmail = new Label();
             LblInfoSearchCustomerCountry = new Label();
             LblInfoSearchCustomerNumber = new Label();
+            CmdInvoices = new Button();
             GrpNavigation.SuspendLayout();
             GrpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).BeginInit();
@@ -131,6 +132,7 @@
             // 
             // GrpNavigation
             // 
+            GrpNavigation.Controls.Add(CmdInvoices);
             GrpNavigation.Controls.Add(CmdArticles);
             GrpNavigation.Controls.Add(CmdCloseProgram);
             GrpNavigation.Controls.Add(CmdOrders);
@@ -183,7 +185,6 @@
             DataGridViewCustomersResults.RowHeadersWidth = 62;
             DataGridViewCustomersResults.Size = new Size(737, 547);
             DataGridViewCustomersResults.TabIndex = 1;
-            DataGridViewCustomersResults.AutoGenerateColumns = false;
             // 
             // CmdShowAllCustomers
             // 
@@ -761,6 +762,17 @@
             LblInfoSearchCustomerNumber.TabIndex = 1;
             LblInfoSearchCustomerNumber.Text = "Customer Number";
             // 
+            // CmdInvoices
+            // 
+            CmdInvoices.Location = new Point(26, 196);
+            CmdInvoices.Margin = new Padding(4, 5, 4, 5);
+            CmdInvoices.Name = "CmdInvoices";
+            CmdInvoices.Size = new Size(107, 38);
+            CmdInvoices.TabIndex = 1;
+            CmdInvoices.Text = "Invoices";
+            CmdInvoices.UseVisualStyleBackColor = true;
+            CmdInvoices.Click += CmdInvoices_Click;
+            // 
             // FormCustomers
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -846,5 +858,6 @@
         private TextBox TxtInputCustomerEmail;
         private TextBox TxtInputCustomerLastName;
         private TextBox TxtInputCustomerFirstName;
+        private Button CmdInvoices;
     }
 }
