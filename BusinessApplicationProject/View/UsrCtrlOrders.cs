@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BusinessApplicationProject
+namespace BusinessApplicationProject.View
 {
-    public partial class FormArticles : Form
+    public partial class UsrCtrlOrders : UserControl
     {
-        public FormArticles()
+        public static UsrCtrlOrders instance = new();
+
+        public UsrCtrlOrders()
         {
             InitializeComponent();
         }

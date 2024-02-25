@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace BusinessApplicationProject.View
 {
-    public partial class FormInvoices : Form
+    public partial class UsrCtrlInvoices : UserControl
     {
-        public FormInvoices()
+        public static UsrCtrlInvoices instance = new();
+
+        public UsrCtrlInvoices()
         {
             InitializeComponent();
         }
