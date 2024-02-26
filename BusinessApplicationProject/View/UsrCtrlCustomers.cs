@@ -63,14 +63,14 @@ namespace BusinessApplicationProject.View
                     DataPropertyName = "lastName"
                 };
 
-                DataGridViewTextBoxColumn CustomerNumberColumn = new DataGridViewTextBoxColumn
+                DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
                 {
                     Name = "customerNumberColumn",
                     HeaderText = "Customer Number",
                     DataPropertyName = "customerNumber"
                 };
 
-                DataGridViewCustomersResults.Columns.Add(CustomerNumberColumn);
+                DataGridViewCustomersResults.Columns.Add(customerNumberColumn);
                 DataGridViewCustomersResults.Columns.Add(firstNameColumn);
                 DataGridViewCustomersResults.Columns.Add(lastNameColumn);
 

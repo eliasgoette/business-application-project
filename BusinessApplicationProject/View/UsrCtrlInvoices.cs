@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BusinessApplicationProject.Controller;
+using BusinessApplicationProject.Model;
+using BusinessApplicationProject.Repository;
 
 namespace BusinessApplicationProject.View
 {
@@ -17,6 +11,56 @@ namespace BusinessApplicationProject.View
         public UsrCtrlInvoices()
         {
             InitializeComponent();
+        }
+
+        private Controller<Invoice> invoiceController = new Controller<Invoice>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Invoice>(context)
+        };
+
+        public void UpdateSearchResults()
+        {
+            LblNoResults.Visible = false;
+            DataGridViewInvoices.DataSource = null;
+            DataGridViewInvoices.Columns.Clear();
+
+            List<Invoice> invoices;
+
+            try
+            {
+                if (/* Filters clear */ true) invoices = invoiceController.GetAll();
+
+                if (invoices.Count > 0)
+                {
+                    DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "customerNumberColumn",
+                        HeaderText = "Customer Number",
+                        DataPropertyName = "OrderInformations.CustomerDetails.CustomerNumber"
+                    };
+
+                    DataGridViewInvoices.Columns.Add(customerNumberColumn);
+
+                    DataGridViewInvoices.DataSource = invoices;
+                }
+                else
+                {
+                    LblNoResults.Visible = true;
+                }
+
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Database connection failed. Connection timed out.");
+            }
+        }
+
+        private void CmdSearchInvoices_Click(object sender, EventArgs e)
+        {
+            CmdSearchInvoices.Enabled = false;
+            UpdateSearchResults();
+            CmdSearchInvoices.Enabled = true;
         }
     }
 }

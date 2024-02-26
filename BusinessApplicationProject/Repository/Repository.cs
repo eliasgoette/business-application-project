@@ -13,39 +13,59 @@ namespace BusinessApplicationProject.Repository
             Context = context;
         }
 
-        //public T? GetById(int id)
-        //{
-        //    return Find(x => x.Id == id).FirstOrDefault();
-        //}
-
         public List<T> GetAll()
         {
-            var query = AddIncludes(typeof(T), Context.Set<T>());
-            return query.ToList();
+            if (Context.Database.CanConnect())
+            {
+                var query = AddIncludes(typeof(T), Context.Set<T>());
+                return query.ToList();
+            }
+
+            throw new TimeoutException();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> condition)
+        public List<T> Find(Expression<Func<T, bool>> condition)
         {
-            var query = AddIncludes(typeof(T), Context.Set<T>());
-            return query.Where(condition);
+            if (Context.Database.CanConnect())
+            {
+                var query = AddIncludes(typeof(T), Context.Set<T>());
+                return [.. query.Where(condition)];
+            }
+
+            throw new TimeoutException();
         }
 
         public async Task AddAsync(T entity)
         {
-            await Context.Set<T>().AddAsync(entity);
-            await Context.SaveChangesAsync();
+            if (await Context.Database.CanConnectAsync())
+            {
+                await Context.Set<T>().AddAsync(entity);
+                await Context.SaveChangesAsync();
+            }
+
+            throw new TimeoutException();
         }
 
         public void Remove(T entity)
         {
-            Context.Set<T>().Remove(entity);
-            Context.SaveChanges();
+            if (Context.Database.CanConnect())
+            {
+                Context.Set<T>().Remove(entity);
+                Context.SaveChanges();
+            }
+
+            throw new TimeoutException();
         }
 
         public void Update(T entity)
         {
-            Context.Set<T>().Update(entity);
-            Context.SaveChanges();
+            if (Context.Database.CanConnect())
+            {
+                Context.Set<T>().Update(entity);
+                Context.SaveChanges();
+            }
+
+            throw new TimeoutException();
         }
 
         private IQueryable<T> AddIncludes(Type type, IQueryable<T> query)

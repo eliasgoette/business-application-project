@@ -32,7 +32,7 @@ namespace BusinessApplicationProject.Controller
             using (var context = getContext())
             {
                 var repository = getRepository(context);
-                result = repository.Find(condition).ToList();
+                result = repository.Find(condition);
             }
 
             return result;
