@@ -33,6 +33,13 @@ namespace BusinessApplicationProject.View
 
                 if (invoices.Count > 0)
                 {
+                    DataGridViewTextBoxColumn invoiceNumberColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "invoiceNumberColumn",
+                        HeaderText = "Invoice Number",
+                        DataPropertyName = "InvoiceNumber"
+                    };
+
                     DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
                     {
                         Name = "customerNumberColumn",
@@ -40,6 +47,7 @@ namespace BusinessApplicationProject.View
                         DataPropertyName = "OrderInformations.CustomerDetails.CustomerNumber"
                     };
 
+                    DataGridViewInvoices.Columns.Add(invoiceNumberColumn);
                     DataGridViewInvoices.Columns.Add(customerNumberColumn);
 
                     DataGridViewInvoices.DataSource = invoices;

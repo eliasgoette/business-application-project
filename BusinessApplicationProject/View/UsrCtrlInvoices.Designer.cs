@@ -32,6 +32,13 @@
             LblNoResults = new Label();
             DataGridViewInvoices = new DataGridView();
             groupBox2 = new GroupBox();
+            TxtSearchOrderNumber = new TextBox();
+            label3 = new Label();
+            CmdResetFilters = new Button();
+            TxtSearchCustomerNumber = new TextBox();
+            label2 = new Label();
+            TxtSearchInvoiceNumber = new TextBox();
+            label1 = new Label();
             CmdSearchInvoices = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).BeginInit();
@@ -74,21 +81,92 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(TxtSearchOrderNumber);
+            groupBox2.Controls.Add(label3);
+            groupBox2.Controls.Add(CmdResetFilters);
+            groupBox2.Controls.Add(TxtSearchCustomerNumber);
+            groupBox2.Controls.Add(label2);
+            groupBox2.Controls.Add(TxtSearchInvoiceNumber);
+            groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(CmdSearchInvoices);
             groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(750, 476);
+            groupBox2.Size = new Size(750, 198);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Filter Invoices";
             // 
+            // TxtSearchOrderNumber
+            // 
+            TxtSearchOrderNumber.Location = new Point(432, 58);
+            TxtSearchOrderNumber.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchOrderNumber.Name = "TxtSearchOrderNumber";
+            TxtSearchOrderNumber.Size = new Size(205, 31);
+            TxtSearchOrderNumber.TabIndex = 9;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(433, 27);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(128, 25);
+            label3.TabIndex = 8;
+            label3.Text = "Order Number";
+            // 
+            // CmdResetFilters
+            // 
+            CmdResetFilters.Location = new Point(327, 97);
+            CmdResetFilters.Name = "CmdResetFilters";
+            CmdResetFilters.Size = new Size(152, 34);
+            CmdResetFilters.TabIndex = 7;
+            CmdResetFilters.Text = "Clear Filters";
+            CmdResetFilters.UseVisualStyleBackColor = true;
+            CmdResetFilters.Click += CmdResetFilters_Click;
+            // 
+            // TxtSearchCustomerNumber
+            // 
+            TxtSearchCustomerNumber.Location = new Point(219, 58);
+            TxtSearchCustomerNumber.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerNumber.Name = "TxtSearchCustomerNumber";
+            TxtSearchCustomerNumber.Size = new Size(205, 31);
+            TxtSearchCustomerNumber.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(220, 27);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(159, 25);
+            label2.TabIndex = 5;
+            label2.Text = "Customer Number";
+            // 
+            // TxtSearchInvoiceNumber
+            // 
+            TxtSearchInvoiceNumber.Location = new Point(6, 58);
+            TxtSearchInvoiceNumber.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchInvoiceNumber.Name = "TxtSearchInvoiceNumber";
+            TxtSearchInvoiceNumber.Size = new Size(205, 31);
+            TxtSearchInvoiceNumber.TabIndex = 4;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(7, 27);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(138, 25);
+            label1.TabIndex = 3;
+            label1.Text = "Invoice Number";
+            // 
             // CmdSearchInvoices
             // 
-            CmdSearchInvoices.Location = new Point(7, 436);
+            CmdSearchInvoices.Location = new Point(485, 97);
             CmdSearchInvoices.Name = "CmdSearchInvoices";
-            CmdSearchInvoices.Size = new Size(112, 34);
+            CmdSearchInvoices.Size = new Size(152, 34);
             CmdSearchInvoices.TabIndex = 0;
-            CmdSearchInvoices.Text = "Search";
+            CmdSearchInvoices.Text = "Search Invoices";
             CmdSearchInvoices.UseVisualStyleBackColor = true;
             CmdSearchInvoices.Click += CmdSearchInvoices_Click;
             // 
@@ -104,6 +182,7 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).EndInit();
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -114,5 +193,12 @@
         private GroupBox groupBox2;
         private Label LblNoResults;
         private Button CmdSearchInvoices;
+        private TextBox TxtSearchInvoiceNumber;
+        private Label label1;
+        private TextBox TxtSearchCustomerNumber;
+        private Label label2;
+        private TextBox TxtSearchOrderNumber;
+        private Label label3;
+        private Button CmdResetFilters;
     }
 }
