@@ -70,5 +70,10 @@ namespace BusinessApplicationProject.View
             UpdateSearchResults();
             CmdSearchInvoices.Enabled = true;
         }
+
+        private void CmdResetFilters_Click(object sender, EventArgs e)
+        {
+            ;
+        }
     }
 }
