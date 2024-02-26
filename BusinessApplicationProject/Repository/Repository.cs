@@ -20,8 +20,10 @@ namespace BusinessApplicationProject.Repository
                 var query = AddIncludes(typeof(T), Context.Set<T>());
                 return query.ToList();
             }
-
-            throw new TimeoutException();
+            else
+            {
+                throw new TimeoutException();
+            }
         }
 
         public List<T> Find(Expression<Func<T, bool>> condition)
@@ -31,8 +33,10 @@ namespace BusinessApplicationProject.Repository
                 var query = AddIncludes(typeof(T), Context.Set<T>());
                 return [.. query.Where(condition)];
             }
-
-            throw new TimeoutException();
+            else
+            {
+                throw new TimeoutException();
+            }
         }
 
         public async Task AddAsync(T entity)
@@ -42,8 +46,11 @@ namespace BusinessApplicationProject.Repository
                 await Context.Set<T>().AddAsync(entity);
                 await Context.SaveChangesAsync();
             }
+            else
+            {
+                throw new TimeoutException();
+            }
 
-            throw new TimeoutException();
         }
 
         public void Remove(T entity)
@@ -53,8 +60,10 @@ namespace BusinessApplicationProject.Repository
                 Context.Set<T>().Remove(entity);
                 Context.SaveChanges();
             }
-
-            throw new TimeoutException();
+            else
+            {
+                throw new TimeoutException();
+            }
         }
 
         public void Update(T entity)
@@ -64,8 +73,10 @@ namespace BusinessApplicationProject.Repository
                 Context.Set<T>().Update(entity);
                 Context.SaveChanges();
             }
-
-            throw new TimeoutException();
+            else
+            {
+                throw new TimeoutException();
+            }
         }
 
         private IQueryable<T> AddIncludes(Type type, IQueryable<T> query)

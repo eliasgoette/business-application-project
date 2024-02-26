@@ -193,6 +193,7 @@
             CmdSearchCustomers.TabIndex = 0;
             CmdSearchCustomers.Text = "Search Customers";
             CmdSearchCustomers.UseVisualStyleBackColor = true;
+            CmdSearchCustomers.Click += CmdSearchCustomers_Click;
             // 
             // LblInfoSearchCustomerLastName
             // 

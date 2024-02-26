@@ -73,7 +73,9 @@ namespace BusinessApplicationProject.View
 
         private void CmdResetFilters_Click(object sender, EventArgs e)
         {
-            ;
+            TxtSearchInvoiceNumber.Text = string.Empty;
+            TxtSearchCustomerNumber.Text = string.Empty;
+            TxtSearchOrderNumber.Text = string.Empty;
         }
     }
 }

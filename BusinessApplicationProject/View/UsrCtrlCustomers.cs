@@ -172,7 +172,6 @@ namespace BusinessApplicationProject.View
             //Delete selected Orders
         }
 
-
-        #endregion
+#endregion
     }
 }
