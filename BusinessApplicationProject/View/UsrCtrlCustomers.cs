@@ -22,7 +22,9 @@ namespace BusinessApplicationProject.View
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
+            CmdSearchCustomers.Enabled = false;
             DisplaySearchResults();
+            CmdSearchCustomers.Enabled = true;
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)

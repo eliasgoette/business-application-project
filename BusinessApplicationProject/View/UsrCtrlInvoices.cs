@@ -11,6 +11,33 @@ namespace BusinessApplicationProject.View
         public UsrCtrlInvoices()
         {
             InitializeComponent();
+            InitializeChkListBoxes();
+            CmbDateProperty.SelectedIndex = 0;
+        }
+
+        private void InitializeChkListBoxes()
+        {
+            ChkListBoxPaymentMethod.Items.Clear();
+            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.ApplePay);
+            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.BankTransfer);
+            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.CreditCard);
+            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.PayPal);
+            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.SamsungPay);
+
+            for (int i = 0; i < ChkListBoxPaymentMethod.Items.Count; i++)
+            {
+                ChkListBoxPaymentMethod.SetItemChecked(i, true);
+            }
+
+            ChkListBoxPaymentStatus.Items.Clear();
+            ChkListBoxPaymentStatus.Items.Add(PaymentInformationConstants.PaymentStatuses.Pending);
+            ChkListBoxPaymentStatus.Items.Add(PaymentInformationConstants.PaymentStatuses.Paid);
+            ChkListBoxPaymentStatus.Items.Add(PaymentInformationConstants.PaymentStatuses.Cancelled);
+
+            for (int i = 0; i < ChkListBoxPaymentStatus.Items.Count; i++)
+            {
+                ChkListBoxPaymentStatus.SetItemChecked(i, true);
+            }
         }
 
         private Controller<Invoice> invoiceController = new Controller<Invoice>
@@ -40,15 +67,23 @@ namespace BusinessApplicationProject.View
                         DataPropertyName = "InvoiceNumber"
                     };
 
-                    DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
+                    DataGridViewTextBoxColumn dueDateColumn = new DataGridViewTextBoxColumn
                     {
-                        Name = "customerNumberColumn",
-                        HeaderText = "Customer Number",
-                        DataPropertyName = "OrderInformations.CustomerDetails.CustomerNumber"
+                        Name = "dueDateColumn",
+                        HeaderText = "Due Date",
+                        DataPropertyName = "DueDate"
+                    };
+
+                    DataGridViewTextBoxColumn paymentStatusColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "paymentStatusColumn",
+                        HeaderText = "Payment Status",
+                        DataPropertyName = "PaymentStatus"
                     };
 
                     DataGridViewInvoices.Columns.Add(invoiceNumberColumn);
-                    DataGridViewInvoices.Columns.Add(customerNumberColumn);
+                    DataGridViewInvoices.Columns.Add(dueDateColumn);
+                    DataGridViewInvoices.Columns.Add(paymentStatusColumn);
 
                     DataGridViewInvoices.DataSource = invoices;
                 }
@@ -80,7 +115,7 @@ namespace BusinessApplicationProject.View
 
         private void CmdCopyCustomerNumber_Click(object sender, EventArgs e)
         {
-            var selection = GetSelectedItem();
+            var selection = GetSelectedItem<Invoice>(DataGridViewInvoices);
 
             if (selection != null)
             {
@@ -94,21 +129,41 @@ namespace BusinessApplicationProject.View
             }
         }
 
-        private Invoice? GetSelectedItem()
+        private void CmdCopyOrderNumber_Click(object sender, EventArgs e)
         {
-            if (DataGridViewInvoices.DataSource != null)
-            {
-                Invoice? selectedItem = null;
-                List<Invoice> dataGridContent = (List<Invoice>)DataGridViewInvoices.DataSource;
+            var selection = GetSelectedItem<Invoice>(DataGridViewInvoices);
 
-                if (DataGridViewInvoices.SelectedCells.Count > 0)
+            if (selection != null)
+            {
+                string orderNumber = selection.OrderInformations.OrderNumber;
+                Clipboard.SetText(orderNumber);
+                MessageBox.Show($"{orderNumber} copied to clipboard.");
+            }
+            else
+            {
+                MessageBox.Show("No item selected.");
+            }
+        }
+
+        // Could potentially be outsourced into a service class
+        private T? GetSelectedItem<T>(DataGridView dataGridView) where T : class?
+        {
+            if (dataGridView.DataSource != null)
+            {
+                List<T> dataGridContent = (List<T>)dataGridView.DataSource;
+
+                if (dataGridView.SelectedCells.Count > 0)
                 {
-                    selectedItem = dataGridContent[DataGridViewInvoices.SelectedCells[0].RowIndex];
-                    return selectedItem;
+                    return dataGridContent[dataGridView.SelectedCells[0].RowIndex];
                 }
             }
 
             return null;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
