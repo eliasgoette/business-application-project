@@ -77,5 +77,38 @@ namespace BusinessApplicationProject.View
             TxtSearchCustomerNumber.Text = string.Empty;
             TxtSearchOrderNumber.Text = string.Empty;
         }
+
+        private void CmdCopyCustomerNumber_Click(object sender, EventArgs e)
+        {
+            var selection = GetSelectedItem();
+
+            if (selection != null)
+            {
+                string customerNumber = selection.OrderInformations.CustomerDetails.CustomerNumber;
+                Clipboard.SetText(customerNumber);
+                MessageBox.Show($"{customerNumber} copied to clipboard.");
+            }
+            else
+            {
+                MessageBox.Show("No item selected.");
+            }
+        }
+
+        private Invoice? GetSelectedItem()
+        {
+            if (DataGridViewInvoices.DataSource != null)
+            {
+                Invoice? selectedItem = null;
+                List<Invoice> dataGridContent = (List<Invoice>)DataGridViewInvoices.DataSource;
+
+                if (DataGridViewInvoices.SelectedCells.Count > 0)
+                {
+                    selectedItem = dataGridContent[DataGridViewInvoices.SelectedCells[0].RowIndex];
+                    return selectedItem;
+                }
+            }
+
+            return null;
+        }
     }
 }

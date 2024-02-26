@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            CmdCopyCustomerNumber = new Button();
+            CmdCopyOrderNumber = new Button();
             LblNoResults = new Label();
             DataGridViewInvoices = new DataGridView();
             groupBox2 = new GroupBox();
@@ -47,14 +49,35 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(CmdCopyCustomerNumber);
+            groupBox1.Controls.Add(CmdCopyOrderNumber);
             groupBox1.Controls.Add(LblNoResults);
             groupBox1.Controls.Add(DataGridViewInvoices);
-            groupBox1.Location = new Point(3, 485);
+            groupBox1.Location = new Point(3, 186);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(750, 535);
+            groupBox1.Size = new Size(750, 834);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Results";
+            // 
+            // CmdCopyCustomerNumber
+            // 
+            CmdCopyCustomerNumber.Location = new Point(218, 491);
+            CmdCopyCustomerNumber.Name = "CmdCopyCustomerNumber";
+            CmdCopyCustomerNumber.Size = new Size(232, 34);
+            CmdCopyCustomerNumber.TabIndex = 6;
+            CmdCopyCustomerNumber.Text = "Copy Customer Number";
+            CmdCopyCustomerNumber.UseVisualStyleBackColor = true;
+            CmdCopyCustomerNumber.Click += CmdCopyCustomerNumber_Click;
+            // 
+            // CmdCopyOrderNumber
+            // 
+            CmdCopyOrderNumber.Location = new Point(7, 491);
+            CmdCopyOrderNumber.Name = "CmdCopyOrderNumber";
+            CmdCopyOrderNumber.Size = new Size(205, 34);
+            CmdCopyOrderNumber.TabIndex = 5;
+            CmdCopyOrderNumber.Text = "Copy Order Number";
+            CmdCopyOrderNumber.UseVisualStyleBackColor = true;
             // 
             // LblNoResults
             // 
@@ -73,10 +96,11 @@
             DataGridViewInvoices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewInvoices.Location = new Point(7, 32);
             DataGridViewInvoices.Margin = new Padding(4, 5, 4, 5);
+            DataGridViewInvoices.MultiSelect = false;
             DataGridViewInvoices.Name = "DataGridViewInvoices";
             DataGridViewInvoices.ReadOnly = true;
             DataGridViewInvoices.RowHeadersWidth = 62;
-            DataGridViewInvoices.Size = new Size(738, 497);
+            DataGridViewInvoices.Size = new Size(738, 451);
             DataGridViewInvoices.TabIndex = 2;
             // 
             // groupBox2
@@ -91,7 +115,7 @@
             groupBox2.Controls.Add(CmdSearchInvoices);
             groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(750, 198);
+            groupBox2.Size = new Size(750, 177);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Filter Invoices";
@@ -200,5 +224,7 @@
         private TextBox TxtSearchOrderNumber;
         private Label label3;
         private Button CmdResetFilters;
+        private Button CmdCopyCustomerNumber;
+        private Button CmdCopyOrderNumber;
     }
 }
