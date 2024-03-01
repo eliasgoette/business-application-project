@@ -34,15 +34,25 @@
             LblNoResults = new Label();
             DataGridViewInvoices = new DataGridView();
             groupBox2 = new GroupBox();
-            CmbDateProperty = new ComboBox();
+            label4 = new Label();
             label8 = new Label();
             label6 = new Label();
+            DatPckInvoiceDateTo = new DateTimePicker();
+            DatPckInvoiceDateFrom = new DateTimePicker();
+            TxtSearchNetAmount = new TextBox();
+            label12 = new Label();
+            TxtSearchGrossAmount = new TextBox();
+            label13 = new Label();
+            TxtSearchCountry = new TextBox();
+            label11 = new Label();
+            TxtSearchZipCode = new TextBox();
+            label9 = new Label();
+            TxtStreetAddress = new TextBox();
+            label10 = new Label();
+            TxtSearchLastName = new TextBox();
             label7 = new Label();
-            ChkListBoxPaymentStatus = new CheckedListBox();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
-            label4 = new Label();
-            ChkListBoxPaymentMethod = new CheckedListBox();
+            TxtSearchFirstName = new TextBox();
+            label5 = new Label();
             TxtSearchOrderNumber = new TextBox();
             label3 = new Label();
             CmdResetFilters = new Button();
@@ -62,9 +72,9 @@
             groupBox1.Controls.Add(CmdCopyOrderNumber);
             groupBox1.Controls.Add(LblNoResults);
             groupBox1.Controls.Add(DataGridViewInvoices);
-            groupBox1.Location = new Point(3, 285);
+            groupBox1.Location = new Point(3, 383);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(750, 735);
+            groupBox1.Size = new Size(750, 637);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Results";
@@ -101,7 +111,6 @@
             // 
             // DataGridViewInvoices
             // 
-            DataGridViewInvoices.AutoGenerateColumns = false;
             DataGridViewInvoices.AllowUserToDeleteRows = false;
             DataGridViewInvoices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewInvoices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -116,15 +125,25 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(CmbDateProperty);
+            groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(DatPckInvoiceDateTo);
+            groupBox2.Controls.Add(DatPckInvoiceDateFrom);
+            groupBox2.Controls.Add(TxtSearchNetAmount);
+            groupBox2.Controls.Add(label12);
+            groupBox2.Controls.Add(TxtSearchGrossAmount);
+            groupBox2.Controls.Add(label13);
+            groupBox2.Controls.Add(TxtSearchCountry);
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(TxtSearchZipCode);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(TxtStreetAddress);
+            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(TxtSearchLastName);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(ChkListBoxPaymentStatus);
-            groupBox2.Controls.Add(dateTimePicker2);
-            groupBox2.Controls.Add(dateTimePicker1);
-            groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(ChkListBoxPaymentMethod);
+            groupBox2.Controls.Add(TxtSearchFirstName);
+            groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(TxtSearchOrderNumber);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(CmdResetFilters);
@@ -135,103 +154,195 @@
             groupBox2.Controls.Add(CmdSearchInvoices);
             groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(750, 276);
+            groupBox2.Size = new Size(750, 374);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Filter Invoices";
             // 
-            // CmbDateProperty
+            // label4
             // 
-            CmbDateProperty.DropDownStyle = ComboBoxStyle.DropDownList;
-            CmbDateProperty.FormattingEnabled = true;
-            CmbDateProperty.Items.AddRange(new object[] { "Due Date", "Order Date" });
-            CmbDateProperty.Location = new Point(490, 122);
-            CmbDateProperty.Name = "CmbDateProperty";
-            CmbDateProperty.Size = new Size(252, 33);
-            CmbDateProperty.TabIndex = 21;
+            label4.AutoSize = true;
+            label4.Location = new Point(7, 267);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(110, 25);
+            label4.TabIndex = 45;
+            label4.Text = "Invoice Date";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(490, 200);
+            label8.Location = new Point(7, 339);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(30, 25);
-            label8.TabIndex = 20;
+            label8.TabIndex = 44;
             label8.Text = "To";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(489, 166);
+            label6.Location = new Point(8, 303);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(54, 25);
-            label6.TabIndex = 19;
+            label6.TabIndex = 43;
             label6.Text = "From";
+            // 
+            // DatPckInvoiceDateTo
+            // 
+            DatPckInvoiceDateTo.Format = DateTimePickerFormat.Short;
+            DatPckInvoiceDateTo.Location = new Point(69, 334);
+            DatPckInvoiceDateTo.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
+            DatPckInvoiceDateTo.MinDate = new DateTime(1999, 1, 1, 0, 0, 0, 0);
+            DatPckInvoiceDateTo.Name = "DatPckInvoiceDateTo";
+            DatPckInvoiceDateTo.Size = new Size(173, 31);
+            DatPckInvoiceDateTo.TabIndex = 42;
+            DatPckInvoiceDateTo.Value = new DateTime(2030, 12, 31, 0, 0, 0, 0);
+            // 
+            // DatPckInvoiceDateFrom
+            // 
+            DatPckInvoiceDateFrom.Format = DateTimePickerFormat.Short;
+            DatPckInvoiceDateFrom.Location = new Point(68, 297);
+            DatPckInvoiceDateFrom.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
+            DatPckInvoiceDateFrom.MinDate = new DateTime(1999, 1, 1, 0, 0, 0, 0);
+            DatPckInvoiceDateFrom.Name = "DatPckInvoiceDateFrom";
+            DatPckInvoiceDateFrom.Size = new Size(174, 31);
+            DatPckInvoiceDateFrom.TabIndex = 41;
+            DatPckInvoiceDateFrom.Value = new DateTime(1999, 1, 1, 0, 0, 0, 0);
+            // 
+            // TxtSearchNetAmount
+            // 
+            TxtSearchNetAmount.Location = new Point(7, 192);
+            TxtSearchNetAmount.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchNetAmount.Name = "TxtSearchNetAmount";
+            TxtSearchNetAmount.Size = new Size(235, 31);
+            TxtSearchNetAmount.TabIndex = 40;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(7, 161);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(110, 25);
+            label12.TabIndex = 39;
+            label12.Text = "Net Amount";
+            // 
+            // TxtSearchGrossAmount
+            // 
+            TxtSearchGrossAmount.Location = new Point(7, 125);
+            TxtSearchGrossAmount.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchGrossAmount.Name = "TxtSearchGrossAmount";
+            TxtSearchGrossAmount.Size = new Size(235, 31);
+            TxtSearchGrossAmount.TabIndex = 38;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(7, 94);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(127, 25);
+            label13.TabIndex = 37;
+            label13.Text = "Gross Amount";
+            // 
+            // TxtSearchCountry
+            // 
+            TxtSearchCountry.Location = new Point(489, 259);
+            TxtSearchCountry.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCountry.Name = "TxtSearchCountry";
+            TxtSearchCountry.Size = new Size(235, 31);
+            TxtSearchCountry.TabIndex = 31;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(489, 228);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(75, 25);
+            label11.TabIndex = 30;
+            label11.Text = "Country";
+            // 
+            // TxtSearchZipCode
+            // 
+            TxtSearchZipCode.Location = new Point(489, 192);
+            TxtSearchZipCode.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchZipCode.Name = "TxtSearchZipCode";
+            TxtSearchZipCode.Size = new Size(235, 31);
+            TxtSearchZipCode.TabIndex = 29;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(489, 161);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(84, 25);
+            label9.TabIndex = 28;
+            label9.Text = "Zip Code";
+            // 
+            // TxtStreetAddress
+            // 
+            TxtStreetAddress.Location = new Point(489, 125);
+            TxtStreetAddress.Margin = new Padding(4, 5, 4, 5);
+            TxtStreetAddress.Name = "TxtStreetAddress";
+            TxtStreetAddress.Size = new Size(235, 31);
+            TxtStreetAddress.TabIndex = 27;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(489, 94);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(127, 25);
+            label10.TabIndex = 26;
+            label10.Text = "Street Address";
+            // 
+            // TxtSearchLastName
+            // 
+            TxtSearchLastName.Location = new Point(248, 192);
+            TxtSearchLastName.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchLastName.Name = "TxtSearchLastName";
+            TxtSearchLastName.Size = new Size(235, 31);
+            TxtSearchLastName.TabIndex = 25;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(248, 94);
+            label7.Location = new Point(248, 161);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(133, 25);
-            label7.TabIndex = 18;
-            label7.Text = "Payment Status";
+            label7.Size = new Size(95, 25);
+            label7.TabIndex = 24;
+            label7.Text = "Last Name";
             // 
-            // ChkListBoxPaymentStatus
+            // TxtSearchFirstName
             // 
-            ChkListBoxPaymentStatus.FormattingEnabled = true;
-            ChkListBoxPaymentStatus.Location = new Point(248, 122);
-            ChkListBoxPaymentStatus.Name = "ChkListBoxPaymentStatus";
-            ChkListBoxPaymentStatus.Size = new Size(235, 144);
-            ChkListBoxPaymentStatus.TabIndex = 17;
+            TxtSearchFirstName.Location = new Point(248, 125);
+            TxtSearchFirstName.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchFirstName.Name = "TxtSearchFirstName";
+            TxtSearchFirstName.Size = new Size(235, 31);
+            TxtSearchFirstName.TabIndex = 23;
             // 
-            // dateTimePicker2
+            // label5
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(550, 195);
-            dateTimePicker2.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(192, 31);
-            dateTimePicker2.TabIndex = 16;
-            dateTimePicker2.Value = new DateTime(9998, 12, 31, 0, 0, 0, 0);
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(550, 161);
-            dateTimePicker1.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(192, 31);
-            dateTimePicker1.TabIndex = 14;
-            dateTimePicker1.Value = new DateTime(1950, 1, 1, 0, 0, 0, 0);
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(7, 94);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(156, 25);
-            label4.TabIndex = 12;
-            label4.Text = "Payment Methods";
-            // 
-            // ChkListBoxPaymentMethod
-            // 
-            ChkListBoxPaymentMethod.FormattingEnabled = true;
-            ChkListBoxPaymentMethod.Location = new Point(7, 122);
-            ChkListBoxPaymentMethod.Name = "ChkListBoxPaymentMethod";
-            ChkListBoxPaymentMethod.Size = new Size(235, 144);
-            ChkListBoxPaymentMethod.TabIndex = 11;
+            label5.AutoSize = true;
+            label5.Location = new Point(248, 94);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(97, 25);
+            label5.TabIndex = 22;
+            label5.Text = "First Name";
             // 
             // TxtSearchOrderNumber
             // 
             TxtSearchOrderNumber.Location = new Point(489, 58);
             TxtSearchOrderNumber.Margin = new Padding(4, 5, 4, 5);
             TxtSearchOrderNumber.Name = "TxtSearchOrderNumber";
-            TxtSearchOrderNumber.Size = new Size(253, 31);
+            TxtSearchOrderNumber.Size = new Size(235, 31);
             TxtSearchOrderNumber.TabIndex = 9;
             // 
             // label3
@@ -246,7 +357,7 @@
             // 
             // CmdResetFilters
             // 
-            CmdResetFilters.Location = new Point(489, 232);
+            CmdResetFilters.Location = new Point(386, 335);
             CmdResetFilters.Name = "CmdResetFilters";
             CmdResetFilters.Size = new Size(97, 34);
             CmdResetFilters.TabIndex = 7;
@@ -292,9 +403,9 @@
             // 
             // CmdSearchInvoices
             // 
-            CmdSearchInvoices.Location = new Point(593, 232);
+            CmdSearchInvoices.Location = new Point(489, 334);
             CmdSearchInvoices.Name = "CmdSearchInvoices";
-            CmdSearchInvoices.Size = new Size(152, 34);
+            CmdSearchInvoices.Size = new Size(235, 34);
             CmdSearchInvoices.TabIndex = 0;
             CmdSearchInvoices.Text = "Search Invoices";
             CmdSearchInvoices.UseVisualStyleBackColor = true;
@@ -332,14 +443,24 @@
         private Button CmdResetFilters;
         private Button CmdCopyCustomerNumber;
         private Button CmdCopyOrderNumber;
-        private Label label4;
-        private CheckedListBox ChkListBoxPaymentMethod;
+        private TextBox TxtSearchFirstName;
+        private Label label5;
+        private TextBox TxtSearchLastName;
         private Label label7;
-        private CheckedListBox ChkListBoxPaymentStatus;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private TextBox TxtSearchCountry;
+        private Label label11;
+        private TextBox TxtSearchZipCode;
+        private Label label9;
+        private TextBox TxtStreetAddress;
+        private Label label10;
+        private TextBox TxtSearchNetAmount;
+        private Label label12;
+        private TextBox TxtSearchGrossAmount;
+        private Label label13;
+        private Label label4;
         private Label label8;
         private Label label6;
-        private ComboBox CmbDateProperty;
+        private DateTimePicker DatPckInvoiceDateTo;
+        private DateTimePicker DatPckInvoiceDateFrom;
     }
 }

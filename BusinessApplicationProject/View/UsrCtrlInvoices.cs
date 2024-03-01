@@ -11,33 +11,9 @@ namespace BusinessApplicationProject.View
         public UsrCtrlInvoices()
         {
             InitializeComponent();
-            InitializeChkListBoxes();
-            CmbDateProperty.SelectedIndex = 0;
-        }
-
-        private void InitializeChkListBoxes()
-        {
-            ChkListBoxPaymentMethod.Items.Clear();
-            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.ApplePay);
-            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.BankTransfer);
-            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.CreditCard);
-            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.PayPal);
-            ChkListBoxPaymentMethod.Items.Add(PaymentInformationConstants.PaymentMethods.SamsungPay);
-
-            for (int i = 0; i < ChkListBoxPaymentMethod.Items.Count; i++)
-            {
-                ChkListBoxPaymentMethod.SetItemChecked(i, true);
-            }
-
-            ChkListBoxPaymentStatus.Items.Clear();
-            ChkListBoxPaymentStatus.Items.Add(PaymentInformationConstants.PaymentStatuses.Pending);
-            ChkListBoxPaymentStatus.Items.Add(PaymentInformationConstants.PaymentStatuses.Paid);
-            ChkListBoxPaymentStatus.Items.Add(PaymentInformationConstants.PaymentStatuses.Cancelled);
-
-            for (int i = 0; i < ChkListBoxPaymentStatus.Items.Count; i++)
-            {
-                ChkListBoxPaymentStatus.SetItemChecked(i, true);
-            }
+            DatPckInvoiceDateFrom.MaxDate = DateTime.UtcNow.AddYears(1);
+            DatPckInvoiceDateTo.MaxDate = DateTime.UtcNow.AddYears(1);
+            DatPckInvoiceDateTo.Value = DatPckInvoiceDateTo.MaxDate;
         }
 
         private Controller<Invoice> invoiceController = new Controller<Invoice>
@@ -52,11 +28,26 @@ namespace BusinessApplicationProject.View
             DataGridViewInvoices.DataSource = null;
             DataGridViewInvoices.Columns.Clear();
 
-            List<Invoice> invoices;
+            List<Invoice> invoices = new List<Invoice>();
 
             try
             {
-                if (/* Filters clear */ true) invoices = invoiceController.GetAll();
+                if (FiltersAreClear()) invoices = invoiceController.GetAll();
+                else if (TxtSearchInvoiceNumber.Text != string.Empty)
+                {
+                    var inv = invoiceController.FindSingle(
+                            x => x.InvoiceNumber == TxtSearchInvoiceNumber.Text
+                    );
+
+                    if (inv != null)
+                    {
+                        invoices.Add(inv);
+                    }
+                    else
+                    {
+                        LblNoResults.Visible = true;
+                    }
+                }
 
                 if (invoices.Count > 0)
                 {
@@ -81,9 +72,33 @@ namespace BusinessApplicationProject.View
                         DataPropertyName = "PaymentStatus"
                     };
 
+                    DataGridViewTextBoxColumn paymentMethodColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "paymentMethodColumn",
+                        HeaderText = "Payment Method",
+                        DataPropertyName = "PaymentMethod"
+                    };
+
+                    DataGridViewTextBoxColumn discountColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "discountColumn",
+                        HeaderText = "Discount",
+                        DataPropertyName = "Discount"
+                    };
+
+                    DataGridViewTextBoxColumn taxPercentageColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "taxPercentageColumn",
+                        HeaderText = "Tax Percentage",
+                        DataPropertyName = "TaxPercentage"
+                    };
+
                     DataGridViewInvoices.Columns.Add(invoiceNumberColumn);
                     DataGridViewInvoices.Columns.Add(dueDateColumn);
                     DataGridViewInvoices.Columns.Add(paymentStatusColumn);
+                    DataGridViewInvoices.Columns.Add(paymentMethodColumn);
+                    DataGridViewInvoices.Columns.Add(discountColumn);
+                    DataGridViewInvoices.Columns.Add(taxPercentageColumn);
 
                     DataGridViewInvoices.DataSource = invoices;
                 }
@@ -97,6 +112,27 @@ namespace BusinessApplicationProject.View
             {
                 MessageBox.Show("Database connection failed. Connection timed out.");
             }
+            catch
+            {
+                MessageBox.Show("An error occured.");
+            }
+        }
+
+        private bool FiltersAreClear()
+        {
+            return
+                TxtSearchInvoiceNumber.Text == string.Empty &&
+                TxtSearchCustomerNumber.Text == string.Empty &&
+                TxtSearchOrderNumber.Text == string.Empty &&
+                TxtSearchGrossAmount.Text == string.Empty &&
+                TxtSearchNetAmount.Text == string.Empty &&
+                TxtSearchFirstName.Text == string.Empty &&
+                TxtSearchLastName.Text == string.Empty &&
+                TxtStreetAddress.Text == string.Empty &&
+                TxtSearchZipCode.Text == string.Empty &&
+                TxtSearchCountry.Text == string.Empty &&
+                DatPckInvoiceDateFrom.Value == DatPckInvoiceDateFrom.MinDate &&
+                DatPckInvoiceDateTo.Value == DatPckInvoiceDateTo.MaxDate;
         }
 
         private void CmdSearchInvoices_Click(object sender, EventArgs e)
@@ -111,6 +147,15 @@ namespace BusinessApplicationProject.View
             TxtSearchInvoiceNumber.Text = string.Empty;
             TxtSearchCustomerNumber.Text = string.Empty;
             TxtSearchOrderNumber.Text = string.Empty;
+            TxtSearchGrossAmount.Text = string.Empty;
+            TxtSearchNetAmount.Text = string.Empty;
+            TxtSearchFirstName.Text = string.Empty;
+            TxtSearchLastName.Text = string.Empty;
+            TxtStreetAddress.Text = string.Empty;
+            TxtSearchZipCode.Text = string.Empty;
+            TxtSearchCountry.Text = string.Empty;
+            DatPckInvoiceDateFrom.Value = DatPckInvoiceDateFrom.MinDate;
+            DatPckInvoiceDateTo.Value = DatPckInvoiceDateTo.MaxDate;
         }
 
         private void CmdCopyCustomerNumber_Click(object sender, EventArgs e)
@@ -159,11 +204,6 @@ namespace BusinessApplicationProject.View
             }
 
             return null;
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
