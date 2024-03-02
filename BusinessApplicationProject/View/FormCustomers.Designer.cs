@@ -41,7 +41,7 @@
             GrpInformation = new GroupBox();
             LblInfoCustomerPostalCode = new Label();
             LblInfoCustomerCity = new Label();
-            groupBox1 = new GroupBox();
+            GrpOrders = new GroupBox();
             DataGridViewCustomerOrders = new DataGridView();
             orderNumber = new DataGridViewTextBoxColumn();
             dateOfOrder = new DataGridViewTextBoxColumn();
@@ -91,13 +91,14 @@
             GrpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).BeginInit();
             GrpInformation.SuspendLayout();
-            groupBox1.SuspendLayout();
+            GrpOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).BeginInit();
             GrpSearch.SuspendLayout();
             SuspendLayout();
             // 
             // CmdCustomers
             // 
+            CmdCustomers.Enabled = false;
             CmdCustomers.Location = new Point(18, 60);
             CmdCustomers.Name = "CmdCustomers";
             CmdCustomers.Size = new Size(75, 23);
@@ -206,7 +207,7 @@
             // 
             GrpInformation.Controls.Add(LblInfoCustomerPostalCode);
             GrpInformation.Controls.Add(LblInfoCustomerCity);
-            GrpInformation.Controls.Add(groupBox1);
+            GrpInformation.Controls.Add(GrpOrders);
             GrpInformation.Controls.Add(LblInfoCustomerWebsite);
             GrpInformation.Controls.Add(LblInfoCustomerEmail);
             GrpInformation.Controls.Add(LblInfoCustomerAdress);
@@ -254,19 +255,19 @@
             LblInfoCustomerCity.TabIndex = 1;
             LblInfoCustomerCity.Text = "City";
             // 
-            // groupBox1
+            // GrpOrders
             // 
-            groupBox1.Controls.Add(DataGridViewCustomerOrders);
-            groupBox1.Controls.Add(CmdOpenSelectedOrder);
-            groupBox1.Controls.Add(CmdCreateNewOrder);
-            groupBox1.Controls.Add(CmdDeleteSelectedOrders);
-            groupBox1.ForeColor = SystemColors.ControlText;
-            groupBox1.Location = new Point(0, 251);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(528, 385);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Orders";
+            GrpOrders.Controls.Add(DataGridViewCustomerOrders);
+            GrpOrders.Controls.Add(CmdOpenSelectedOrder);
+            GrpOrders.Controls.Add(CmdCreateNewOrder);
+            GrpOrders.Controls.Add(CmdDeleteSelectedOrders);
+            GrpOrders.ForeColor = SystemColors.ControlText;
+            GrpOrders.Location = new Point(0, 251);
+            GrpOrders.Name = "GrpOrders";
+            GrpOrders.Size = new Size(528, 385);
+            GrpOrders.TabIndex = 2;
+            GrpOrders.TabStop = false;
+            GrpOrders.Text = "Orders";
             // 
             // DataGridViewCustomerOrders
             // 
@@ -708,7 +709,7 @@
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).EndInit();
             GrpInformation.ResumeLayout(false);
             GrpInformation.PerformLayout();
-            groupBox1.ResumeLayout(false);
+            GrpOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).EndInit();
             GrpSearch.ResumeLayout(false);
             GrpSearch.PerformLayout();
@@ -744,7 +745,7 @@
         private Label LblInfoCustomerCity;
         private Label LblInfoCustomerEmail;
         private Label LblInfoCustomerWebsite;
-        private GroupBox groupBox1;
+        private GroupBox GrpOrders;
         private DataGridView DataGridViewCustomerOrders;
         private Button CmdOpenSelectedOrder;
         private Button CmdCreateNewOrder;

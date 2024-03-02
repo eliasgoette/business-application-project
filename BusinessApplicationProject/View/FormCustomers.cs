@@ -5,16 +5,15 @@ namespace BusinessApplicationProject
         public FormCustomers()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         #region Navigation
         private void CmdArticles_Click(object sender, EventArgs e)
         {
-            FormArticles formArticles = new FormArticles();
-            formArticles.Show(this);
+            Program.formArticles.Show(this);
             this.Hide();
-
-            //Evt. Methode um Fenster zu wechseln
         }
 
         private void CmdCustomers_Click(object sender, EventArgs e)
@@ -29,7 +28,7 @@ namespace BusinessApplicationProject
 
         private void CmdCloseProgram_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
 
@@ -135,7 +134,8 @@ namespace BusinessApplicationProject
 
         private void GenerateNewCustomerNumber()
         {
-            throw new NotImplementedException();
+            //Get next Number
+            TxtInputCustomerNumber.Text = 3.ToString();
         }
 
         /*---------------------------------------*/
