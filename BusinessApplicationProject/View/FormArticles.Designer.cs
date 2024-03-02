@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode7 = new TreeNode("Apfel");
-            TreeNode treeNode8 = new TreeNode("Birne");
-            TreeNode treeNode9 = new TreeNode("Obst", new TreeNode[] { treeNode7, treeNode8 });
-            TreeNode treeNode10 = new TreeNode("Lebensmittel", new TreeNode[] { treeNode9 });
-            TreeNode treeNode11 = new TreeNode("Autos");
-            TreeNode treeNode12 = new TreeNode("Fahrzeuge", new TreeNode[] { treeNode11 });
+            TreeNode treeNode1 = new TreeNode("Apfel");
+            TreeNode treeNode2 = new TreeNode("Birne");
+            TreeNode treeNode3 = new TreeNode("Obst", new TreeNode[] { treeNode1, treeNode2 });
+            TreeNode treeNode4 = new TreeNode("Lebensmittel", new TreeNode[] { treeNode3 });
+            TreeNode treeNode5 = new TreeNode("Autos");
+            TreeNode treeNode6 = new TreeNode("Fahrzeuge", new TreeNode[] { treeNode5 });
             CmdCustomers = new Button();
             CmdArticles = new Button();
             CmdOrders = new Button();
@@ -182,19 +182,19 @@
             // 
             TreeViewArticles.Location = new Point(6, 22);
             TreeViewArticles.Name = "TreeViewArticles";
-            treeNode7.Name = "Apfel";
-            treeNode7.Text = "Apfel";
-            treeNode8.Name = "Birne";
-            treeNode8.Text = "Birne";
-            treeNode9.Name = "Obst";
-            treeNode9.Text = "Obst";
-            treeNode10.Name = "Lebensmittel";
-            treeNode10.Text = "Lebensmittel";
-            treeNode11.Name = "Autos";
-            treeNode11.Text = "Autos";
-            treeNode12.Name = "Fahrzeuge";
-            treeNode12.Text = "Fahrzeuge";
-            TreeViewArticles.Nodes.AddRange(new TreeNode[] { treeNode10, treeNode12 });
+            treeNode1.Name = "Apfel";
+            treeNode1.Text = "Apfel";
+            treeNode2.Name = "Birne";
+            treeNode2.Text = "Birne";
+            treeNode3.Name = "Obst";
+            treeNode3.Text = "Obst";
+            treeNode4.Name = "Lebensmittel";
+            treeNode4.Text = "Lebensmittel";
+            treeNode5.Name = "Autos";
+            treeNode5.Text = "Autos";
+            treeNode6.Name = "Fahrzeuge";
+            treeNode6.Text = "Fahrzeuge";
+            TreeViewArticles.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode6 });
             TreeViewArticles.Size = new Size(516, 450);
             TreeViewArticles.TabIndex = 2;
             // 
@@ -291,7 +291,7 @@
             button3.Name = "button3";
             button3.Size = new Size(110, 23);
             button3.TabIndex = 0;
-            button3.Text = "Delete Customer";
+            button3.Text = "Delete Article";
             button3.UseVisualStyleBackColor = true;
             button3.Click += CmdDeleteCustomer_Click;
             // 
@@ -309,9 +309,9 @@
             // 
             button1.Location = new Point(6, 89);
             button1.Name = "button1";
-            button1.Size = new Size(148, 23);
+            button1.Size = new Size(156, 23);
             button1.TabIndex = 0;
-            button1.Text = "Save as new Customer";
+            button1.Text = "Save as new Article";
             button1.UseVisualStyleBackColor = true;
             button1.Click += CmdCreateNewCustomer_Click;
             // 
@@ -474,7 +474,7 @@
             button4.Name = "button4";
             button4.Size = new Size(110, 23);
             button4.TabIndex = 0;
-            button4.Text = "Delete Customer";
+            button4.Text = "Delete Group";
             button4.UseVisualStyleBackColor = true;
             button4.Click += CmdDeleteCustomer_Click;
             // 
@@ -492,9 +492,9 @@
             // 
             button6.Location = new Point(6, 89);
             button6.Name = "button6";
-            button6.Size = new Size(148, 23);
+            button6.Size = new Size(156, 23);
             button6.TabIndex = 0;
-            button6.Text = "Save as new Customer";
+            button6.Text = "Save as new Article Group";
             button6.UseVisualStyleBackColor = true;
             button6.Click += CmdCreateNewCustomer_Click;
             // 
