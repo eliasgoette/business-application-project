@@ -1,6 +1,7 @@
 ﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
+using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.View
 {
@@ -24,6 +25,7 @@ namespace BusinessApplicationProject.View
 
         public void UpdateSearchResults()
         {
+            DataGridViewInvoices.AutoGenerateColumns = false;
             LblNoResults.Visible = false;
             DataGridViewInvoices.DataSource = null;
             DataGridViewInvoices.Columns.Clear();
@@ -32,22 +34,8 @@ namespace BusinessApplicationProject.View
 
             try
             {
-                if (FiltersAreClear()) invoices = invoiceController.GetAll();
-                else if (TxtSearchInvoiceNumber.Text != string.Empty)
-                {
-                    var inv = invoiceController.FindSingle(
-                            x => x.InvoiceNumber == TxtSearchInvoiceNumber.Text
-                    );
-
-                    if (inv != null)
-                    {
-                        invoices.Add(inv);
-                    }
-                    else
-                    {
-                        LblNoResults.Visible = true;
-                    }
-                }
+                var filter = CreateFilterFunction();
+                invoices = invoiceController.Find(filter);
 
                 if (invoices.Count > 0)
                 {
@@ -118,21 +106,21 @@ namespace BusinessApplicationProject.View
             }
         }
 
-        private bool FiltersAreClear()
+        private Expression<Func<Invoice, bool>> CreateFilterFunction()
         {
-            return
-                TxtSearchInvoiceNumber.Text == string.Empty &&
-                TxtSearchCustomerNumber.Text == string.Empty &&
-                TxtSearchOrderNumber.Text == string.Empty &&
-                TxtSearchGrossAmount.Text == string.Empty &&
-                TxtSearchNetAmount.Text == string.Empty &&
-                TxtSearchFirstName.Text == string.Empty &&
-                TxtSearchLastName.Text == string.Empty &&
-                TxtStreetAddress.Text == string.Empty &&
-                TxtSearchZipCode.Text == string.Empty &&
-                TxtSearchCountry.Text == string.Empty &&
-                DatPckInvoiceDateFrom.Value == DatPckInvoiceDateFrom.MinDate &&
-                DatPckInvoiceDateTo.Value == DatPckInvoiceDateTo.MaxDate;
+            return invoice =>
+                (string.IsNullOrEmpty(TxtSearchInvoiceNumber.Text) || invoice.InvoiceNumber.Contains(TxtSearchInvoiceNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || invoice.OrderInformations.CustomerDetails.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchOrderNumber.Text) || invoice.OrderInformations.OrderNumber.Contains(TxtSearchOrderNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchGrossAmount.Text) || invoice.OrderInformations.Positions.Sum(position => position.Quantity * position.ArticleDetails.Price) == Convert.ToInt64(TxtSearchGrossAmount.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchNetAmount.Text) || (invoice.OrderInformations.Positions.Sum(position => position.Quantity * position.ArticleDetails.Price) - invoice.Discount * (1 + invoice.TaxPercentage / 100)) == Convert.ToInt64(TxtSearchNetAmount.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchFirstName.Text) || invoice.OrderInformations.CustomerDetails.FirstName.Contains(TxtSearchFirstName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchLastName.Text) || invoice.OrderInformations.CustomerDetails.LastName.Contains(TxtSearchLastName.Text)) &&
+                (string.IsNullOrEmpty(TxtStreetAddress.Text) || invoice.BillingAddress.StreetAddress.Contains(TxtStreetAddress.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchZipCode.Text) || invoice.BillingAddress.ZipCode.Contains(TxtSearchZipCode.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCountry.Text) || invoice.BillingAddress.Country.Contains(TxtSearchCountry.Text)) &&
+                (DatPckInvoiceDateFrom.Value == DatPckInvoiceDateFrom.MinDate || invoice.OrderInformations.Date >= DatPckInvoiceDateFrom.Value) &&
+                (DatPckInvoiceDateTo.Value == DatPckInvoiceDateTo.MaxDate || invoice.OrderInformations.Date <= DatPckInvoiceDateTo.Value);
         }
 
         private void CmdSearchInvoices_Click(object sender, EventArgs e)
