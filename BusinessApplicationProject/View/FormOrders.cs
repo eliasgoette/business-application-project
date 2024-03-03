@@ -1,8 +1,18 @@
-﻿namespace BusinessApplicationProject
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace BusinessApplicationProject
 {
-    public partial class FormArticles : Form
+    public partial class FormOrders : Form
     {
-        public FormArticles()
+        public FormOrders()
         {
             InitializeComponent();
 
@@ -38,7 +48,7 @@
 
 
         #region Search
-        private void CmdSearchArticles_Click(object sender, EventArgs e)
+        private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
             DisplaySearchResults();
         }
@@ -66,62 +76,27 @@
         #endregion
 
 
-        #region Articles
+        #region Customers
 
-        private void CmdShowAllArticles_Click(object sender, EventArgs e)
+        private void CmdShowAllCustomers_Click(object sender, EventArgs e)
         {
-            //Load all Articles into Treeview
+            //Load all Customers into Grid
         }
 
-        private void CmdEditSelectedObject_Click(object sender, EventArgs e)
+        private void CmdCreateEmptyCustomer_Click(object sender, EventArgs e)
         {
-            //Edit selected Object
-            GrpInformationArticle.Visible = true;
+            //Create Empty Customer
         }
 
 
-        private void CmdDeleteSelectedObjects_Click(object sender, EventArgs e)
+        private void CmdDeleteSelectedCustomers_Click(object sender, EventArgs e)
         {
-            //check if Node is selected
-            if (TreeViewArticles.SelectedNode == null) { return; }
-
-            //Throw warning
-            if (WarningDeletedObject())
-            {
-                //Delete all selected Objects
-                DeleteSelectedObjectsTreeView();
-            }
+            //Delete all selected Customer
         }
 
         /*-----*/
 
-        private bool WarningDeletedObject()
-        {
-            DialogResult result = MessageBox.Show("Would you wish to delete all selected Objects?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
-        private void DeleteSelectedObjectsTreeView()
-        {
-            TreeNode node = TreeViewArticles.SelectedNode;
-
-            if (node.Parent != null)
-            {
-                node.Parent.Nodes.Remove(node);
-            }
-            else
-            {
-                TreeViewArticles.Nodes.Remove(node);
-            }
-
-        }
 
         /*---------------------------------------*/
 

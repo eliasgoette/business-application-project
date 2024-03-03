@@ -12,18 +12,20 @@ namespace BusinessApplicationProject
         #region Navigation
         private void CmdArticles_Click(object sender, EventArgs e)
         {
-            Program.formArticles.Show(this);
             this.Hide();
+            Program.formArticles.Show();
         }
 
         private void CmdCustomers_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Program.formCustomers.Show();
         }
 
         private void CmdOrders_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Program.formOrders.Show();
         }
 
         private void CmdCloseProgram_Click(object sender, EventArgs e)

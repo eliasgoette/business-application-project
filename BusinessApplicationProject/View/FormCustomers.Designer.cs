@@ -372,7 +372,7 @@
             // 
             // TxtInputCustomerAdress
             // 
-            TxtInputCustomerAdress.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerAdress.BackColor = SystemColors.Window;
             TxtInputCustomerAdress.BorderStyle = BorderStyle.None;
             TxtInputCustomerAdress.Cursor = Cursors.IBeam;
             TxtInputCustomerAdress.Location = new Point(109, 180);
@@ -382,7 +382,7 @@
             // 
             // TxtInputCustomerPostalCode
             // 
-            TxtInputCustomerPostalCode.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerPostalCode.BackColor = SystemColors.Window;
             TxtInputCustomerPostalCode.BorderStyle = BorderStyle.None;
             TxtInputCustomerPostalCode.Cursor = Cursors.IBeam;
             TxtInputCustomerPostalCode.Location = new Point(109, 159);
@@ -392,7 +392,7 @@
             // 
             // TxtInputCustomerCity
             // 
-            TxtInputCustomerCity.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerCity.BackColor = SystemColors.Window;
             TxtInputCustomerCity.BorderStyle = BorderStyle.None;
             TxtInputCustomerCity.Cursor = Cursors.IBeam;
             TxtInputCustomerCity.Location = new Point(256, 160);
@@ -402,7 +402,7 @@
             // 
             // TxtInputCustomerCountry
             // 
-            TxtInputCustomerCountry.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerCountry.BackColor = SystemColors.Window;
             TxtInputCustomerCountry.BorderStyle = BorderStyle.None;
             TxtInputCustomerCountry.Cursor = Cursors.IBeam;
             TxtInputCustomerCountry.Location = new Point(109, 139);
@@ -412,7 +412,7 @@
             // 
             // TxtInputCustomerWebsite
             // 
-            TxtInputCustomerWebsite.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerWebsite.BackColor = SystemColors.Window;
             TxtInputCustomerWebsite.BorderStyle = BorderStyle.None;
             TxtInputCustomerWebsite.Cursor = Cursors.IBeam;
             TxtInputCustomerWebsite.Location = new Point(330, 107);
@@ -422,7 +422,7 @@
             // 
             // TxtInputCustomerEmail
             // 
-            TxtInputCustomerEmail.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerEmail.BackColor = SystemColors.Window;
             TxtInputCustomerEmail.BorderStyle = BorderStyle.None;
             TxtInputCustomerEmail.Cursor = Cursors.IBeam;
             TxtInputCustomerEmail.Location = new Point(330, 87);
@@ -432,7 +432,7 @@
             // 
             // TxtInputCustomerLastName
             // 
-            TxtInputCustomerLastName.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerLastName.BackColor = SystemColors.Window;
             TxtInputCustomerLastName.BorderStyle = BorderStyle.None;
             TxtInputCustomerLastName.Cursor = Cursors.IBeam;
             TxtInputCustomerLastName.Location = new Point(109, 106);
@@ -442,7 +442,7 @@
             // 
             // TxtInputCustomerFirstName
             // 
-            TxtInputCustomerFirstName.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerFirstName.BackColor = SystemColors.Window;
             TxtInputCustomerFirstName.BorderStyle = BorderStyle.None;
             TxtInputCustomerFirstName.Cursor = Cursors.IBeam;
             TxtInputCustomerFirstName.Location = new Point(109, 86);
@@ -452,7 +452,7 @@
             // 
             // TxtInputCustomerPassword
             // 
-            TxtInputCustomerPassword.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerPassword.BackColor = SystemColors.Window;
             TxtInputCustomerPassword.BorderStyle = BorderStyle.None;
             TxtInputCustomerPassword.Cursor = Cursors.IBeam;
             TxtInputCustomerPassword.Location = new Point(139, 49);

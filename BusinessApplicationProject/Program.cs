@@ -21,11 +21,13 @@ namespace BusinessApplicationProject
 
         public static FormCustomers formCustomers;
         public static FormArticles formArticles;
+        public static FormOrders formOrders;
 
         private static void InitializeForms()
         {
             formCustomers = new FormCustomers();
             formArticles = new FormArticles();
+            formOrders = new FormOrders();
         }
     }
 }
