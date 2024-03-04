@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            CmdCopyCustomerNumber = new Button();
             LblNoResults = new Label();
             DataGridViewInvoices = new DataGridView();
+            CmdCopyCustomerNumber = new Button();
             CmdCopyOrderNumber = new Button();
             groupBox2 = new GroupBox();
             label4 = new Label();
@@ -80,16 +80,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Results";
             // 
-            // CmdCopyCustomerNumber
-            // 
-            CmdCopyCustomerNumber.Location = new Point(759, 429);
-            CmdCopyCustomerNumber.Name = "CmdCopyCustomerNumber";
-            CmdCopyCustomerNumber.Size = new Size(232, 34);
-            CmdCopyCustomerNumber.TabIndex = 6;
-            CmdCopyCustomerNumber.Text = "Copy Customer Number";
-            CmdCopyCustomerNumber.UseVisualStyleBackColor = true;
-            CmdCopyCustomerNumber.Click += CmdCopyCustomerNumber_Click;
-            // 
             // LblNoResults
             // 
             LblNoResults.AutoSize = true;
@@ -114,6 +104,16 @@
             DataGridViewInvoices.Size = new Size(738, 451);
             DataGridViewInvoices.TabIndex = 2;
             DataGridViewInvoices.CellClick += DataGridViewInvoices_CellClick;
+            // 
+            // CmdCopyCustomerNumber
+            // 
+            CmdCopyCustomerNumber.Location = new Point(759, 429);
+            CmdCopyCustomerNumber.Name = "CmdCopyCustomerNumber";
+            CmdCopyCustomerNumber.Size = new Size(232, 34);
+            CmdCopyCustomerNumber.TabIndex = 6;
+            CmdCopyCustomerNumber.Text = "Copy Customer Number";
+            CmdCopyCustomerNumber.UseVisualStyleBackColor = true;
+            CmdCopyCustomerNumber.Click += CmdCopyCustomerNumber_Click;
             // 
             // CmdCopyOrderNumber
             // 
@@ -409,6 +409,7 @@
             CmdCopyArticleNumber.TabIndex = 9;
             CmdCopyArticleNumber.Text = "Copy Article Number";
             CmdCopyArticleNumber.UseVisualStyleBackColor = true;
+            CmdCopyArticleNumber.Click += CmdCopyArticleNumber_Click;
             // 
             // DataGridViewCustomerInformations
             // 

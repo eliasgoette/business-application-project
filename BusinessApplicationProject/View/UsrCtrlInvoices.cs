@@ -264,11 +264,12 @@ namespace BusinessApplicationProject.View
 
             var netPrice = grossPrice * ((100 + invoice.TaxPercentage) / 100);
 
-            var flatOrder = new { 
-                order.OrderNumber, 
-                order.Date, 
-                GrossPrice = grossPrice, 
-                NetPrice = netPrice 
+            var flatOrder = new
+            {
+                order.OrderNumber,
+                order.Date,
+                GrossPrice = grossPrice,
+                NetPrice = netPrice
             };
 
             DataGridViewOrderDetails.DataSource = new List<object> { flatOrder };
@@ -294,6 +295,13 @@ namespace BusinessApplicationProject.View
                 DataPropertyName = "ArticleNumber"
             };
 
+            DataGridViewTextBoxColumn quantityColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "quantityColumn",
+                HeaderText = "Quantity",
+                DataPropertyName = "Quantity"
+            };
+
             DataGridViewTextBoxColumn articleNameColumn = new DataGridViewTextBoxColumn
             {
                 Name = "articleNameColumn",
@@ -304,12 +312,13 @@ namespace BusinessApplicationProject.View
             DataGridViewTextBoxColumn grossPriceColumn = new DataGridViewTextBoxColumn
             {
                 Name = "grossPriceColumn",
-                HeaderText = "Gross Price",
+                HeaderText = "Gross Price per Unit",
                 DataPropertyName = "GrossPrice"
             };
 
             DataGridViewOrderPositions.Columns.Add(positionNumberColumn);
             DataGridViewOrderPositions.Columns.Add(articleNumberColumn);
+            DataGridViewOrderPositions.Columns.Add(quantityColumn);
             DataGridViewOrderPositions.Columns.Add(articleNameColumn);
             DataGridViewOrderPositions.Columns.Add(grossPriceColumn);
 
@@ -320,20 +329,48 @@ namespace BusinessApplicationProject.View
             foreach (var pos in order.Positions)
             {
                 var art = articleController.FindAsOf(order.Date, x => x.Id == pos.ArticleDetails.Id).FirstOrDefault();
-                var grossPrice = pos.Quantity * art.Price;
 
                 var flatPos = new
                 {
                     pos.PositionNumber,
                     art.ArticleNumber,
+                    pos.Quantity,
                     ArticleName = art.Name,
-                    GrossPrice = grossPrice
+                    GrossPrice = art.Price
                 };
 
                 flatPositions.Add(flatPos);
             }
 
             DataGridViewOrderPositions.DataSource = flatPositions;
+        }
+
+        private void CmdCopyArticleNumber_Click(object sender, EventArgs e)
+        {
+            object? selection = GetSelectedItem<object>(DataGridViewOrderPositions);
+
+            if (selection != null)
+            {
+                var propertyName = "ArticleNumber";
+                var propertyInfo = selection.GetType().GetProperty(propertyName);
+
+                if (propertyInfo != null)
+                {
+                    string artNo = propertyInfo.GetValue(selection)?.ToString() ?? "";
+
+                    Clipboard.SetText(artNo);
+                    MessageBox.Show($"{artNo} copied to clipboard.");
+                }
+                else
+                {
+                    MessageBox.Show($"Property '{propertyName}' not found.");
+                }
+                //var artNo = ((Article)selection).ArticleNumber;
+            }
+            else
+            {
+                MessageBox.Show("No item selected.");
+            }
         }
 
         // Could potentially be outsourced into a service class
