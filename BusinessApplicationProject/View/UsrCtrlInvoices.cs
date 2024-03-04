@@ -112,8 +112,6 @@ namespace BusinessApplicationProject.View
                 (string.IsNullOrEmpty(TxtSearchInvoiceNumber.Text) || invoice.InvoiceNumber.Contains(TxtSearchInvoiceNumber.Text)) &&
                 (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || invoice.OrderInformations.CustomerDetails.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
                 (string.IsNullOrEmpty(TxtSearchOrderNumber.Text) || invoice.OrderInformations.OrderNumber.Contains(TxtSearchOrderNumber.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchGrossAmount.Text) || invoice.OrderInformations.Positions.Sum(position => position.Quantity * position.ArticleDetails.Price) == Convert.ToInt64(TxtSearchGrossAmount.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchNetAmount.Text) || (invoice.OrderInformations.Positions.Sum(position => position.Quantity * position.ArticleDetails.Price) - invoice.Discount * (1 + invoice.TaxPercentage / 100)) == Convert.ToInt64(TxtSearchNetAmount.Text)) &&
                 (string.IsNullOrEmpty(TxtSearchFirstName.Text) || invoice.OrderInformations.CustomerDetails.FirstName.Contains(TxtSearchFirstName.Text)) &&
                 (string.IsNullOrEmpty(TxtSearchLastName.Text) || invoice.OrderInformations.CustomerDetails.LastName.Contains(TxtSearchLastName.Text)) &&
                 (string.IsNullOrEmpty(TxtStreetAddress.Text) || invoice.BillingAddress.StreetAddress.Contains(TxtStreetAddress.Text)) &&
@@ -135,8 +133,6 @@ namespace BusinessApplicationProject.View
             TxtSearchInvoiceNumber.Text = string.Empty;
             TxtSearchCustomerNumber.Text = string.Empty;
             TxtSearchOrderNumber.Text = string.Empty;
-            TxtSearchGrossAmount.Text = string.Empty;
-            TxtSearchNetAmount.Text = string.Empty;
             TxtSearchFirstName.Text = string.Empty;
             TxtSearchLastName.Text = string.Empty;
             TxtStreetAddress.Text = string.Empty;
