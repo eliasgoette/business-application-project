@@ -30,22 +30,22 @@
         {
             groupBox1 = new GroupBox();
             CmdCopyCustomerNumber = new Button();
-            CmdCopyOrderNumber = new Button();
             LblNoResults = new Label();
             DataGridViewInvoices = new DataGridView();
+            CmdCopyOrderNumber = new Button();
             groupBox2 = new GroupBox();
             label4 = new Label();
             label8 = new Label();
-            label6 = new Label();
-            DatPckInvoiceDateTo = new DateTimePicker();
-            DatPckInvoiceDateFrom = new DateTimePicker();
-            TxtSearchCountry = new TextBox();
-            label11 = new Label();
-            TxtSearchZipCode = new TextBox();
-            label9 = new Label();
-            TxtStreetAddress = new TextBox();
             label10 = new Label();
+            TxtStreetAddress = new TextBox();
+            label6 = new Label();
+            label9 = new Label();
+            DatPckInvoiceDateTo = new DateTimePicker();
+            TxtSearchCountry = new TextBox();
+            DatPckInvoiceDateFrom = new DateTimePicker();
+            TxtSearchZipCode = new TextBox();
             TxtSearchLastName = new TextBox();
+            label11 = new Label();
             label7 = new Label();
             TxtSearchFirstName = new TextBox();
             label5 = new Label();
@@ -57,15 +57,16 @@
             TxtSearchInvoiceNumber = new TextBox();
             label1 = new Label();
             CmdSearchInvoices = new Button();
+            DataGridViewOrderDetails = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewOrderDetails).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(CmdCopyCustomerNumber);
-            groupBox1.Controls.Add(CmdCopyOrderNumber);
             groupBox1.Controls.Add(LblNoResults);
             groupBox1.Controls.Add(DataGridViewInvoices);
             groupBox1.Location = new Point(3, 326);
@@ -84,16 +85,6 @@
             CmdCopyCustomerNumber.Text = "Copy Customer Number";
             CmdCopyCustomerNumber.UseVisualStyleBackColor = true;
             CmdCopyCustomerNumber.Click += CmdCopyCustomerNumber_Click;
-            // 
-            // CmdCopyOrderNumber
-            // 
-            CmdCopyOrderNumber.Location = new Point(7, 491);
-            CmdCopyOrderNumber.Name = "CmdCopyOrderNumber";
-            CmdCopyOrderNumber.Size = new Size(205, 34);
-            CmdCopyOrderNumber.TabIndex = 5;
-            CmdCopyOrderNumber.Text = "Copy Order Number";
-            CmdCopyOrderNumber.UseVisualStyleBackColor = true;
-            CmdCopyOrderNumber.Click += CmdCopyOrderNumber_Click;
             // 
             // LblNoResults
             // 
@@ -118,6 +109,17 @@
             DataGridViewInvoices.RowHeadersWidth = 62;
             DataGridViewInvoices.Size = new Size(738, 451);
             DataGridViewInvoices.TabIndex = 2;
+            DataGridViewInvoices.CellClick += DataGridViewInvoices_CellClick;
+            // 
+            // CmdCopyOrderNumber
+            // 
+            CmdCopyOrderNumber.Location = new Point(847, 429);
+            CmdCopyOrderNumber.Name = "CmdCopyOrderNumber";
+            CmdCopyOrderNumber.Size = new Size(205, 34);
+            CmdCopyOrderNumber.TabIndex = 5;
+            CmdCopyOrderNumber.Text = "Copy Order Number";
+            CmdCopyOrderNumber.UseVisualStyleBackColor = true;
+            CmdCopyOrderNumber.Click += CmdCopyOrderNumber_Click;
             // 
             // groupBox2
             // 
@@ -171,6 +173,24 @@
             label8.TabIndex = 44;
             label8.Text = "To";
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(7, 94);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(127, 25);
+            label10.TabIndex = 26;
+            label10.Text = "Street Address";
+            // 
+            // TxtStreetAddress
+            // 
+            TxtStreetAddress.Location = new Point(7, 125);
+            TxtStreetAddress.Margin = new Padding(4, 5, 4, 5);
+            TxtStreetAddress.Name = "TxtStreetAddress";
+            TxtStreetAddress.Size = new Size(235, 31);
+            TxtStreetAddress.TabIndex = 27;
+            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -180,6 +200,16 @@
             label6.Size = new Size(54, 25);
             label6.TabIndex = 43;
             label6.Text = "From";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(7, 161);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(84, 25);
+            label9.TabIndex = 28;
+            label9.Text = "Zip Code";
             // 
             // DatPckInvoiceDateTo
             // 
@@ -192,6 +222,14 @@
             DatPckInvoiceDateTo.TabIndex = 42;
             DatPckInvoiceDateTo.Value = new DateTime(2030, 12, 31, 0, 0, 0, 0);
             // 
+            // TxtSearchCountry
+            // 
+            TxtSearchCountry.Location = new Point(7, 259);
+            TxtSearchCountry.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCountry.Name = "TxtSearchCountry";
+            TxtSearchCountry.Size = new Size(235, 31);
+            TxtSearchCountry.TabIndex = 31;
+            // 
             // DatPckInvoiceDateFrom
             // 
             DatPckInvoiceDateFrom.Format = DateTimePickerFormat.Short;
@@ -203,13 +241,21 @@
             DatPckInvoiceDateFrom.TabIndex = 41;
             DatPckInvoiceDateFrom.Value = new DateTime(1999, 1, 1, 0, 0, 0, 0);
             // 
-            // TxtSearchCountry
+            // TxtSearchZipCode
             // 
-            TxtSearchCountry.Location = new Point(7, 259);
-            TxtSearchCountry.Margin = new Padding(4, 5, 4, 5);
-            TxtSearchCountry.Name = "TxtSearchCountry";
-            TxtSearchCountry.Size = new Size(235, 31);
-            TxtSearchCountry.TabIndex = 31;
+            TxtSearchZipCode.Location = new Point(7, 192);
+            TxtSearchZipCode.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchZipCode.Name = "TxtSearchZipCode";
+            TxtSearchZipCode.Size = new Size(235, 31);
+            TxtSearchZipCode.TabIndex = 29;
+            // 
+            // TxtSearchLastName
+            // 
+            TxtSearchLastName.Location = new Point(248, 192);
+            TxtSearchLastName.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchLastName.Name = "TxtSearchLastName";
+            TxtSearchLastName.Size = new Size(235, 31);
+            TxtSearchLastName.TabIndex = 25;
             // 
             // label11
             // 
@@ -220,50 +266,6 @@
             label11.Size = new Size(75, 25);
             label11.TabIndex = 30;
             label11.Text = "Country";
-            // 
-            // TxtSearchZipCode
-            // 
-            TxtSearchZipCode.Location = new Point(7, 192);
-            TxtSearchZipCode.Margin = new Padding(4, 5, 4, 5);
-            TxtSearchZipCode.Name = "TxtSearchZipCode";
-            TxtSearchZipCode.Size = new Size(235, 31);
-            TxtSearchZipCode.TabIndex = 29;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(7, 161);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(84, 25);
-            label9.TabIndex = 28;
-            label9.Text = "Zip Code";
-            // 
-            // TxtStreetAddress
-            // 
-            TxtStreetAddress.Location = new Point(7, 125);
-            TxtStreetAddress.Margin = new Padding(4, 5, 4, 5);
-            TxtStreetAddress.Name = "TxtStreetAddress";
-            TxtStreetAddress.Size = new Size(235, 31);
-            TxtStreetAddress.TabIndex = 27;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(7, 94);
-            label10.Margin = new Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(127, 25);
-            label10.TabIndex = 26;
-            label10.Text = "Street Address";
-            // 
-            // TxtSearchLastName
-            // 
-            TxtSearchLastName.Location = new Point(248, 192);
-            TxtSearchLastName.Margin = new Padding(4, 5, 4, 5);
-            TxtSearchLastName.Name = "TxtSearchLastName";
-            TxtSearchLastName.Size = new Size(235, 31);
-            TxtSearchLastName.TabIndex = 25;
             // 
             // label7
             // 
@@ -367,10 +369,26 @@
             CmdSearchInvoices.UseVisualStyleBackColor = true;
             CmdSearchInvoices.Click += CmdSearchInvoices_Click;
             // 
+            // DataGridViewOrderDetails
+            // 
+            DataGridViewOrderDetails.AllowUserToDeleteRows = false;
+            DataGridViewOrderDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewOrderDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewOrderDetails.Location = new Point(847, 358);
+            DataGridViewOrderDetails.Margin = new Padding(4, 5, 4, 5);
+            DataGridViewOrderDetails.MultiSelect = false;
+            DataGridViewOrderDetails.Name = "DataGridViewOrderDetails";
+            DataGridViewOrderDetails.ReadOnly = true;
+            DataGridViewOrderDetails.RowHeadersWidth = 62;
+            DataGridViewOrderDetails.Size = new Size(738, 63);
+            DataGridViewOrderDetails.TabIndex = 7;
+            // 
             // UsrCtrlInvoices
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(DataGridViewOrderDetails);
+            Controls.Add(CmdCopyOrderNumber);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "UsrCtrlInvoices";
@@ -380,6 +398,7 @@
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewOrderDetails).EndInit();
             ResumeLayout(false);
         }
 
@@ -414,5 +433,6 @@
         private Label label6;
         private DateTimePicker DatPckInvoiceDateTo;
         private DateTimePicker DatPckInvoiceDateFrom;
+        private DataGridView DataGridViewOrderDetails;
     }
 }

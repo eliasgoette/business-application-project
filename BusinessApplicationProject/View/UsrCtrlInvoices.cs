@@ -30,10 +30,9 @@ namespace BusinessApplicationProject.View
             DataGridViewInvoices.DataSource = null;
             DataGridViewInvoices.Columns.Clear();
 
-            List<Invoice> invoices = new List<Invoice>();
-
             try
             {
+                List<Invoice> invoices = [];
                 var filter = CreateFilterFunction();
                 invoices = invoiceController.Find(filter);
 
@@ -172,6 +171,44 @@ namespace BusinessApplicationProject.View
             {
                 MessageBox.Show("No item selected.");
             }
+        }
+
+        private void DataGridViewInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var i = DataGridViewInvoices.CurrentCell.RowIndex;
+            var invoice = ((List<Invoice>)DataGridViewInvoices.DataSource)[i];
+            UpdateAdditionalInformations(invoice);
+        }
+
+        private void UpdateAdditionalInformations(Invoice invoice)
+        {
+            UpdateOrderInformations(invoice.OrderInformations);
+        }
+
+        private void UpdateOrderInformations(Order order)
+        {
+            DataGridViewOrderDetails.Columns.Clear();
+            DataGridViewOrderDetails.DataSource = null;
+            DataGridViewOrderDetails.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn orderNumberColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "orderNumberColumn",
+                HeaderText = "Order Number",
+                DataPropertyName = "OrderNumber"
+            };
+
+            DataGridViewTextBoxColumn orderDateColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "orderDateColumn",
+                HeaderText = "Order Date",
+                DataPropertyName = "Date"
+            };
+
+            DataGridViewOrderDetails.Columns.Add(orderNumberColumn);
+            DataGridViewOrderDetails.Columns.Add(orderDateColumn);
+
+            DataGridViewOrderDetails.DataSource = new List<Order> { order };
         }
 
         // Could potentially be outsourced into a service class
