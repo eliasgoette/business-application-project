@@ -23,6 +23,12 @@ namespace BusinessApplicationProject.View
             getRepository = context => new Repository<Invoice>(context)
         };
 
+        private TemporalController<Article> articleController = new TemporalController<Article>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new TemporalRepository<Article>(context)
+        };
+
         public void UpdateSearchResults()
         {
             DataGridViewInvoices.AutoGenerateColumns = false;
@@ -88,6 +94,8 @@ namespace BusinessApplicationProject.View
                     DataGridViewInvoices.Columns.Add(taxPercentageColumn);
 
                     DataGridViewInvoices.DataSource = invoices;
+
+                    UpdateAdditionalInformations(invoices.FirstOrDefault());
                 }
                 else
                 {
@@ -182,10 +190,30 @@ namespace BusinessApplicationProject.View
 
         private void UpdateAdditionalInformations(Invoice invoice)
         {
-            UpdateOrderInformations(invoice.OrderInformations);
+            UpdateCustomerInformations(invoice.OrderInformations.CustomerDetails);
+            UpdateOrderInformations(invoice);
+            UpdatePositionInformations(invoice);
         }
 
-        private void UpdateOrderInformations(Order order)
+        private void UpdateCustomerInformations(Customer customer)
+        {
+            DataGridViewCustomerInformations.Columns.Clear();
+            DataGridViewCustomerInformations.DataSource = null;
+            DataGridViewCustomerInformations.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "customerNumberColumn",
+                HeaderText = "Customer Number",
+                DataPropertyName = "CustomerNumber"
+            };
+
+            DataGridViewCustomerInformations.Columns.Add(customerNumberColumn);
+
+            DataGridViewCustomerInformations.DataSource = new List<Customer> { customer };
+        }
+
+        private void UpdateOrderInformations(Invoice invoice)
         {
             DataGridViewOrderDetails.Columns.Clear();
             DataGridViewOrderDetails.DataSource = null;
@@ -205,10 +233,107 @@ namespace BusinessApplicationProject.View
                 DataPropertyName = "Date"
             };
 
+            DataGridViewTextBoxColumn grossPriceColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "grossPriceColumn ",
+                HeaderText = "Gross Price",
+                DataPropertyName = "GrossPrice"
+            };
+
+            DataGridViewTextBoxColumn netPriceColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "netPriceColumn",
+                HeaderText = "Net Price",
+                DataPropertyName = "NetPrice"
+            };
+
             DataGridViewOrderDetails.Columns.Add(orderNumberColumn);
             DataGridViewOrderDetails.Columns.Add(orderDateColumn);
+            DataGridViewOrderDetails.Columns.Add(grossPriceColumn);
+            DataGridViewOrderDetails.Columns.Add(netPriceColumn);
 
-            DataGridViewOrderDetails.DataSource = new List<Order> { order };
+            Order order = invoice.OrderInformations;
+
+            double grossPrice = 0;
+
+            foreach (var pos in order.Positions)
+            {
+                var art = articleController.FindAsOf(order.Date, x => x.Id == pos.ArticleDetails.Id).FirstOrDefault();
+                grossPrice += pos.Quantity * art.Price;
+            }
+
+            var netPrice = grossPrice * ((100 + invoice.TaxPercentage) / 100);
+
+            var flatOrder = new { 
+                order.OrderNumber, 
+                order.Date, 
+                GrossPrice = grossPrice, 
+                NetPrice = netPrice 
+            };
+
+            DataGridViewOrderDetails.DataSource = new List<object> { flatOrder };
+        }
+
+        private void UpdatePositionInformations(Invoice invoice)
+        {
+            DataGridViewOrderPositions.Columns.Clear();
+            DataGridViewOrderPositions.DataSource = null;
+            DataGridViewOrderPositions.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn positionNumberColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "positionNumberColumn",
+                HeaderText = "Position Number",
+                DataPropertyName = "PositionNumber"
+            };
+
+            DataGridViewTextBoxColumn articleNumberColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "articleNumberColumn",
+                HeaderText = "Article Number",
+                DataPropertyName = "ArticleNumber"
+            };
+
+            DataGridViewTextBoxColumn articleNameColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "articleNameColumn",
+                HeaderText = "Name",
+                DataPropertyName = "ArticleName"
+            };
+
+            DataGridViewTextBoxColumn grossPriceColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "grossPriceColumn",
+                HeaderText = "Gross Price",
+                DataPropertyName = "GrossPrice"
+            };
+
+            DataGridViewOrderPositions.Columns.Add(positionNumberColumn);
+            DataGridViewOrderPositions.Columns.Add(articleNumberColumn);
+            DataGridViewOrderPositions.Columns.Add(articleNameColumn);
+            DataGridViewOrderPositions.Columns.Add(grossPriceColumn);
+
+            Order order = invoice.OrderInformations;
+
+            var flatPositions = new List<object>();
+
+            foreach (var pos in order.Positions)
+            {
+                var art = articleController.FindAsOf(order.Date, x => x.Id == pos.ArticleDetails.Id).FirstOrDefault();
+                var grossPrice = pos.Quantity * art.Price;
+
+                var flatPos = new
+                {
+                    pos.PositionNumber,
+                    art.ArticleNumber,
+                    ArticleName = art.Name,
+                    GrossPrice = grossPrice
+                };
+
+                flatPositions.Add(flatPos);
+            }
+
+            DataGridViewOrderPositions.DataSource = flatPositions;
         }
 
         // Could potentially be outsourced into a service class
