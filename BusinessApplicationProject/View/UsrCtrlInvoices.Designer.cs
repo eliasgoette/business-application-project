@@ -61,12 +61,15 @@
             DataGridViewOrderPositions = new DataGridView();
             CmdCopyArticleNumber = new Button();
             DataGridViewCustomerInformations = new DataGridView();
+            label12 = new Label();
+            DataGridViewBillingAddress = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrderDetails).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrderPositions).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerInformations).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewBillingAddress).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -101,13 +104,13 @@
             DataGridViewInvoices.Name = "DataGridViewInvoices";
             DataGridViewInvoices.ReadOnly = true;
             DataGridViewInvoices.RowHeadersWidth = 62;
-            DataGridViewInvoices.Size = new Size(738, 451);
+            DataGridViewInvoices.Size = new Size(738, 482);
             DataGridViewInvoices.TabIndex = 2;
             DataGridViewInvoices.CellClick += DataGridViewInvoices_CellClick;
             // 
             // CmdCopyCustomerNumber
             // 
-            CmdCopyCustomerNumber.Location = new Point(759, 429);
+            CmdCopyCustomerNumber.Location = new Point(760, 502);
             CmdCopyCustomerNumber.Name = "CmdCopyCustomerNumber";
             CmdCopyCustomerNumber.Size = new Size(232, 34);
             CmdCopyCustomerNumber.TabIndex = 6;
@@ -117,7 +120,7 @@
             // 
             // CmdCopyOrderNumber
             // 
-            CmdCopyOrderNumber.Location = new Point(759, 542);
+            CmdCopyOrderNumber.Location = new Point(760, 615);
             CmdCopyOrderNumber.Name = "CmdCopyOrderNumber";
             CmdCopyOrderNumber.Size = new Size(205, 34);
             CmdCopyOrderNumber.TabIndex = 5;
@@ -378,7 +381,7 @@
             DataGridViewOrderDetails.AllowUserToDeleteRows = false;
             DataGridViewOrderDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewOrderDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewOrderDetails.Location = new Point(759, 471);
+            DataGridViewOrderDetails.Location = new Point(760, 544);
             DataGridViewOrderDetails.Margin = new Padding(4, 5, 4, 5);
             DataGridViewOrderDetails.MultiSelect = false;
             DataGridViewOrderDetails.Name = "DataGridViewOrderDetails";
@@ -392,18 +395,18 @@
             DataGridViewOrderPositions.AllowUserToDeleteRows = false;
             DataGridViewOrderPositions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewOrderPositions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewOrderPositions.Location = new Point(759, 584);
+            DataGridViewOrderPositions.Location = new Point(760, 657);
             DataGridViewOrderPositions.Margin = new Padding(4, 5, 4, 5);
             DataGridViewOrderPositions.MultiSelect = false;
             DataGridViewOrderPositions.Name = "DataGridViewOrderPositions";
             DataGridViewOrderPositions.ReadOnly = true;
             DataGridViewOrderPositions.RowHeadersWidth = 62;
-            DataGridViewOrderPositions.Size = new Size(738, 183);
+            DataGridViewOrderPositions.Size = new Size(738, 141);
             DataGridViewOrderPositions.TabIndex = 8;
             // 
             // CmdCopyArticleNumber
             // 
-            CmdCopyArticleNumber.Location = new Point(759, 775);
+            CmdCopyArticleNumber.Location = new Point(760, 806);
             CmdCopyArticleNumber.Name = "CmdCopyArticleNumber";
             CmdCopyArticleNumber.Size = new Size(205, 34);
             CmdCopyArticleNumber.TabIndex = 9;
@@ -416,7 +419,7 @@
             DataGridViewCustomerInformations.AllowUserToDeleteRows = false;
             DataGridViewCustomerInformations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewCustomerInformations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewCustomerInformations.Location = new Point(759, 358);
+            DataGridViewCustomerInformations.Location = new Point(760, 431);
             DataGridViewCustomerInformations.Margin = new Padding(4, 5, 4, 5);
             DataGridViewCustomerInformations.MultiSelect = false;
             DataGridViewCustomerInformations.Name = "DataGridViewCustomerInformations";
@@ -425,10 +428,36 @@
             DataGridViewCustomerInformations.Size = new Size(738, 63);
             DataGridViewCustomerInformations.TabIndex = 10;
             // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(760, 328);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(129, 25);
+            label12.TabIndex = 47;
+            label12.Text = "Billing Address";
+            // 
+            // DataGridViewBillingAddress
+            // 
+            DataGridViewBillingAddress.AllowUserToDeleteRows = false;
+            DataGridViewBillingAddress.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewBillingAddress.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewBillingAddress.Location = new Point(760, 358);
+            DataGridViewBillingAddress.Margin = new Padding(4, 5, 4, 5);
+            DataGridViewBillingAddress.MultiSelect = false;
+            DataGridViewBillingAddress.Name = "DataGridViewBillingAddress";
+            DataGridViewBillingAddress.ReadOnly = true;
+            DataGridViewBillingAddress.RowHeadersWidth = 62;
+            DataGridViewBillingAddress.Size = new Size(738, 63);
+            DataGridViewBillingAddress.TabIndex = 46;
+            // 
             // UsrCtrlInvoices
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label12);
+            Controls.Add(DataGridViewBillingAddress);
             Controls.Add(CmdCopyCustomerNumber);
             Controls.Add(DataGridViewCustomerInformations);
             Controls.Add(CmdCopyArticleNumber);
@@ -447,7 +476,9 @@
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrderDetails).EndInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrderPositions).EndInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerInformations).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewBillingAddress).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -485,5 +516,7 @@
         private DataGridView DataGridViewOrderPositions;
         private Button CmdCopyArticleNumber;
         private DataGridView DataGridViewCustomerInformations;
+        private Label label12;
+        private DataGridView DataGridViewBillingAddress;
     }
 }

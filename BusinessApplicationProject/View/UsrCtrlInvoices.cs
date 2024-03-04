@@ -193,6 +193,7 @@ namespace BusinessApplicationProject.View
             UpdateCustomerInformations(invoice.OrderInformations.CustomerDetails);
             UpdateOrderInformations(invoice);
             UpdatePositionInformations(invoice);
+            UpdateBillingAddressInformations(invoice);
         }
 
         private void UpdateCustomerInformations(Customer customer)
@@ -343,6 +344,48 @@ namespace BusinessApplicationProject.View
             }
 
             DataGridViewOrderPositions.DataSource = flatPositions;
+        }
+
+        private void UpdateBillingAddressInformations(Invoice invoice)
+        {
+            DataGridViewBillingAddress.Columns.Clear();
+            DataGridViewBillingAddress.DataSource = null;
+            DataGridViewBillingAddress.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn streetAddressColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "streetAddressColumn",
+                HeaderText = "Street Address",
+                DataPropertyName = "StreetAddress"
+            };
+
+            DataGridViewTextBoxColumn zipCodeColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "zipCodeColumn",
+                HeaderText = "Zip Code",
+                DataPropertyName = "ZipCode"
+            };
+
+            DataGridViewTextBoxColumn cityColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "cityColumn",
+                HeaderText = "City",
+                DataPropertyName = "City"
+            };
+
+            DataGridViewTextBoxColumn countryColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "countryColumn",
+                HeaderText = "Country",
+                DataPropertyName = "Country"
+            };
+
+            DataGridViewBillingAddress.Columns.Add(streetAddressColumn);
+            DataGridViewBillingAddress.Columns.Add(zipCodeColumn);
+            DataGridViewBillingAddress.Columns.Add(cityColumn);
+            DataGridViewBillingAddress.Columns.Add(countryColumn);
+
+            DataGridViewBillingAddress.DataSource = new List<Address> { invoice.BillingAddress };
         }
 
         private void CmdCopyArticleNumber_Click(object sender, EventArgs e)
