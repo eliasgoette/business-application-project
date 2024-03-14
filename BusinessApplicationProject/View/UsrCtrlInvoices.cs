@@ -94,14 +94,13 @@ namespace BusinessApplicationProject.View
                     DataGridViewInvoices.Columns.Add(taxPercentageColumn);
 
                     DataGridViewInvoices.DataSource = invoices;
-
-                    UpdateAdditionalInformations(invoices.FirstOrDefault());
                 }
                 else
                 {
                     LblNoResults.Visible = true;
                 }
 
+                UpdateAdditionalInformations(invoices.FirstOrDefault() ?? null);
             }
             catch (TimeoutException)
             {
@@ -188,12 +187,31 @@ namespace BusinessApplicationProject.View
             UpdateAdditionalInformations(invoice);
         }
 
-        private void UpdateAdditionalInformations(Invoice invoice)
+        private void UpdateAdditionalInformations(Invoice? invoice)
         {
-            UpdateCustomerInformations(invoice.OrderInformations.CustomerDetails);
-            UpdateOrderInformations(invoice);
-            UpdatePositionInformations(invoice);
-            UpdateBillingAddressInformations(invoice);
+            if(invoice != null)
+            {
+                UpdateCustomerInformations(invoice.OrderInformations.CustomerDetails);
+                UpdateOrderInformations(invoice);
+                UpdatePositionInformations(invoice);
+                UpdateBillingAddressInformations(invoice);
+            }
+            else
+            {
+                List<DataGridView> dataGridViews = new List<DataGridView>()
+                {
+                    DataGridViewCustomerInformations,
+                    DataGridViewOrderDetails,
+                    DataGridViewOrderPositions,
+                    DataGridViewBillingAddress
+                };
+
+                foreach (var dataGridView in dataGridViews)
+                {
+                    dataGridView.DataSource = null;
+                    dataGridView.Columns.Clear();
+                }
+            }
         }
 
         private void UpdateCustomerInformations(Customer customer)
