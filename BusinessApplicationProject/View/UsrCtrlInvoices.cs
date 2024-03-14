@@ -2,6 +2,7 @@
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
 using System.Linq.Expressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace BusinessApplicationProject.View
 {
@@ -15,12 +16,33 @@ namespace BusinessApplicationProject.View
             DatPckInvoiceDateFrom.MaxDate = DateTime.UtcNow.AddYears(1);
             DatPckInvoiceDateTo.MaxDate = DateTime.UtcNow.AddYears(1);
             DatPckInvoiceDateTo.Value = DatPckInvoiceDateTo.MaxDate;
+
+            CmbEditPaymentMethod.Items.AddRange(new object[]
+            {
+                PaymentInformationConstants.PaymentMethods.CreditCard,
+                PaymentInformationConstants.PaymentMethods.PayPal,
+                PaymentInformationConstants.PaymentMethods.SamsungPay,
+                PaymentInformationConstants.PaymentMethods.ApplePay
+            });
+            CmbEditPaymentStatus.Items.AddRange(new object[]
+            {
+                PaymentInformationConstants.PaymentStatuses.Pending,
+                PaymentInformationConstants.PaymentStatuses.Paid,
+                PaymentInformationConstants.PaymentStatuses.Cancelled
+            });
+            UpdateEditProperties(null);
         }
 
         private Controller<Invoice> invoiceController = new Controller<Invoice>
         {
             getContext = () => new AppDbContext(),
             getRepository = context => new Repository<Invoice>(context)
+        };
+
+        private Controller<Order> orderController = new Controller<Order>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Order>(context)
         };
 
         private TemporalController<Article> articleController = new TemporalController<Article>
@@ -99,8 +121,6 @@ namespace BusinessApplicationProject.View
                 {
                     LblNoResults.Visible = true;
                 }
-
-                UpdateAdditionalInformations(invoices.FirstOrDefault() ?? null);
             }
             catch (TimeoutException)
             {
@@ -180,16 +200,56 @@ namespace BusinessApplicationProject.View
             }
         }
 
-        private void DataGridViewInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void UpdateEditProperties(Invoice? invoice)
         {
-            var i = DataGridViewInvoices.CurrentCell.RowIndex;
-            var invoice = ((List<Invoice>)DataGridViewInvoices.DataSource)[i];
-            UpdateAdditionalInformations(invoice);
+            if (invoice != null)
+            {
+                TxtEditInvoiceNumber.Text = invoice.InvoiceNumber;
+                TxtEditInvoiceNumber.Enabled = false;
+                TxtEditOrderNumber.Text = invoice.OrderInformations.OrderNumber;
+                TxtEditOrderNumber.Enabled = false;
+
+                ChkEditUseCustomerAddress.Checked = false;
+                ChkEditUseCustomerAddress.Enabled = false;
+                TxtEditStreetAddress.Text = invoice.BillingAddress.StreetAddress;
+                TxtEditZipCode.Text = invoice.BillingAddress.ZipCode;
+                TxtEditCity.Text = invoice.BillingAddress.City;
+                TxtEditCountry.Text = invoice.BillingAddress.Country;
+
+                NumEditDiscount.Value = (decimal)invoice.Discount;
+                NumEditTaxes.Value = (decimal)invoice.TaxPercentage;
+
+                CmbEditPaymentMethod.SelectedItem = invoice.PaymentMethod;
+                CmbEditPaymentStatus.SelectedItem = invoice.PaymentStatus;
+                CmdEditClear.Enabled = false;
+            }
+            else
+            {
+                TxtEditInvoiceNumber.Text = String.Empty;
+                TxtEditInvoiceNumber.Enabled = true;
+                TxtEditOrderNumber.Text = String.Empty;
+                TxtEditOrderNumber.Enabled = true;
+
+                ChkEditUseCustomerAddress.Checked = false;
+                ChkEditUseCustomerAddress.Enabled = true;
+                TxtEditStreetAddress.Text = String.Empty;
+                TxtEditZipCode.Text = String.Empty;
+                TxtEditCity.Text = String.Empty;
+                TxtEditCountry.Text = String.Empty;
+
+                NumEditDiscount.Value = 0;
+                NumEditTaxes.Value = (decimal)8.1;
+
+                CmbEditPaymentMethod.SelectedIndex = 0;
+                CmbEditPaymentStatus.SelectedIndex = 0;
+
+                CmdEditClear.Enabled = true;
+            }
         }
 
-        private void UpdateAdditionalInformations(Invoice? invoice)
+        private void UpdateAdditionalDataGrids(Invoice? invoice)
         {
-            if(invoice != null)
+            if (invoice != null)
             {
                 UpdateCustomerInformations(invoice.OrderInformations.CustomerDetails);
                 UpdateOrderInformations(invoice);
@@ -281,7 +341,7 @@ namespace BusinessApplicationProject.View
                 grossPrice += pos.Quantity * art.Price;
             }
 
-            var netPrice = grossPrice * ((100 + invoice.TaxPercentage) / 100);
+            var netPrice = (grossPrice - invoice.Discount) * ((100 + invoice.TaxPercentage) / 100);
 
             var flatOrder = new
             {
@@ -432,6 +492,100 @@ namespace BusinessApplicationProject.View
             {
                 MessageBox.Show("No item selected.");
             }
+        }
+
+        private void DataGridViewInvoices_SelectionChanged(object sender, EventArgs e)
+        {
+            if (DataGridViewInvoices.DataSource != null)
+            {
+                if (DataGridViewInvoices.SelectedCells.Count > 0)
+                {
+                    var i = DataGridViewInvoices.SelectedCells[0].RowIndex;
+                    var invoice = ((List<Invoice>)DataGridViewInvoices.DataSource)[i];
+                    UpdateEditProperties(invoice);
+                    UpdateAdditionalDataGrids(invoice);
+                }
+                else
+                {
+                    UpdateEditProperties(null);
+                    UpdateAdditionalDataGrids(null);
+                }
+            }
+            else
+            {
+                UpdateEditProperties(null);
+                UpdateAdditionalDataGrids(null);
+            }
+        }
+
+        private void CmdEditClear_Click(object sender, EventArgs e)
+        {
+            UpdateEditProperties(null);
+        }
+
+        private async void CmdEditSave_Click(object sender, EventArgs e)
+        {
+            CmdEditSave.Enabled = false;
+
+            var inv = invoiceController.FindSingle(x => x.InvoiceNumber == TxtEditInvoiceNumber.Text);
+            var invExists = inv != null;
+
+            if (invExists)
+            {
+                // Invoice already exists
+                inv.BillingAddress.StreetAddress = TxtEditStreetAddress.Text;
+                inv.BillingAddress.ZipCode = TxtEditZipCode.Text;
+                inv.BillingAddress.City = TxtEditCity.Text;
+                inv.BillingAddress.Country = TxtEditCountry.Text;
+                inv.Discount = (double)NumEditDiscount.Value;
+                inv.TaxPercentage = (double)NumEditTaxes.Value;
+                inv.PaymentMethod = CmbEditPaymentMethod?.SelectedItem?.ToString() ?? "";
+                inv.PaymentStatus = CmbEditPaymentStatus?.SelectedItem?.ToString() ?? "";
+
+                invoiceController.Update(inv);
+            }
+            else 
+            {
+                var order = orderController.FindSingle(x => x.OrderNumber == TxtEditOrderNumber.Text);
+
+                if (order != null)
+                {
+                    Address? billingAddress;
+
+                    if (ChkEditUseCustomerAddress.Checked)
+                    {
+                        billingAddress = new Address
+                        {
+                            StreetAddress = TxtEditStreetAddress.Text,
+                            ZipCode = TxtEditZipCode.Text,
+                            City = TxtEditCity.Text,
+                            Country = TxtEditCountry.Text
+                        };
+                    }
+                    else
+                    {
+                        billingAddress = order.CustomerDetails.CustomerAddress;
+                    }
+
+                    inv = new Invoice
+                    {
+                        InvoiceNumber = TxtEditInvoiceNumber.Text,
+                        OrderInformations = order,
+                        BillingAddress = billingAddress,
+                        Discount = (double)NumEditDiscount.Value,
+                        TaxPercentage = (double)NumEditTaxes.Value,
+                        PaymentMethod = CmbEditPaymentMethod?.SelectedItem?.ToString() ?? "",
+                        PaymentStatus = CmbEditPaymentStatus?.SelectedItem?.ToString() ?? ""
+                    };
+
+                    await invoiceController.AddAsync(inv);
+                } else 
+                {
+                    MessageBox.Show("Order doesn't exist");
+                }
+            }
+
+            CmdEditSave.Enabled = true;
         }
 
         // Could potentially be outsourced into a service class

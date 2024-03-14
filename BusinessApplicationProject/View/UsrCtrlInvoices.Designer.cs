@@ -64,29 +64,30 @@
             label1 = new Label();
             CmdSearchInvoices = new Button();
             groupBox3 = new GroupBox();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown1 = new NumericUpDown();
+            label24 = new Label();
+            CmbEditPaymentStatus = new ComboBox();
+            label20 = new Label();
+            CmbEditPaymentMethod = new ComboBox();
+            NumEditTaxes = new NumericUpDown();
+            NumEditDiscount = new NumericUpDown();
             label16 = new Label();
             label19 = new Label();
             label14 = new Label();
-            checkBox2 = new CheckBox();
-            checkBox1 = new CheckBox();
-            label13 = new Label();
+            ChkEditUseCustomerAddress = new CheckBox();
             label15 = new Label();
-            textBox1 = new TextBox();
+            TxtEditStreetAddress = new TextBox();
             label17 = new Label();
-            textBox2 = new TextBox();
-            dateTimePicker2 = new DateTimePicker();
-            textBox3 = new TextBox();
+            TxtEditCountry = new TextBox();
+            TxtEditZipCode = new TextBox();
             label18 = new Label();
-            textBox6 = new TextBox();
+            TxtEditOrderNumber = new TextBox();
             label21 = new Label();
-            button1 = new Button();
-            textBox7 = new TextBox();
-            label22 = new Label();
-            textBox8 = new TextBox();
+            CmdEditClear = new Button();
+            TxtEditInvoiceNumber = new TextBox();
             label23 = new Label();
-            button2 = new Button();
+            CmdEditSave = new Button();
+            TxtEditCity = new TextBox();
+            label13 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewBillingAddress).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).BeginInit();
@@ -95,8 +96,8 @@
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrderPositions).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumEditTaxes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumEditDiscount).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -165,7 +166,7 @@
             DataGridViewInvoices.RowHeadersWidth = 62;
             DataGridViewInvoices.Size = new Size(738, 512);
             DataGridViewInvoices.TabIndex = 2;
-            DataGridViewInvoices.CellClick += DataGridViewInvoices_CellClick;
+            DataGridViewInvoices.SelectionChanged += DataGridViewInvoices_SelectionChanged;
             // 
             // CmdCopyCustomerNumber
             // 
@@ -489,29 +490,30 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(numericUpDown2);
-            groupBox3.Controls.Add(numericUpDown1);
+            groupBox3.Controls.Add(TxtEditCity);
+            groupBox3.Controls.Add(label13);
+            groupBox3.Controls.Add(label24);
+            groupBox3.Controls.Add(CmbEditPaymentStatus);
+            groupBox3.Controls.Add(label20);
+            groupBox3.Controls.Add(CmbEditPaymentMethod);
+            groupBox3.Controls.Add(NumEditTaxes);
+            groupBox3.Controls.Add(NumEditDiscount);
             groupBox3.Controls.Add(label16);
             groupBox3.Controls.Add(label19);
             groupBox3.Controls.Add(label14);
-            groupBox3.Controls.Add(checkBox2);
-            groupBox3.Controls.Add(checkBox1);
-            groupBox3.Controls.Add(label13);
+            groupBox3.Controls.Add(ChkEditUseCustomerAddress);
             groupBox3.Controls.Add(label15);
-            groupBox3.Controls.Add(textBox1);
+            groupBox3.Controls.Add(TxtEditStreetAddress);
             groupBox3.Controls.Add(label17);
-            groupBox3.Controls.Add(textBox2);
-            groupBox3.Controls.Add(dateTimePicker2);
-            groupBox3.Controls.Add(textBox3);
+            groupBox3.Controls.Add(TxtEditCountry);
+            groupBox3.Controls.Add(TxtEditZipCode);
             groupBox3.Controls.Add(label18);
-            groupBox3.Controls.Add(textBox6);
+            groupBox3.Controls.Add(TxtEditOrderNumber);
             groupBox3.Controls.Add(label21);
-            groupBox3.Controls.Add(button1);
-            groupBox3.Controls.Add(textBox7);
-            groupBox3.Controls.Add(label22);
-            groupBox3.Controls.Add(textBox8);
+            groupBox3.Controls.Add(CmdEditClear);
+            groupBox3.Controls.Add(TxtEditInvoiceNumber);
             groupBox3.Controls.Add(label23);
-            groupBox3.Controls.Add(button2);
+            groupBox3.Controls.Add(CmdEditSave);
             groupBox3.Location = new Point(760, 3);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(750, 420);
@@ -519,30 +521,68 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Edit / Create Invoice";
             // 
-            // numericUpDown2
+            // label24
             // 
-            numericUpDown2.DecimalPlaces = 2;
-            numericUpDown2.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            numericUpDown2.Location = new Point(489, 268);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(235, 31);
-            numericUpDown2.TabIndex = 54;
-            numericUpDown2.Value = new decimal(new int[] { 81, 0, 0, 65536 });
+            label24.AutoSize = true;
+            label24.Location = new Point(491, 165);
+            label24.Margin = new Padding(4, 0, 4, 0);
+            label24.Name = "label24";
+            label24.Size = new Size(133, 25);
+            label24.TabIndex = 58;
+            label24.Text = "Payment Status";
             // 
-            // numericUpDown1
+            // CmbEditPaymentStatus
             // 
-            numericUpDown1.DecimalPlaces = 2;
-            numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            numericUpDown1.Location = new Point(489, 201);
-            numericUpDown1.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(235, 31);
-            numericUpDown1.TabIndex = 53;
+            CmbEditPaymentStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            CmbEditPaymentStatus.FormattingEnabled = true;
+            CmbEditPaymentStatus.Location = new Point(491, 196);
+            CmbEditPaymentStatus.Name = "CmbEditPaymentStatus";
+            CmbEditPaymentStatus.Size = new Size(233, 33);
+            CmbEditPaymentStatus.TabIndex = 57;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(490, 96);
+            label20.Margin = new Padding(4, 0, 4, 0);
+            label20.Name = "label20";
+            label20.Size = new Size(148, 25);
+            label20.TabIndex = 56;
+            label20.Text = "Payment Method";
+            // 
+            // CmbEditPaymentMethod
+            // 
+            CmbEditPaymentMethod.DropDownStyle = ComboBoxStyle.DropDownList;
+            CmbEditPaymentMethod.FormattingEnabled = true;
+            CmbEditPaymentMethod.Location = new Point(491, 129);
+            CmbEditPaymentMethod.Name = "CmbEditPaymentMethod";
+            CmbEditPaymentMethod.Size = new Size(233, 33);
+            CmbEditPaymentMethod.TabIndex = 55;
+            // 
+            // NumEditTaxes
+            // 
+            NumEditTaxes.DecimalPlaces = 2;
+            NumEditTaxes.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
+            NumEditTaxes.Location = new Point(251, 198);
+            NumEditTaxes.Name = "NumEditTaxes";
+            NumEditTaxes.Size = new Size(232, 31);
+            NumEditTaxes.TabIndex = 54;
+            NumEditTaxes.Value = new decimal(new int[] { 81, 0, 0, 65536 });
+            // 
+            // NumEditDiscount
+            // 
+            NumEditDiscount.DecimalPlaces = 2;
+            NumEditDiscount.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            NumEditDiscount.Location = new Point(251, 131);
+            NumEditDiscount.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            NumEditDiscount.Name = "NumEditDiscount";
+            NumEditDiscount.Size = new Size(232, 31);
+            NumEditDiscount.TabIndex = 53;
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(490, 169);
+            label16.Location = new Point(252, 99);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
             label16.Size = new Size(82, 25);
@@ -552,7 +592,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(490, 236);
+            label19.Location = new Point(252, 166);
             label19.Margin = new Padding(4, 0, 4, 0);
             label19.Name = "label19";
             label19.Size = new Size(83, 25);
@@ -569,35 +609,15 @@
             label14.TabIndex = 48;
             label14.Text = "Billing Address";
             // 
-            // checkBox2
+            // ChkEditUseCustomerAddress
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(250, 135);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(208, 29);
-            checkBox2.TabIndex = 47;
-            checkBox2.Text = "Set today as inv. date";
-            checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(11, 131);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(194, 29);
-            checkBox1.TabIndex = 46;
-            checkBox1.Text = "Billing to cust. addr.";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(250, 102);
-            label13.Margin = new Padding(4, 0, 4, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(110, 25);
-            label13.TabIndex = 45;
-            label13.Text = "Invoice Date";
+            ChkEditUseCustomerAddress.AutoSize = true;
+            ChkEditUseCustomerAddress.Location = new Point(11, 131);
+            ChkEditUseCustomerAddress.Name = "ChkEditUseCustomerAddress";
+            ChkEditUseCustomerAddress.Size = new Size(194, 29);
+            ChkEditUseCustomerAddress.TabIndex = 46;
+            ChkEditUseCustomerAddress.Text = "Billing to cust. addr.";
+            ChkEditUseCustomerAddress.UseVisualStyleBackColor = true;
             // 
             // label15
             // 
@@ -609,13 +629,13 @@
             label15.TabIndex = 26;
             label15.Text = "Street Address";
             // 
-            // textBox1
+            // TxtEditStreetAddress
             // 
-            textBox1.Location = new Point(11, 200);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(231, 31);
-            textBox1.TabIndex = 27;
+            TxtEditStreetAddress.Location = new Point(11, 200);
+            TxtEditStreetAddress.Margin = new Padding(4, 5, 4, 5);
+            TxtEditStreetAddress.Name = "TxtEditStreetAddress";
+            TxtEditStreetAddress.Size = new Size(231, 31);
+            TxtEditStreetAddress.TabIndex = 27;
             // 
             // label17
             // 
@@ -627,32 +647,21 @@
             label17.TabIndex = 28;
             label17.Text = "Zip Code";
             // 
-            // textBox2
+            // TxtEditCountry
             // 
-            textBox2.Location = new Point(11, 334);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(231, 31);
-            textBox2.TabIndex = 31;
+            TxtEditCountry.Location = new Point(11, 334);
+            TxtEditCountry.Margin = new Padding(4, 5, 4, 5);
+            TxtEditCountry.Name = "TxtEditCountry";
+            TxtEditCountry.Size = new Size(231, 31);
+            TxtEditCountry.TabIndex = 31;
             // 
-            // dateTimePicker2
+            // TxtEditZipCode
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(248, 200);
-            dateTimePicker2.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
-            dateTimePicker2.MinDate = new DateTime(1999, 1, 1, 0, 0, 0, 0);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(234, 31);
-            dateTimePicker2.TabIndex = 41;
-            dateTimePicker2.Value = new DateTime(1999, 1, 1, 0, 0, 0, 0);
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(11, 267);
-            textBox3.Margin = new Padding(4, 5, 4, 5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(231, 31);
-            textBox3.TabIndex = 29;
+            TxtEditZipCode.Location = new Point(11, 267);
+            TxtEditZipCode.Margin = new Padding(4, 5, 4, 5);
+            TxtEditZipCode.Name = "TxtEditZipCode";
+            TxtEditZipCode.Size = new Size(231, 31);
+            TxtEditZipCode.TabIndex = 29;
             // 
             // label18
             // 
@@ -664,58 +673,41 @@
             label18.TabIndex = 30;
             label18.Text = "Country";
             // 
-            // textBox6
+            // TxtEditOrderNumber
             // 
-            textBox6.Location = new Point(489, 58);
-            textBox6.Margin = new Padding(4, 5, 4, 5);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(235, 31);
-            textBox6.TabIndex = 9;
+            TxtEditOrderNumber.Location = new Point(250, 58);
+            TxtEditOrderNumber.Margin = new Padding(4, 5, 4, 5);
+            TxtEditOrderNumber.Name = "TxtEditOrderNumber";
+            TxtEditOrderNumber.Size = new Size(233, 31);
+            TxtEditOrderNumber.TabIndex = 9;
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(489, 28);
+            label21.Location = new Point(250, 28);
             label21.Margin = new Padding(4, 0, 4, 0);
             label21.Name = "label21";
             label21.Size = new Size(128, 25);
             label21.TabIndex = 8;
             label21.Text = "Order Number";
             // 
-            // button1
+            // CmdEditClear
             // 
-            button1.Location = new Point(489, 331);
-            button1.Name = "button1";
-            button1.Size = new Size(97, 34);
-            button1.TabIndex = 7;
-            button1.Text = "Clear";
-            button1.UseVisualStyleBackColor = true;
+            CmdEditClear.Location = new Point(489, 331);
+            CmdEditClear.Name = "CmdEditClear";
+            CmdEditClear.Size = new Size(97, 34);
+            CmdEditClear.TabIndex = 7;
+            CmdEditClear.Text = "Clear";
+            CmdEditClear.UseVisualStyleBackColor = true;
+            CmdEditClear.Click += CmdEditClear_Click;
             // 
-            // textBox7
+            // TxtEditInvoiceNumber
             // 
-            textBox7.Location = new Point(248, 58);
-            textBox7.Margin = new Padding(4, 5, 4, 5);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(235, 31);
-            textBox7.TabIndex = 6;
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Location = new Point(248, 27);
-            label22.Margin = new Padding(4, 0, 4, 0);
-            label22.Name = "label22";
-            label22.Size = new Size(159, 25);
-            label22.TabIndex = 5;
-            label22.Text = "Customer Number";
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(7, 58);
-            textBox8.Margin = new Padding(4, 5, 4, 5);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(235, 31);
-            textBox8.TabIndex = 4;
+            TxtEditInvoiceNumber.Location = new Point(7, 58);
+            TxtEditInvoiceNumber.Margin = new Padding(4, 5, 4, 5);
+            TxtEditInvoiceNumber.Name = "TxtEditInvoiceNumber";
+            TxtEditInvoiceNumber.Size = new Size(235, 31);
+            TxtEditInvoiceNumber.TabIndex = 4;
             // 
             // label23
             // 
@@ -727,14 +719,33 @@
             label23.TabIndex = 3;
             label23.Text = "Invoice Number";
             // 
-            // button2
+            // CmdEditSave
             // 
-            button2.Location = new Point(592, 331);
-            button2.Name = "button2";
-            button2.Size = new Size(132, 34);
-            button2.TabIndex = 0;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = true;
+            CmdEditSave.Location = new Point(592, 331);
+            CmdEditSave.Name = "CmdEditSave";
+            CmdEditSave.Size = new Size(132, 34);
+            CmdEditSave.TabIndex = 0;
+            CmdEditSave.Text = "Save";
+            CmdEditSave.UseVisualStyleBackColor = true;
+            CmdEditSave.Click += CmdEditSave_Click;
+            // 
+            // TxtEditCity
+            // 
+            TxtEditCity.Location = new Point(250, 267);
+            TxtEditCity.Margin = new Padding(4, 5, 4, 5);
+            TxtEditCity.Name = "TxtEditCity";
+            TxtEditCity.Size = new Size(231, 31);
+            TxtEditCity.TabIndex = 60;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(250, 236);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(42, 25);
+            label13.TabIndex = 59;
+            label13.Text = "City";
             // 
             // UsrCtrlInvoices
             // 
@@ -756,8 +767,8 @@
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumEditTaxes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumEditDiscount).EndInit();
             ResumeLayout(false);
         }
 
@@ -799,28 +810,31 @@
         private Label label12;
         private DataGridView DataGridViewBillingAddress;
         private GroupBox groupBox3;
-        private Label label13;
         private Label label15;
-        private TextBox textBox1;
+        private TextBox TxtEditStreetAddress;
         private Label label17;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker2;
-        private TextBox textBox3;
+        private TextBox TxtEditCountry;
+        private TextBox TxtEditZipCode;
         private Label label18;
-        private TextBox textBox6;
+        private TextBox TxtEditOrderNumber;
         private Label label21;
-        private Button button1;
+        private Button CmdEditClear;
         private TextBox textBox7;
         private Label label22;
-        private TextBox textBox8;
+        private TextBox TxtEditInvoiceNumber;
         private Label label23;
-        private Button button2;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
+        private Button CmdEditSave;
+        private CheckBox ChkEditUseCustomerAddress;
         private Label label14;
         private Label label16;
         private Label label19;
-        private NumericUpDown numericUpDown2;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown NumEditTaxes;
+        private NumericUpDown NumEditDiscount;
+        private Label label20;
+        private ComboBox CmbEditPaymentMethod;
+        private Label label24;
+        private ComboBox CmbEditPaymentStatus;
+        private TextBox TxtEditCity;
+        private Label label13;
     }
 }
