@@ -41,7 +41,7 @@
             GrpInformation = new GroupBox();
             LblInfoCustomerPostalCode = new Label();
             LblInfoCustomerCity = new Label();
-            groupBox1 = new GroupBox();
+            GrpOrders = new GroupBox();
             DataGridViewCustomerOrders = new DataGridView();
             orderNumber = new DataGridViewTextBoxColumn();
             dateOfOrder = new DataGridViewTextBoxColumn();
@@ -87,17 +87,19 @@
             LblInfoSearchCustomerEmail = new Label();
             LblInfoSearchCustomerCountry = new Label();
             LblInfoSearchCustomerNumber = new Label();
+            LblDataGridCustomersNoResults = new Label();
             GrpNavigation.SuspendLayout();
             GrpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).BeginInit();
             GrpInformation.SuspendLayout();
-            groupBox1.SuspendLayout();
+            GrpOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).BeginInit();
             GrpSearch.SuspendLayout();
             SuspendLayout();
             // 
             // CmdCustomers
             // 
+            CmdCustomers.Enabled = false;
             CmdCustomers.Location = new Point(18, 60);
             CmdCustomers.Name = "CmdCustomers";
             CmdCustomers.Size = new Size(75, 23);
@@ -151,6 +153,7 @@
             // 
             // GrpResults
             // 
+            GrpResults.Controls.Add(LblDataGridCustomersNoResults);
             GrpResults.Controls.Add(DataGridViewCustomersResults);
             GrpResults.Controls.Add(CmdShowAllCustomers);
             GrpResults.Controls.Add(CmdCreateEmptyCustomer);
@@ -206,7 +209,7 @@
             // 
             GrpInformation.Controls.Add(LblInfoCustomerPostalCode);
             GrpInformation.Controls.Add(LblInfoCustomerCity);
-            GrpInformation.Controls.Add(groupBox1);
+            GrpInformation.Controls.Add(GrpOrders);
             GrpInformation.Controls.Add(LblInfoCustomerWebsite);
             GrpInformation.Controls.Add(LblInfoCustomerEmail);
             GrpInformation.Controls.Add(LblInfoCustomerAdress);
@@ -254,19 +257,19 @@
             LblInfoCustomerCity.TabIndex = 1;
             LblInfoCustomerCity.Text = "City";
             // 
-            // groupBox1
+            // GrpOrders
             // 
-            groupBox1.Controls.Add(DataGridViewCustomerOrders);
-            groupBox1.Controls.Add(CmdOpenSelectedOrder);
-            groupBox1.Controls.Add(CmdCreateNewOrder);
-            groupBox1.Controls.Add(CmdDeleteSelectedOrders);
-            groupBox1.ForeColor = SystemColors.ControlText;
-            groupBox1.Location = new Point(0, 251);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(528, 385);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Orders";
+            GrpOrders.Controls.Add(DataGridViewCustomerOrders);
+            GrpOrders.Controls.Add(CmdOpenSelectedOrder);
+            GrpOrders.Controls.Add(CmdCreateNewOrder);
+            GrpOrders.Controls.Add(CmdDeleteSelectedOrders);
+            GrpOrders.ForeColor = SystemColors.ControlText;
+            GrpOrders.Location = new Point(0, 251);
+            GrpOrders.Name = "GrpOrders";
+            GrpOrders.Size = new Size(528, 385);
+            GrpOrders.TabIndex = 2;
+            GrpOrders.TabStop = false;
+            GrpOrders.Text = "Orders";
             // 
             // DataGridViewCustomerOrders
             // 
@@ -371,7 +374,7 @@
             // 
             // TxtInputCustomerAdress
             // 
-            TxtInputCustomerAdress.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerAdress.BackColor = SystemColors.Window;
             TxtInputCustomerAdress.BorderStyle = BorderStyle.None;
             TxtInputCustomerAdress.Cursor = Cursors.IBeam;
             TxtInputCustomerAdress.Location = new Point(109, 180);
@@ -381,7 +384,7 @@
             // 
             // TxtInputCustomerPostalCode
             // 
-            TxtInputCustomerPostalCode.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerPostalCode.BackColor = SystemColors.Window;
             TxtInputCustomerPostalCode.BorderStyle = BorderStyle.None;
             TxtInputCustomerPostalCode.Cursor = Cursors.IBeam;
             TxtInputCustomerPostalCode.Location = new Point(109, 159);
@@ -391,7 +394,7 @@
             // 
             // TxtInputCustomerCity
             // 
-            TxtInputCustomerCity.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerCity.BackColor = SystemColors.Window;
             TxtInputCustomerCity.BorderStyle = BorderStyle.None;
             TxtInputCustomerCity.Cursor = Cursors.IBeam;
             TxtInputCustomerCity.Location = new Point(256, 160);
@@ -401,7 +404,7 @@
             // 
             // TxtInputCustomerCountry
             // 
-            TxtInputCustomerCountry.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerCountry.BackColor = SystemColors.Window;
             TxtInputCustomerCountry.BorderStyle = BorderStyle.None;
             TxtInputCustomerCountry.Cursor = Cursors.IBeam;
             TxtInputCustomerCountry.Location = new Point(109, 139);
@@ -411,7 +414,7 @@
             // 
             // TxtInputCustomerWebsite
             // 
-            TxtInputCustomerWebsite.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerWebsite.BackColor = SystemColors.Window;
             TxtInputCustomerWebsite.BorderStyle = BorderStyle.None;
             TxtInputCustomerWebsite.Cursor = Cursors.IBeam;
             TxtInputCustomerWebsite.Location = new Point(330, 107);
@@ -421,7 +424,7 @@
             // 
             // TxtInputCustomerEmail
             // 
-            TxtInputCustomerEmail.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerEmail.BackColor = SystemColors.Window;
             TxtInputCustomerEmail.BorderStyle = BorderStyle.None;
             TxtInputCustomerEmail.Cursor = Cursors.IBeam;
             TxtInputCustomerEmail.Location = new Point(330, 87);
@@ -431,7 +434,7 @@
             // 
             // TxtInputCustomerLastName
             // 
-            TxtInputCustomerLastName.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerLastName.BackColor = SystemColors.Window;
             TxtInputCustomerLastName.BorderStyle = BorderStyle.None;
             TxtInputCustomerLastName.Cursor = Cursors.IBeam;
             TxtInputCustomerLastName.Location = new Point(109, 106);
@@ -441,7 +444,7 @@
             // 
             // TxtInputCustomerFirstName
             // 
-            TxtInputCustomerFirstName.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerFirstName.BackColor = SystemColors.Window;
             TxtInputCustomerFirstName.BorderStyle = BorderStyle.None;
             TxtInputCustomerFirstName.Cursor = Cursors.IBeam;
             TxtInputCustomerFirstName.Location = new Point(109, 86);
@@ -451,7 +454,7 @@
             // 
             // TxtInputCustomerPassword
             // 
-            TxtInputCustomerPassword.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerPassword.BackColor = SystemColors.Window;
             TxtInputCustomerPassword.BorderStyle = BorderStyle.None;
             TxtInputCustomerPassword.Cursor = Cursors.IBeam;
             TxtInputCustomerPassword.Location = new Point(139, 49);
@@ -692,6 +695,15 @@
             LblInfoSearchCustomerNumber.TabIndex = 1;
             LblInfoSearchCustomerNumber.Text = "Customer Number";
             // 
+            // LblDataGridCustomersNoResults
+            // 
+            LblDataGridCustomersNoResults.AutoSize = true;
+            LblDataGridCustomersNoResults.Location = new Point(233, 181);
+            LblDataGridCustomersNoResults.Name = "LblDataGridCustomersNoResults";
+            LblDataGridCustomersNoResults.Size = new Size(63, 15);
+            LblDataGridCustomersNoResults.TabIndex = 1;
+            LblDataGridCustomersNoResults.Text = "No Results";
+            // 
             // FormCustomers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -705,10 +717,11 @@
             Text = "FormCustomers";
             GrpNavigation.ResumeLayout(false);
             GrpResults.ResumeLayout(false);
+            GrpResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).EndInit();
             GrpInformation.ResumeLayout(false);
             GrpInformation.PerformLayout();
-            groupBox1.ResumeLayout(false);
+            GrpOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).EndInit();
             GrpSearch.ResumeLayout(false);
             GrpSearch.PerformLayout();
@@ -744,7 +757,7 @@
         private Label LblInfoCustomerCity;
         private Label LblInfoCustomerEmail;
         private Label LblInfoCustomerWebsite;
-        private GroupBox groupBox1;
+        private GroupBox GrpOrders;
         private DataGridView DataGridViewCustomerOrders;
         private Button CmdOpenSelectedOrder;
         private Button CmdCreateNewOrder;
@@ -776,5 +789,6 @@
         private TextBox TxtInputCustomerEmail;
         private TextBox TxtInputCustomerLastName;
         private TextBox TxtInputCustomerFirstName;
+        private Label LblDataGridCustomersNoResults;
     }
 }
