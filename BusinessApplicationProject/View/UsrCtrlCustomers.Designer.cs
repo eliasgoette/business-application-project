@@ -42,9 +42,7 @@
             orderNumber = new DataGridViewTextBoxColumn();
             dateOfOrder = new DataGridViewTextBoxColumn();
             totalPriceOrder = new DataGridViewTextBoxColumn();
-            CmdOpenSelectedOrder = new Button();
-            CmdCreateNewOrder = new Button();
-            CmdDeleteSelectedOrders = new Button();
+            CmdCopyOrderNumber = new Button();
             LblInfoCustomerWebsite = new Label();
             LblInfoCustomerEmail = new Label();
             LblInfoCustomerAdress = new Label();
@@ -65,7 +63,7 @@
             LblInfoCustomerNumber = new Label();
             CmdDeleteCustomer = new Button();
             CmdSaveChangesCustomer = new Button();
-            CmdCreateNewCustomer = new Button();
+            CmdClearCustomer = new Button();
             GrpSearch = new GroupBox();
             TxtSearchCustomerWebsite = new TextBox();
             label1 = new Label();
@@ -190,7 +188,7 @@
             GrpInformation.Controls.Add(LblInfoCustomerNumber);
             GrpInformation.Controls.Add(CmdDeleteCustomer);
             GrpInformation.Controls.Add(CmdSaveChangesCustomer);
-            GrpInformation.Controls.Add(CmdCreateNewCustomer);
+            GrpInformation.Controls.Add(CmdClearCustomer);
             GrpInformation.Location = new Point(793, 0);
             GrpInformation.Margin = new Padding(4, 5, 4, 5);
             GrpInformation.Name = "GrpInformation";
@@ -223,9 +221,7 @@
             // GrpOrders
             // 
             GrpOrders.Controls.Add(DataGridViewCustomerOrders);
-            GrpOrders.Controls.Add(CmdOpenSelectedOrder);
-            GrpOrders.Controls.Add(CmdCreateNewOrder);
-            GrpOrders.Controls.Add(CmdDeleteSelectedOrders);
+            GrpOrders.Controls.Add(CmdCopyOrderNumber);
             GrpOrders.ForeColor = SystemColors.ControlText;
             GrpOrders.Location = new Point(0, 418);
             GrpOrders.Margin = new Padding(4, 5, 4, 5);
@@ -274,38 +270,16 @@
             totalPriceOrder.ReadOnly = true;
             totalPriceOrder.Width = 150;
             // 
-            // CmdOpenSelectedOrder
+            // CmdCopyOrderNumber
             // 
-            CmdOpenSelectedOrder.Location = new Point(9, 593);
-            CmdOpenSelectedOrder.Margin = new Padding(4, 5, 4, 5);
-            CmdOpenSelectedOrder.Name = "CmdOpenSelectedOrder";
-            CmdOpenSelectedOrder.Size = new Size(189, 38);
-            CmdOpenSelectedOrder.TabIndex = 0;
-            CmdOpenSelectedOrder.Text = "Open selected Order";
-            CmdOpenSelectedOrder.UseVisualStyleBackColor = true;
-            CmdOpenSelectedOrder.Click += CmdOpenSelectedOrder_Click;
-            // 
-            // CmdCreateNewOrder
-            // 
-            CmdCreateNewOrder.Location = new Point(366, 593);
-            CmdCreateNewOrder.Margin = new Padding(4, 5, 4, 5);
-            CmdCreateNewOrder.Name = "CmdCreateNewOrder";
-            CmdCreateNewOrder.Size = new Size(163, 38);
-            CmdCreateNewOrder.TabIndex = 0;
-            CmdCreateNewOrder.Text = "Create new Order";
-            CmdCreateNewOrder.UseVisualStyleBackColor = true;
-            CmdCreateNewOrder.Click += CmdCreateNewOrder_Click;
-            // 
-            // CmdDeleteSelectedOrders
-            // 
-            CmdDeleteSelectedOrders.Location = new Point(537, 593);
-            CmdDeleteSelectedOrders.Margin = new Padding(4, 5, 4, 5);
-            CmdDeleteSelectedOrders.Name = "CmdDeleteSelectedOrders";
-            CmdDeleteSelectedOrders.Size = new Size(209, 38);
-            CmdDeleteSelectedOrders.TabIndex = 0;
-            CmdDeleteSelectedOrders.Text = "Delete selected Order(s)";
-            CmdDeleteSelectedOrders.UseVisualStyleBackColor = true;
-            CmdDeleteSelectedOrders.Click += CmdDeleteSelectedOrders_Click;
+            CmdCopyOrderNumber.Location = new Point(9, 593);
+            CmdCopyOrderNumber.Margin = new Padding(4, 5, 4, 5);
+            CmdCopyOrderNumber.Name = "CmdCopyOrderNumber";
+            CmdCopyOrderNumber.Size = new Size(189, 38);
+            CmdCopyOrderNumber.TabIndex = 0;
+            CmdCopyOrderNumber.Text = "Copy order number";
+            CmdCopyOrderNumber.UseVisualStyleBackColor = true;
+            CmdCopyOrderNumber.Click += CmdOpenSelectedOrder_Click;
             // 
             // LblInfoCustomerWebsite
             // 
@@ -333,9 +307,9 @@
             LblInfoCustomerAdress.Location = new Point(30, 300);
             LblInfoCustomerAdress.Margin = new Padding(4, 0, 4, 0);
             LblInfoCustomerAdress.Name = "LblInfoCustomerAdress";
-            LblInfoCustomerAdress.Size = new Size(66, 25);
+            LblInfoCustomerAdress.Size = new Size(116, 25);
             LblInfoCustomerAdress.TabIndex = 1;
-            LblInfoCustomerAdress.Text = "Adress";
+            LblInfoCustomerAdress.Text = "Street Adress";
             // 
             // TxtInputCustomerNumber
             // 
@@ -517,20 +491,20 @@
             CmdSaveChangesCustomer.Name = "CmdSaveChangesCustomer";
             CmdSaveChangesCustomer.Size = new Size(141, 38);
             CmdSaveChangesCustomer.TabIndex = 0;
-            CmdSaveChangesCustomer.Text = "Save changes";
+            CmdSaveChangesCustomer.Text = "Save";
             CmdSaveChangesCustomer.UseVisualStyleBackColor = true;
             CmdSaveChangesCustomer.Click += CmdSaveChangesCustomer_Click;
             // 
-            // CmdCreateNewCustomer
+            // CmdClearCustomer
             // 
-            CmdCreateNewCustomer.Location = new Point(9, 360);
-            CmdCreateNewCustomer.Margin = new Padding(4, 5, 4, 5);
-            CmdCreateNewCustomer.Name = "CmdCreateNewCustomer";
-            CmdCreateNewCustomer.Size = new Size(211, 38);
-            CmdCreateNewCustomer.TabIndex = 0;
-            CmdCreateNewCustomer.Text = "Save as new Customer";
-            CmdCreateNewCustomer.UseVisualStyleBackColor = true;
-            CmdCreateNewCustomer.Click += CmdCreateNewCustomer_Click;
+            CmdClearCustomer.Location = new Point(9, 360);
+            CmdClearCustomer.Margin = new Padding(4, 5, 4, 5);
+            CmdClearCustomer.Name = "CmdClearCustomer";
+            CmdClearCustomer.Size = new Size(211, 38);
+            CmdClearCustomer.TabIndex = 0;
+            CmdClearCustomer.Text = "Clear / New";
+            CmdClearCustomer.UseVisualStyleBackColor = true;
+            CmdClearCustomer.Click += CmdCreateNewCustomer_Click;
             // 
             // GrpSearch
             // 
@@ -684,9 +658,9 @@
             LblInfoSearchCustomerAdress.Location = new Point(510, 148);
             LblInfoSearchCustomerAdress.Margin = new Padding(6, 0, 6, 0);
             LblInfoSearchCustomerAdress.Name = "LblInfoSearchCustomerAdress";
-            LblInfoSearchCustomerAdress.Size = new Size(66, 25);
+            LblInfoSearchCustomerAdress.Size = new Size(116, 25);
             LblInfoSearchCustomerAdress.TabIndex = 1;
-            LblInfoSearchCustomerAdress.Text = "Adress";
+            LblInfoSearchCustomerAdress.Text = "Street Adress";
             // 
             // LblInfoSearchCustomerCity
             // 
@@ -754,7 +728,7 @@
         private GroupBox GrpResults;
         private GroupBox GrpInformation;
         private GroupBox GrpSearch;
-        private Button CmdCreateNewCustomer;
+        private Button CmdClearCustomer;
         private Button CmdCreateEmptyCustomer;
         private Button CmdDeleteSelectedCustomers;
         private Button CmdDeleteCustomer;
@@ -775,9 +749,7 @@
         private Label LblInfoCustomerWebsite;
         private GroupBox GrpOrders;
         private DataGridView DataGridViewCustomerOrders;
-        private Button CmdOpenSelectedOrder;
-        private Button CmdCreateNewOrder;
-        private Button CmdDeleteSelectedOrders;
+        private Button CmdCopyOrderNumber;
         private Label LblInfoSearchCustomerNumber;
         private Label LblInfoSearchCustomerLastName;
         private Label LblInfoSearchCustomerFirstName;

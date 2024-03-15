@@ -2,7 +2,6 @@
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
 using System.Linq.Expressions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace BusinessApplicationProject.View
 {
@@ -42,6 +41,12 @@ namespace BusinessApplicationProject.View
         {
             getContext = () => new AppDbContext(),
             getRepository = context => new Repository<Customer>(context)
+        };
+
+        private Controller<Order> orderController = new Controller<Order>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new TemporalRepository<Order>(context)
         };
 
         public void UpdateSearchResults()
@@ -159,9 +164,7 @@ namespace BusinessApplicationProject.View
             }
         }
 
-        /*-----*/
-
-
+        /*---------------------------------------*/
         private void EmptyFieldsCustomers()
         {
             TxtInputCustomerAdress.Text = string.Empty;
@@ -175,31 +178,114 @@ namespace BusinessApplicationProject.View
             TxtInputCustomerPostalCode.Text = string.Empty;
             TxtInputCustomerWebsite.Text = string.Empty;
         }
-
-        private void GenerateNewCustomerNumber()
-        {
-            //Get next Number
-            TxtInputCustomerNumber.Text = 3.ToString();
-        }
-
         /*---------------------------------------*/
 
 
         private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
         {
-            //Check if nessesary Fields contain Content
-            //Create new Customer with Inputfields
+            EmptyFieldsCustomers();
+
+            DataGridViewCustomerOrders.DataSource = null;
+            DataGridViewCustomerOrders.Columns.Clear();
+
+            DataGridViewCustomersResults.DataSource = null;
+            DataGridViewCustomersResults.Columns.Clear();
         }
 
-        private void CmdSaveChangesCustomer_Click(object sender, EventArgs e)
+        private async void CmdSaveChangesCustomer_Click(object sender, EventArgs e)
         {
-            //Check if nessesary Fields contain Content
-            //Check if something changed
-
             //Throw warning
             if (WarningUpdatedObject())
             {
-                //update selected Object with inputfields
+                try
+                {
+                    var existingCustomer = customerController.FindSingle(x => x.CustomerNumber == TxtInputCustomerNumber.Text);
+
+                    if (existingCustomer != null)
+                    {
+                        existingCustomer.CustomerAddress.StreetAddress = TxtInputCustomerAdress.Text;
+                        existingCustomer.CustomerAddress.ZipCode = TxtInputCustomerPostalCode.Text;
+                        existingCustomer.CustomerAddress.City = TxtInputCustomerCity.Text;
+                        existingCustomer.CustomerAddress.Country = TxtInputCustomerCountry.Text;
+
+                        existingCustomer.FirstName = TxtInputCustomerFirstName.Text;
+                        existingCustomer.LastName = TxtInputCustomerLastName.Text;
+
+                        existingCustomer.Email = TxtInputCustomerEmail.Text;
+                        existingCustomer.Website = TxtInputCustomerWebsite.Text;
+                        existingCustomer.PasswordHash = TxtInputCustomerPassword.Text;
+
+                        try
+                        {
+                            customerController.Update(existingCustomer);
+                            MessageBox.Show("Updated customer.");
+                            UpdateSearchResults();
+                        }
+                        catch (TimeoutException)
+                        {
+                            MessageBox.Show("DB connection failed. Please check connection.");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("An error occurred.");
+                        }
+                    }
+                    else
+                    {
+                        var allCustomers = customerController.GetAll();
+
+                        int maxCustNumber = (allCustomers.Count > 0) ?
+                            allCustomers.Select(n => int.Parse(n.CustomerNumber.Split('-')[1]))
+                            .Max() : 0;
+
+                        string custNumber = (++maxCustNumber).ToString().PadLeft(5, '0');
+                        custNumber = "C-" + custNumber;
+
+                        var newCustomer = new Customer
+                        {
+                            CustomerNumber = custNumber,
+                            CustomerAddress = new Address
+                            {
+                                StreetAddress = TxtInputCustomerAdress.Text,
+                                ZipCode = TxtInputCustomerPostalCode.Text,
+                                City = TxtInputCustomerCity.Text,
+                                Country = TxtInputCustomerCountry.Text
+                            },
+                            FirstName = TxtInputCustomerFirstName.Text,
+                            LastName = TxtInputCustomerLastName.Text,
+                            Email = TxtInputCustomerEmail.Text,
+                            Website = TxtInputCustomerWebsite.Text,
+                            PasswordHash = TxtInputCustomerPassword.Text
+                        };
+
+                        try
+                        {
+                            await customerController.AddAsync(newCustomer);
+                            MessageBox.Show("Added customer.");
+                            UpdateSearchResults();
+                        }
+                        catch (TimeoutException)
+                        {
+                            MessageBox.Show("DB connection failed. Please check connection.");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("An error occurred.");
+                        }
+                    }
+                }
+                catch (TimeoutException)
+                {
+                    MessageBox.Show("DB connection failed. Please check connection.");
+                }
+                catch
+                {
+                    MessageBox.Show("An error occurred.");
+                }
+            }
+            else
+            {
+                UpdateSearchResults();
             }
         }
 
@@ -208,7 +294,28 @@ namespace BusinessApplicationProject.View
             //Throw warning
             if (WarningDeletedObject())
             {
-                //delete all selected Customer
+                try
+                {
+                    var cust = customerController.FindSingle(x => x.CustomerNumber == TxtInputCustomerNumber.Text);
+
+                    if (cust != null)
+                    {
+                        customerController.Remove(cust);
+                        MessageBox.Show("Customer deleted.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Customer doesn't exits.");
+                    }
+                }
+                catch (TimeoutException)
+                {
+                    MessageBox.Show("DB error occurred. Please check connection.");
+                }
+                catch
+                {
+                    MessageBox.Show("An error occurred.");
+                }
             }
         }
 
@@ -216,29 +323,21 @@ namespace BusinessApplicationProject.View
         #endregion
 
         #region Orders
-
-
         private void CmdOpenSelectedOrder_Click(object sender, EventArgs e)
         {
-            //Check if exactly one Order is selected
-            //Chance Form (Order) with selected Ordernumber already searched
-        }
+            var selection = Utils.GetSelectedItem<Order>(DataGridViewCustomerOrders);
 
-        private void CmdCreateNewOrder_Click(object sender, EventArgs e)
-        {
-            //Change Form (Order) with selected Customer already filled in
-        }
-
-        private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
-        {
-            //Throw warning
-            if (WarningDeletedObject())
+            if (selection != null)
             {
-                //delete all selected Objects
+                string orderNumber = selection.OrderNumber;
+                Clipboard.SetText(orderNumber);
+                MessageBox.Show($"{orderNumber} copied to clipboard.");
+            }
+            else
+            {
+                MessageBox.Show("No item selected.");
             }
         }
-
-
         #endregion
 
         private bool WarningDeletedObject()
@@ -270,6 +369,75 @@ namespace BusinessApplicationProject.View
         private void DataGridViewCustomersResults_SelectionChanged(object sender, EventArgs e)
         {
             Customer? selection = Utils.GetSelectedItem<Customer>(DataGridViewCustomersResults);
+            UpdateAdditionalInformations(selection);
+        }
+
+        private void UpdateAdditionalInformations(Customer? selection)
+        {
+            UpdateInputFields(selection);
+            UpdateOrderDataGridView(selection);
+        }
+
+        private void UpdateInputFields(Customer? customer)
+        {
+            if (customer != null)
+            {
+                TxtInputCustomerNumber.Text = customer.CustomerNumber;
+                TxtInputCustomerPassword.Text = customer.PasswordHash ?? "";
+
+                TxtInputCustomerFirstName.Text = customer.FirstName;
+                TxtInputCustomerLastName.Text = customer.LastName;
+                TxtInputCustomerEmail.Text = customer.Email ?? "";
+                TxtInputCustomerWebsite.Text = customer.Website ?? "";
+
+                TxtInputCustomerAdress.Text = customer.CustomerAddress.StreetAddress;
+                TxtInputCustomerPostalCode.Text = customer.CustomerAddress.ZipCode;
+                TxtInputCustomerCity.Text = customer.CustomerAddress.City;
+                TxtInputCustomerCountry.Text = customer.CustomerAddress.Country;
+            }
+        }
+
+        private void UpdateOrderDataGridView(Customer? customer)
+        {
+            if (customer != null)
+            {
+                try
+                {
+                    List<Order> orders = orderController.Find(x => x.CustomerDetails.Id == customer.Id);
+
+                    DataGridViewCustomerOrders.ClearSelection();
+                    DataGridViewCustomerOrders.DataSource = null;
+                    DataGridViewCustomerOrders.AutoGenerateColumns = false;
+                    DataGridViewCustomerOrders.Columns.Clear();
+
+                    DataGridViewTextBoxColumn orderNumberColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "orderNumberColumn",
+                        HeaderText = "Order Number",
+                        DataPropertyName = "OrderNumber"
+                    };
+
+                    DataGridViewTextBoxColumn orderDateColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "orderDateColumn",
+                        HeaderText = "Order Date",
+                        DataPropertyName = "Date"
+                    };
+
+                    DataGridViewCustomerOrders.Columns.Add(orderNumberColumn);
+                    DataGridViewCustomerOrders.Columns.Add(orderDateColumn);
+
+                    DataGridViewCustomerOrders.DataSource = orders;
+                }
+                catch (TimeoutException)
+                {
+                    MessageBox.Show("DB connection timed out. Please check connection.");
+                }
+                catch
+                {
+                    MessageBox.Show("Couldn't load related orders.");
+                }
+            }
         }
     }
 }
