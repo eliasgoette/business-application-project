@@ -20,19 +20,52 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
+            GrpResults = new GroupBox();
+            LblDataGridCustomersNoResults = new Label();
+            DataGridViewCustomersResults = new DataGridView();
+            CmdShowAllCustomers = new Button();
+            CmdCreateEmptyCustomer = new Button();
+            CmdDeleteSelectedCustomers = new Button();
+            GrpInformation = new GroupBox();
+            LblInfoCustomerPostalCode = new Label();
             LblInfoCustomerCity = new Label();
+            GrpOrders = new GroupBox();
+            DataGridViewCustomerOrders = new DataGridView();
+            orderNumber = new DataGridViewTextBoxColumn();
+            dateOfOrder = new DataGridViewTextBoxColumn();
+            totalPriceOrder = new DataGridViewTextBoxColumn();
+            CmdOpenSelectedOrder = new Button();
+            CmdCreateNewOrder = new Button();
+            CmdDeleteSelectedOrders = new Button();
             LblInfoCustomerWebsite = new Label();
             LblInfoCustomerEmail = new Label();
             LblInfoCustomerAdress = new Label();
-            LblInfoSearchCustomerCountry = new Label();
+            TxtInputCustomerNumber = new TextBox();
+            TxtInputCustomerAdress = new TextBox();
+            TxtInputCustomerPostalCode = new TextBox();
+            TxtInputCustomerCity = new TextBox();
+            TxtInputCustomerCountry = new TextBox();
+            TxtInputCustomerWebsite = new TextBox();
+            TxtInputCustomerEmail = new TextBox();
+            TxtInputCustomerLastName = new TextBox();
+            TxtInputCustomerFirstName = new TextBox();
+            TxtInputCustomerPassword = new TextBox();
+            LblInfoCustomerCountry = new Label();
+            LblInfoCustomerLastName = new Label();
+            LblInfoCustomerFirstName = new Label();
+            LblInfoCustomerPassword = new Label();
+            LblInfoCustomerNumber = new Label();
+            CmdDeleteCustomer = new Button();
+            CmdSaveChangesCustomer = new Button();
+            CmdCreateNewCustomer = new Button();
             GrpSearch = new GroupBox();
             TxtSearchCustomerLastName = new TextBox();
             TxtSearchCustomerFirstName = new TextBox();
@@ -48,240 +81,112 @@
             LblInfoSearchCustomerAdress = new Label();
             LblInfoSearchCustomerCity = new Label();
             LblInfoSearchCustomerEmail = new Label();
+            LblInfoSearchCustomerCountry = new Label();
             LblInfoSearchCustomerNumber = new Label();
-            LblInfoCustomerPostalCode = new Label();
-            GrpOrders = new GroupBox();
-            DataGridViewCustomerOrders = new DataGridView();
-            orderNumber = new DataGridViewTextBoxColumn();
-            dateOfOrder = new DataGridViewTextBoxColumn();
-            totalPriceOrder = new DataGridViewTextBoxColumn();
-            CmdOpenSelectedOrder = new Button();
-            CmdCreateNewOrder = new Button();
-            CmdDeleteSelectedOrders = new Button();
-            TxtInputCustomerNumber = new TextBox();
-            TxtInputCustomerAdress = new TextBox();
-            TxtInputCustomerPostalCode = new TextBox();
-            TxtInputCustomerCity = new TextBox();
-            TxtInputCustomerCountry = new TextBox();
-            GrpResults = new GroupBox();
-            LblDataGridCustomersNoResults = new Label();
-            DataGridViewCustomersResults = new DataGridView();
-            CmdShowAllCustomers = new Button();
-            CmdCreateEmptyCustomer = new Button();
-            CmdDeleteSelectedCustomers = new Button();
-            GrpInformation = new GroupBox();
-            TxtInputCustomerWebsite = new TextBox();
-            TxtInputCustomerEmail = new TextBox();
-            TxtInputCustomerLastName = new TextBox();
-            TxtInputCustomerFirstName = new TextBox();
-            TxtInputCustomerPassword = new TextBox();
-            LblInfoCustomerCountry = new Label();
-            LblInfoCustomerLastName = new Label();
-            LblInfoCustomerFirstName = new Label();
-            LblInfoCustomerPassword = new Label();
-            LblInfoCustomerNumber = new Label();
-            CmdDeleteCustomer = new Button();
-            CmdSaveChangesCustomer = new Button();
-            CmdCreateNewCustomer = new Button();
-            GrpSearch.SuspendLayout();
-            GrpOrders.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).BeginInit();
             GrpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).BeginInit();
             GrpInformation.SuspendLayout();
+            GrpOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).BeginInit();
+            GrpSearch.SuspendLayout();
             SuspendLayout();
             // 
-            // LblInfoCustomerCity
+            // GrpResults
             // 
-            LblInfoCustomerCity.AutoSize = true;
-            LblInfoCustomerCity.Location = new Point(206, 160);
-            LblInfoCustomerCity.Name = "LblInfoCustomerCity";
-            LblInfoCustomerCity.Size = new Size(28, 15);
-            LblInfoCustomerCity.TabIndex = 1;
-            LblInfoCustomerCity.Text = "City";
+            GrpResults.Controls.Add(LblDataGridCustomersNoResults);
+            GrpResults.Controls.Add(DataGridViewCustomersResults);
+            GrpResults.Controls.Add(CmdShowAllCustomers);
+            GrpResults.Controls.Add(CmdCreateEmptyCustomer);
+            GrpResults.Controls.Add(CmdDeleteSelectedCustomers);
+            GrpResults.ForeColor = SystemColors.ControlText;
+            GrpResults.Location = new Point(3, 251);
+            GrpResults.Name = "GrpResults";
+            GrpResults.Size = new Size(528, 385);
+            GrpResults.TabIndex = 2;
+            GrpResults.TabStop = false;
+            GrpResults.Text = "Customers";
             // 
-            // LblInfoCustomerWebsite
+            // LblDataGridCustomersNoResults
             // 
-            LblInfoCustomerWebsite.AutoSize = true;
-            LblInfoCustomerWebsite.Location = new Point(256, 107);
-            LblInfoCustomerWebsite.Name = "LblInfoCustomerWebsite";
-            LblInfoCustomerWebsite.Size = new Size(49, 15);
-            LblInfoCustomerWebsite.TabIndex = 1;
-            LblInfoCustomerWebsite.Text = "Website";
+            LblDataGridCustomersNoResults.AutoSize = true;
+            LblDataGridCustomersNoResults.Location = new Point(233, 181);
+            LblDataGridCustomersNoResults.Name = "LblDataGridCustomersNoResults";
+            LblDataGridCustomersNoResults.Size = new Size(63, 15);
+            LblDataGridCustomersNoResults.TabIndex = 1;
+            LblDataGridCustomersNoResults.Text = "No Results";
             // 
-            // LblInfoCustomerEmail
+            // DataGridViewCustomersResults
             // 
-            LblInfoCustomerEmail.AutoSize = true;
-            LblInfoCustomerEmail.Location = new Point(256, 87);
-            LblInfoCustomerEmail.Name = "LblInfoCustomerEmail";
-            LblInfoCustomerEmail.Size = new Size(36, 15);
-            LblInfoCustomerEmail.TabIndex = 1;
-            LblInfoCustomerEmail.Text = "Email";
+            DataGridViewCustomersResults.AllowUserToDeleteRows = false;
+            DataGridViewCustomersResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewCustomersResults.Location = new Point(6, 22);
+            DataGridViewCustomersResults.Name = "DataGridViewCustomersResults";
+            DataGridViewCustomersResults.Size = new Size(516, 328);
+            DataGridViewCustomersResults.TabIndex = 1;
             // 
-            // LblInfoCustomerAdress
+            // CmdShowAllCustomers
             // 
-            LblInfoCustomerAdress.AutoSize = true;
-            LblInfoCustomerAdress.Location = new Point(21, 180);
-            LblInfoCustomerAdress.Name = "LblInfoCustomerAdress";
-            LblInfoCustomerAdress.Size = new Size(42, 15);
-            LblInfoCustomerAdress.TabIndex = 1;
-            LblInfoCustomerAdress.Text = "Adress";
+            CmdShowAllCustomers.Location = new Point(6, 356);
+            CmdShowAllCustomers.Name = "CmdShowAllCustomers";
+            CmdShowAllCustomers.Size = new Size(126, 23);
+            CmdShowAllCustomers.TabIndex = 0;
+            CmdShowAllCustomers.Text = "Show all Customers";
+            CmdShowAllCustomers.UseVisualStyleBackColor = true;
+            CmdShowAllCustomers.Click += CmdShowAllCustomers_Click;
             // 
-            // LblInfoSearchCustomerCountry
+            // CmdCreateEmptyCustomer
             // 
-            LblInfoSearchCustomerCountry.AutoSize = true;
-            LblInfoSearchCustomerCountry.Location = new Point(26, 89);
-            LblInfoSearchCustomerCountry.Name = "LblInfoSearchCustomerCountry";
-            LblInfoSearchCustomerCountry.Size = new Size(50, 15);
-            LblInfoSearchCustomerCountry.TabIndex = 1;
-            LblInfoSearchCustomerCountry.Text = "Country";
+            CmdCreateEmptyCustomer.Location = new Point(216, 356);
+            CmdCreateEmptyCustomer.Name = "CmdCreateEmptyCustomer";
+            CmdCreateEmptyCustomer.Size = new Size(135, 23);
+            CmdCreateEmptyCustomer.TabIndex = 0;
+            CmdCreateEmptyCustomer.Text = "Create new Customer";
+            CmdCreateEmptyCustomer.UseVisualStyleBackColor = true;
+            CmdCreateEmptyCustomer.Click += CmdCreateEmptyCustomer_Click;
             // 
-            // GrpSearch
+            // CmdDeleteSelectedCustomers
             // 
-            GrpSearch.Controls.Add(TxtSearchCustomerLastName);
-            GrpSearch.Controls.Add(TxtSearchCustomerFirstName);
-            GrpSearch.Controls.Add(TxtSearchCustomerAdress);
-            GrpSearch.Controls.Add(TxtSearchCustomerCity);
-            GrpSearch.Controls.Add(TxtSearchCustomerEmail);
-            GrpSearch.Controls.Add(TxtSearchCustomerCountry);
-            GrpSearch.Controls.Add(TxtSearchCustomerNumber);
-            GrpSearch.Controls.Add(CmdResetSearchFilters);
-            GrpSearch.Controls.Add(CmdSearchCustomers);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerLastName);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerFirstName);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerAdress);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerCity);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerEmail);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerCountry);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerNumber);
-            GrpSearch.ForeColor = SystemColors.ControlText;
-            GrpSearch.Location = new Point(3, 0);
-            GrpSearch.Name = "GrpSearch";
-            GrpSearch.Size = new Size(528, 245);
-            GrpSearch.TabIndex = 4;
-            GrpSearch.TabStop = false;
-            GrpSearch.Text = "Search";
+            CmdDeleteSelectedCustomers.Location = new Point(357, 356);
+            CmdDeleteSelectedCustomers.Name = "CmdDeleteSelectedCustomers";
+            CmdDeleteSelectedCustomers.Size = new Size(165, 23);
+            CmdDeleteSelectedCustomers.TabIndex = 0;
+            CmdDeleteSelectedCustomers.Text = "Delete selected Customer(s)";
+            CmdDeleteSelectedCustomers.UseVisualStyleBackColor = true;
+            CmdDeleteSelectedCustomers.Click += CmdDeleteSelectedCustomers_Click;
             // 
-            // TxtSearchCustomerLastName
+            // GrpInformation
             // 
-            TxtSearchCustomerLastName.Location = new Point(357, 50);
-            TxtSearchCustomerLastName.Name = "TxtSearchCustomerLastName";
-            TxtSearchCustomerLastName.Size = new Size(145, 23);
-            TxtSearchCustomerLastName.TabIndex = 2;
-            // 
-            // TxtSearchCustomerFirstName
-            // 
-            TxtSearchCustomerFirstName.Location = new Point(192, 50);
-            TxtSearchCustomerFirstName.Name = "TxtSearchCustomerFirstName";
-            TxtSearchCustomerFirstName.Size = new Size(145, 23);
-            TxtSearchCustomerFirstName.TabIndex = 2;
-            // 
-            // TxtSearchCustomerAdress
-            // 
-            TxtSearchCustomerAdress.Location = new Point(357, 107);
-            TxtSearchCustomerAdress.Name = "TxtSearchCustomerAdress";
-            TxtSearchCustomerAdress.Size = new Size(145, 23);
-            TxtSearchCustomerAdress.TabIndex = 2;
-            // 
-            // TxtSearchCustomerCity
-            // 
-            TxtSearchCustomerCity.Location = new Point(192, 107);
-            TxtSearchCustomerCity.Name = "TxtSearchCustomerCity";
-            TxtSearchCustomerCity.Size = new Size(145, 23);
-            TxtSearchCustomerCity.TabIndex = 2;
-            // 
-            // TxtSearchCustomerEmail
-            // 
-            TxtSearchCustomerEmail.Location = new Point(26, 164);
-            TxtSearchCustomerEmail.Name = "TxtSearchCustomerEmail";
-            TxtSearchCustomerEmail.Size = new Size(145, 23);
-            TxtSearchCustomerEmail.TabIndex = 2;
-            // 
-            // TxtSearchCustomerCountry
-            // 
-            TxtSearchCustomerCountry.Location = new Point(26, 107);
-            TxtSearchCustomerCountry.Name = "TxtSearchCustomerCountry";
-            TxtSearchCustomerCountry.Size = new Size(145, 23);
-            TxtSearchCustomerCountry.TabIndex = 2;
-            // 
-            // TxtSearchCustomerNumber
-            // 
-            TxtSearchCustomerNumber.Location = new Point(26, 50);
-            TxtSearchCustomerNumber.Name = "TxtSearchCustomerNumber";
-            TxtSearchCustomerNumber.Size = new Size(145, 23);
-            TxtSearchCustomerNumber.TabIndex = 2;
-            // 
-            // CmdResetSearchFilters
-            // 
-            CmdResetSearchFilters.Location = new Point(273, 216);
-            CmdResetSearchFilters.Name = "CmdResetSearchFilters";
-            CmdResetSearchFilters.Size = new Size(117, 23);
-            CmdResetSearchFilters.TabIndex = 0;
-            CmdResetSearchFilters.Text = "Reset search filters";
-            CmdResetSearchFilters.UseVisualStyleBackColor = true;
-            // 
-            // CmdSearchCustomers
-            // 
-            CmdSearchCustomers.Location = new Point(396, 216);
-            CmdSearchCustomers.Name = "CmdSearchCustomers";
-            CmdSearchCustomers.Size = new Size(126, 23);
-            CmdSearchCustomers.TabIndex = 0;
-            CmdSearchCustomers.Text = "Search Customers";
-            CmdSearchCustomers.UseVisualStyleBackColor = true;
-            // 
-            // LblInfoSearchCustomerLastName
-            // 
-            LblInfoSearchCustomerLastName.AutoSize = true;
-            LblInfoSearchCustomerLastName.Location = new Point(357, 30);
-            LblInfoSearchCustomerLastName.Name = "LblInfoSearchCustomerLastName";
-            LblInfoSearchCustomerLastName.Size = new Size(63, 15);
-            LblInfoSearchCustomerLastName.TabIndex = 1;
-            LblInfoSearchCustomerLastName.Text = "Last Name";
-            // 
-            // LblInfoSearchCustomerFirstName
-            // 
-            LblInfoSearchCustomerFirstName.AutoSize = true;
-            LblInfoSearchCustomerFirstName.Location = new Point(192, 30);
-            LblInfoSearchCustomerFirstName.Name = "LblInfoSearchCustomerFirstName";
-            LblInfoSearchCustomerFirstName.Size = new Size(64, 15);
-            LblInfoSearchCustomerFirstName.TabIndex = 1;
-            LblInfoSearchCustomerFirstName.Text = "First Name";
-            // 
-            // LblInfoSearchCustomerAdress
-            // 
-            LblInfoSearchCustomerAdress.AutoSize = true;
-            LblInfoSearchCustomerAdress.Location = new Point(357, 89);
-            LblInfoSearchCustomerAdress.Name = "LblInfoSearchCustomerAdress";
-            LblInfoSearchCustomerAdress.Size = new Size(42, 15);
-            LblInfoSearchCustomerAdress.TabIndex = 1;
-            LblInfoSearchCustomerAdress.Text = "Adress";
-            // 
-            // LblInfoSearchCustomerCity
-            // 
-            LblInfoSearchCustomerCity.AutoSize = true;
-            LblInfoSearchCustomerCity.Location = new Point(192, 89);
-            LblInfoSearchCustomerCity.Name = "LblInfoSearchCustomerCity";
-            LblInfoSearchCustomerCity.Size = new Size(28, 15);
-            LblInfoSearchCustomerCity.TabIndex = 1;
-            LblInfoSearchCustomerCity.Text = "City";
-            // 
-            // LblInfoSearchCustomerEmail
-            // 
-            LblInfoSearchCustomerEmail.AutoSize = true;
-            LblInfoSearchCustomerEmail.Location = new Point(26, 146);
-            LblInfoSearchCustomerEmail.Name = "LblInfoSearchCustomerEmail";
-            LblInfoSearchCustomerEmail.Size = new Size(36, 15);
-            LblInfoSearchCustomerEmail.TabIndex = 1;
-            LblInfoSearchCustomerEmail.Text = "Email";
-            // 
-            // LblInfoSearchCustomerNumber
-            // 
-            LblInfoSearchCustomerNumber.AutoSize = true;
-            LblInfoSearchCustomerNumber.Location = new Point(26, 30);
-            LblInfoSearchCustomerNumber.Name = "LblInfoSearchCustomerNumber";
-            LblInfoSearchCustomerNumber.Size = new Size(106, 15);
-            LblInfoSearchCustomerNumber.TabIndex = 1;
-            LblInfoSearchCustomerNumber.Text = "Customer Number";
+            GrpInformation.Controls.Add(LblInfoCustomerPostalCode);
+            GrpInformation.Controls.Add(LblInfoCustomerCity);
+            GrpInformation.Controls.Add(GrpOrders);
+            GrpInformation.Controls.Add(LblInfoCustomerWebsite);
+            GrpInformation.Controls.Add(LblInfoCustomerEmail);
+            GrpInformation.Controls.Add(LblInfoCustomerAdress);
+            GrpInformation.Controls.Add(TxtInputCustomerNumber);
+            GrpInformation.Controls.Add(TxtInputCustomerAdress);
+            GrpInformation.Controls.Add(TxtInputCustomerPostalCode);
+            GrpInformation.Controls.Add(TxtInputCustomerCity);
+            GrpInformation.Controls.Add(TxtInputCustomerCountry);
+            GrpInformation.Controls.Add(TxtInputCustomerWebsite);
+            GrpInformation.Controls.Add(TxtInputCustomerEmail);
+            GrpInformation.Controls.Add(TxtInputCustomerLastName);
+            GrpInformation.Controls.Add(TxtInputCustomerFirstName);
+            GrpInformation.Controls.Add(TxtInputCustomerPassword);
+            GrpInformation.Controls.Add(LblInfoCustomerCountry);
+            GrpInformation.Controls.Add(LblInfoCustomerLastName);
+            GrpInformation.Controls.Add(LblInfoCustomerFirstName);
+            GrpInformation.Controls.Add(LblInfoCustomerPassword);
+            GrpInformation.Controls.Add(LblInfoCustomerNumber);
+            GrpInformation.Controls.Add(CmdDeleteCustomer);
+            GrpInformation.Controls.Add(CmdSaveChangesCustomer);
+            GrpInformation.Controls.Add(CmdCreateNewCustomer);
+            GrpInformation.Location = new Point(555, 0);
+            GrpInformation.Name = "GrpInformation";
+            GrpInformation.Size = new Size(528, 636);
+            GrpInformation.TabIndex = 2;
+            GrpInformation.TabStop = false;
+            GrpInformation.Text = "Information selected item";
+            GrpInformation.Visible = false;
             // 
             // LblInfoCustomerPostalCode
             // 
@@ -291,6 +196,15 @@
             LblInfoCustomerPostalCode.Size = new Size(70, 15);
             LblInfoCustomerPostalCode.TabIndex = 1;
             LblInfoCustomerPostalCode.Text = "Postal Code";
+            // 
+            // LblInfoCustomerCity
+            // 
+            LblInfoCustomerCity.AutoSize = true;
+            LblInfoCustomerCity.Location = new Point(206, 160);
+            LblInfoCustomerCity.Name = "LblInfoCustomerCity";
+            LblInfoCustomerCity.Size = new Size(28, 15);
+            LblInfoCustomerCity.TabIndex = 1;
+            LblInfoCustomerCity.Text = "City";
             // 
             // GrpOrders
             // 
@@ -347,6 +261,7 @@
             CmdOpenSelectedOrder.TabIndex = 0;
             CmdOpenSelectedOrder.Text = "Open selected Order";
             CmdOpenSelectedOrder.UseVisualStyleBackColor = true;
+            CmdOpenSelectedOrder.Click += CmdOpenSelectedOrder_Click;
             // 
             // CmdCreateNewOrder
             // 
@@ -356,6 +271,7 @@
             CmdCreateNewOrder.TabIndex = 0;
             CmdCreateNewOrder.Text = "Create new Order";
             CmdCreateNewOrder.UseVisualStyleBackColor = true;
+            CmdCreateNewOrder.Click += CmdCreateNewOrder_Click;
             // 
             // CmdDeleteSelectedOrders
             // 
@@ -365,6 +281,34 @@
             CmdDeleteSelectedOrders.TabIndex = 0;
             CmdDeleteSelectedOrders.Text = "Delete selected Order(s)";
             CmdDeleteSelectedOrders.UseVisualStyleBackColor = true;
+            CmdDeleteSelectedOrders.Click += CmdDeleteSelectedOrders_Click;
+            // 
+            // LblInfoCustomerWebsite
+            // 
+            LblInfoCustomerWebsite.AutoSize = true;
+            LblInfoCustomerWebsite.Location = new Point(256, 107);
+            LblInfoCustomerWebsite.Name = "LblInfoCustomerWebsite";
+            LblInfoCustomerWebsite.Size = new Size(49, 15);
+            LblInfoCustomerWebsite.TabIndex = 1;
+            LblInfoCustomerWebsite.Text = "Website";
+            // 
+            // LblInfoCustomerEmail
+            // 
+            LblInfoCustomerEmail.AutoSize = true;
+            LblInfoCustomerEmail.Location = new Point(256, 87);
+            LblInfoCustomerEmail.Name = "LblInfoCustomerEmail";
+            LblInfoCustomerEmail.Size = new Size(36, 15);
+            LblInfoCustomerEmail.TabIndex = 1;
+            LblInfoCustomerEmail.Text = "Email";
+            // 
+            // LblInfoCustomerAdress
+            // 
+            LblInfoCustomerAdress.AutoSize = true;
+            LblInfoCustomerAdress.Location = new Point(21, 180);
+            LblInfoCustomerAdress.Name = "LblInfoCustomerAdress";
+            LblInfoCustomerAdress.Size = new Size(42, 15);
+            LblInfoCustomerAdress.TabIndex = 1;
+            LblInfoCustomerAdress.Text = "Adress";
             // 
             // TxtInputCustomerNumber
             // 
@@ -416,100 +360,6 @@
             TxtInputCustomerCountry.Name = "TxtInputCustomerCountry";
             TxtInputCustomerCountry.Size = new Size(133, 16);
             TxtInputCustomerCountry.TabIndex = 2;
-            // 
-            // GrpResults
-            // 
-            GrpResults.Controls.Add(LblDataGridCustomersNoResults);
-            GrpResults.Controls.Add(DataGridViewCustomersResults);
-            GrpResults.Controls.Add(CmdShowAllCustomers);
-            GrpResults.Controls.Add(CmdCreateEmptyCustomer);
-            GrpResults.Controls.Add(CmdDeleteSelectedCustomers);
-            GrpResults.ForeColor = SystemColors.ControlText;
-            GrpResults.Location = new Point(3, 251);
-            GrpResults.Name = "GrpResults";
-            GrpResults.Size = new Size(528, 385);
-            GrpResults.TabIndex = 5;
-            GrpResults.TabStop = false;
-            GrpResults.Text = "Customers";
-            // 
-            // LblDataGridCustomersNoResults
-            // 
-            LblDataGridCustomersNoResults.AutoSize = true;
-            LblDataGridCustomersNoResults.Location = new Point(233, 181);
-            LblDataGridCustomersNoResults.Name = "LblDataGridCustomersNoResults";
-            LblDataGridCustomersNoResults.Size = new Size(63, 15);
-            LblDataGridCustomersNoResults.TabIndex = 1;
-            LblDataGridCustomersNoResults.Text = "No Results";
-            // 
-            // DataGridViewCustomersResults
-            // 
-            DataGridViewCustomersResults.AllowUserToDeleteRows = false;
-            DataGridViewCustomersResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewCustomersResults.Location = new Point(6, 22);
-            DataGridViewCustomersResults.Name = "DataGridViewCustomersResults";
-            DataGridViewCustomersResults.Size = new Size(516, 328);
-            DataGridViewCustomersResults.TabIndex = 1;
-            // 
-            // CmdShowAllCustomers
-            // 
-            CmdShowAllCustomers.Location = new Point(6, 356);
-            CmdShowAllCustomers.Name = "CmdShowAllCustomers";
-            CmdShowAllCustomers.Size = new Size(126, 23);
-            CmdShowAllCustomers.TabIndex = 0;
-            CmdShowAllCustomers.Text = "Show all Customers";
-            CmdShowAllCustomers.UseVisualStyleBackColor = true;
-            // 
-            // CmdCreateEmptyCustomer
-            // 
-            CmdCreateEmptyCustomer.Location = new Point(216, 356);
-            CmdCreateEmptyCustomer.Name = "CmdCreateEmptyCustomer";
-            CmdCreateEmptyCustomer.Size = new Size(135, 23);
-            CmdCreateEmptyCustomer.TabIndex = 0;
-            CmdCreateEmptyCustomer.Text = "Create new Customer";
-            CmdCreateEmptyCustomer.UseVisualStyleBackColor = true;
-            // 
-            // CmdDeleteSelectedCustomers
-            // 
-            CmdDeleteSelectedCustomers.Location = new Point(357, 356);
-            CmdDeleteSelectedCustomers.Name = "CmdDeleteSelectedCustomers";
-            CmdDeleteSelectedCustomers.Size = new Size(165, 23);
-            CmdDeleteSelectedCustomers.TabIndex = 0;
-            CmdDeleteSelectedCustomers.Text = "Delete selected Customer(s)";
-            CmdDeleteSelectedCustomers.UseVisualStyleBackColor = true;
-            // 
-            // GrpInformation
-            // 
-            GrpInformation.Controls.Add(LblInfoCustomerPostalCode);
-            GrpInformation.Controls.Add(LblInfoCustomerCity);
-            GrpInformation.Controls.Add(GrpOrders);
-            GrpInformation.Controls.Add(LblInfoCustomerWebsite);
-            GrpInformation.Controls.Add(LblInfoCustomerEmail);
-            GrpInformation.Controls.Add(LblInfoCustomerAdress);
-            GrpInformation.Controls.Add(TxtInputCustomerNumber);
-            GrpInformation.Controls.Add(TxtInputCustomerAdress);
-            GrpInformation.Controls.Add(TxtInputCustomerPostalCode);
-            GrpInformation.Controls.Add(TxtInputCustomerCity);
-            GrpInformation.Controls.Add(TxtInputCustomerCountry);
-            GrpInformation.Controls.Add(TxtInputCustomerWebsite);
-            GrpInformation.Controls.Add(TxtInputCustomerEmail);
-            GrpInformation.Controls.Add(TxtInputCustomerLastName);
-            GrpInformation.Controls.Add(TxtInputCustomerFirstName);
-            GrpInformation.Controls.Add(TxtInputCustomerPassword);
-            GrpInformation.Controls.Add(LblInfoCustomerCountry);
-            GrpInformation.Controls.Add(LblInfoCustomerLastName);
-            GrpInformation.Controls.Add(LblInfoCustomerFirstName);
-            GrpInformation.Controls.Add(LblInfoCustomerPassword);
-            GrpInformation.Controls.Add(LblInfoCustomerNumber);
-            GrpInformation.Controls.Add(CmdDeleteCustomer);
-            GrpInformation.Controls.Add(CmdSaveChangesCustomer);
-            GrpInformation.Controls.Add(CmdCreateNewCustomer);
-            GrpInformation.Location = new Point(555, 0);
-            GrpInformation.Name = "GrpInformation";
-            GrpInformation.Size = new Size(528, 636);
-            GrpInformation.TabIndex = 6;
-            GrpInformation.TabStop = false;
-            GrpInformation.Text = "Information selected item";
-            GrpInformation.Visible = false;
             // 
             // TxtInputCustomerWebsite
             // 
@@ -614,6 +464,7 @@
             CmdDeleteCustomer.TabIndex = 0;
             CmdDeleteCustomer.Text = "Delete Customer";
             CmdDeleteCustomer.UseVisualStyleBackColor = true;
+            CmdDeleteCustomer.Click += CmdDeleteCustomer_Click;
             // 
             // CmdSaveChangesCustomer
             // 
@@ -623,6 +474,7 @@
             CmdSaveChangesCustomer.TabIndex = 0;
             CmdSaveChangesCustomer.Text = "Save changes";
             CmdSaveChangesCustomer.UseVisualStyleBackColor = true;
+            CmdSaveChangesCustomer.Click += CmdSaveChangesCustomer_Click;
             // 
             // CmdCreateNewCustomer
             // 
@@ -632,37 +484,225 @@
             CmdCreateNewCustomer.TabIndex = 0;
             CmdCreateNewCustomer.Text = "Save as new Customer";
             CmdCreateNewCustomer.UseVisualStyleBackColor = true;
+            CmdCreateNewCustomer.Click += CmdCreateNewCustomer_Click;
+            // 
+            // GrpSearch
+            // 
+            GrpSearch.Controls.Add(TxtSearchCustomerLastName);
+            GrpSearch.Controls.Add(TxtSearchCustomerFirstName);
+            GrpSearch.Controls.Add(TxtSearchCustomerAdress);
+            GrpSearch.Controls.Add(TxtSearchCustomerCity);
+            GrpSearch.Controls.Add(TxtSearchCustomerEmail);
+            GrpSearch.Controls.Add(TxtSearchCustomerCountry);
+            GrpSearch.Controls.Add(TxtSearchCustomerNumber);
+            GrpSearch.Controls.Add(CmdResetSearchFilters);
+            GrpSearch.Controls.Add(CmdSearchCustomers);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerLastName);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerFirstName);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerAdress);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerCity);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerEmail);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerCountry);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerNumber);
+            GrpSearch.ForeColor = SystemColors.ControlText;
+            GrpSearch.Location = new Point(3, 0);
+            GrpSearch.Name = "GrpSearch";
+            GrpSearch.Size = new Size(528, 245);
+            GrpSearch.TabIndex = 2;
+            GrpSearch.TabStop = false;
+            GrpSearch.Text = "Search";
+            // 
+            // TxtSearchCustomerLastName
+            // 
+            TxtSearchCustomerLastName.Location = new Point(357, 50);
+            TxtSearchCustomerLastName.Name = "TxtSearchCustomerLastName";
+            TxtSearchCustomerLastName.Size = new Size(145, 23);
+            TxtSearchCustomerLastName.TabIndex = 2;
+            // 
+            // TxtSearchCustomerFirstName
+            // 
+            TxtSearchCustomerFirstName.Location = new Point(192, 50);
+            TxtSearchCustomerFirstName.Name = "TxtSearchCustomerFirstName";
+            TxtSearchCustomerFirstName.Size = new Size(145, 23);
+            TxtSearchCustomerFirstName.TabIndex = 2;
+            // 
+            // TxtSearchCustomerAdress
+            // 
+            TxtSearchCustomerAdress.Location = new Point(357, 107);
+            TxtSearchCustomerAdress.Name = "TxtSearchCustomerAdress";
+            TxtSearchCustomerAdress.Size = new Size(145, 23);
+            TxtSearchCustomerAdress.TabIndex = 2;
+            // 
+            // TxtSearchCustomerCity
+            // 
+            TxtSearchCustomerCity.Location = new Point(192, 107);
+            TxtSearchCustomerCity.Name = "TxtSearchCustomerCity";
+            TxtSearchCustomerCity.Size = new Size(145, 23);
+            TxtSearchCustomerCity.TabIndex = 2;
+            // 
+            // TxtSearchCustomerEmail
+            // 
+            TxtSearchCustomerEmail.Location = new Point(26, 164);
+            TxtSearchCustomerEmail.Name = "TxtSearchCustomerEmail";
+            TxtSearchCustomerEmail.Size = new Size(145, 23);
+            TxtSearchCustomerEmail.TabIndex = 2;
+            // 
+            // TxtSearchCustomerCountry
+            // 
+            TxtSearchCustomerCountry.Location = new Point(26, 107);
+            TxtSearchCustomerCountry.Name = "TxtSearchCustomerCountry";
+            TxtSearchCustomerCountry.Size = new Size(145, 23);
+            TxtSearchCustomerCountry.TabIndex = 2;
+            // 
+            // TxtSearchCustomerNumber
+            // 
+            TxtSearchCustomerNumber.Location = new Point(26, 50);
+            TxtSearchCustomerNumber.Name = "TxtSearchCustomerNumber";
+            TxtSearchCustomerNumber.Size = new Size(145, 23);
+            TxtSearchCustomerNumber.TabIndex = 2;
+            // 
+            // CmdResetSearchFilters
+            // 
+            CmdResetSearchFilters.Location = new Point(273, 216);
+            CmdResetSearchFilters.Name = "CmdResetSearchFilters";
+            CmdResetSearchFilters.Size = new Size(117, 23);
+            CmdResetSearchFilters.TabIndex = 0;
+            CmdResetSearchFilters.Text = "Reset search filters";
+            CmdResetSearchFilters.UseVisualStyleBackColor = true;
+            CmdResetSearchFilters.Click += CmdResetSearchFilters_Click;
+            // 
+            // CmdSearchCustomers
+            // 
+            CmdSearchCustomers.Location = new Point(396, 216);
+            CmdSearchCustomers.Name = "CmdSearchCustomers";
+            CmdSearchCustomers.Size = new Size(126, 23);
+            CmdSearchCustomers.TabIndex = 0;
+            CmdSearchCustomers.Text = "Search Customers";
+            CmdSearchCustomers.UseVisualStyleBackColor = true;
+            CmdSearchCustomers.Click += CmdSearchCustomers_Click;
+            // 
+            // LblInfoSearchCustomerLastName
+            // 
+            LblInfoSearchCustomerLastName.AutoSize = true;
+            LblInfoSearchCustomerLastName.Location = new Point(357, 30);
+            LblInfoSearchCustomerLastName.Name = "LblInfoSearchCustomerLastName";
+            LblInfoSearchCustomerLastName.Size = new Size(63, 15);
+            LblInfoSearchCustomerLastName.TabIndex = 1;
+            LblInfoSearchCustomerLastName.Text = "Last Name";
+            // 
+            // LblInfoSearchCustomerFirstName
+            // 
+            LblInfoSearchCustomerFirstName.AutoSize = true;
+            LblInfoSearchCustomerFirstName.Location = new Point(192, 30);
+            LblInfoSearchCustomerFirstName.Name = "LblInfoSearchCustomerFirstName";
+            LblInfoSearchCustomerFirstName.Size = new Size(64, 15);
+            LblInfoSearchCustomerFirstName.TabIndex = 1;
+            LblInfoSearchCustomerFirstName.Text = "First Name";
+            // 
+            // LblInfoSearchCustomerAdress
+            // 
+            LblInfoSearchCustomerAdress.AutoSize = true;
+            LblInfoSearchCustomerAdress.Location = new Point(357, 89);
+            LblInfoSearchCustomerAdress.Name = "LblInfoSearchCustomerAdress";
+            LblInfoSearchCustomerAdress.Size = new Size(42, 15);
+            LblInfoSearchCustomerAdress.TabIndex = 1;
+            LblInfoSearchCustomerAdress.Text = "Adress";
+            // 
+            // LblInfoSearchCustomerCity
+            // 
+            LblInfoSearchCustomerCity.AutoSize = true;
+            LblInfoSearchCustomerCity.Location = new Point(192, 89);
+            LblInfoSearchCustomerCity.Name = "LblInfoSearchCustomerCity";
+            LblInfoSearchCustomerCity.Size = new Size(28, 15);
+            LblInfoSearchCustomerCity.TabIndex = 1;
+            LblInfoSearchCustomerCity.Text = "City";
+            // 
+            // LblInfoSearchCustomerEmail
+            // 
+            LblInfoSearchCustomerEmail.AutoSize = true;
+            LblInfoSearchCustomerEmail.Location = new Point(26, 146);
+            LblInfoSearchCustomerEmail.Name = "LblInfoSearchCustomerEmail";
+            LblInfoSearchCustomerEmail.Size = new Size(36, 15);
+            LblInfoSearchCustomerEmail.TabIndex = 1;
+            LblInfoSearchCustomerEmail.Text = "Email";
+            // 
+            // LblInfoSearchCustomerCountry
+            // 
+            LblInfoSearchCustomerCountry.AutoSize = true;
+            LblInfoSearchCustomerCountry.Location = new Point(26, 89);
+            LblInfoSearchCustomerCountry.Name = "LblInfoSearchCustomerCountry";
+            LblInfoSearchCustomerCountry.Size = new Size(50, 15);
+            LblInfoSearchCustomerCountry.TabIndex = 1;
+            LblInfoSearchCustomerCountry.Text = "Country";
+            // 
+            // LblInfoSearchCustomerNumber
+            // 
+            LblInfoSearchCustomerNumber.AutoSize = true;
+            LblInfoSearchCustomerNumber.Location = new Point(26, 30);
+            LblInfoSearchCustomerNumber.Name = "LblInfoSearchCustomerNumber";
+            LblInfoSearchCustomerNumber.Size = new Size(106, 15);
+            LblInfoSearchCustomerNumber.TabIndex = 1;
+            LblInfoSearchCustomerNumber.Text = "Customer Number";
             // 
             // UsrCtrlCustomers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(GrpInformation);
             Controls.Add(GrpSearch);
             Controls.Add(GrpResults);
-            Controls.Add(GrpInformation);
-            Margin = new Padding(2);
             Name = "UsrCtrlCustomers";
             Size = new Size(1085, 640);
-            GrpSearch.ResumeLayout(false);
-            GrpSearch.PerformLayout();
-            GrpOrders.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).EndInit();
             GrpResults.ResumeLayout(false);
             GrpResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).EndInit();
             GrpInformation.ResumeLayout(false);
             GrpInformation.PerformLayout();
+            GrpOrders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DataGridViewCustomerOrders).EndInit();
+            GrpSearch.ResumeLayout(false);
+            GrpSearch.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Label LblInfoCustomerCity;
-        private Label LblInfoCustomerWebsite;
-        private Label LblInfoCustomerEmail;
-        private Label LblInfoCustomerAdress;
-        private Label LblInfoSearchCustomerCountry;
+        private GroupBox GrpResults;
+        private GroupBox GrpInformation;
         private GroupBox GrpSearch;
+        private Button CmdCreateNewCustomer;
+        private Button CmdCreateEmptyCustomer;
+        private Button CmdDeleteSelectedCustomers;
+        private Button CmdDeleteCustomer;
+        private Button CmdSaveChangesCustomer;
+        private DataGridView DataGridViewCustomersResults;
+        private Button CmdShowAllCustomers;
+        private Button CmdResetSearchFilters;
+        private Button CmdSearchCustomers;
+        private Label LblInfoCustomerNumber;
+        private Label LblInfoCustomerPassword;
+        private Label LblInfoCustomerLastName;
+        private Label LblInfoCustomerFirstName;
+        private Label LblInfoCustomerPostalCode;
+        private Label LblInfoCustomerAdress;
+        private Label LblInfoCustomerCountry;
+        private Label LblInfoCustomerCity;
+        private Label LblInfoCustomerEmail;
+        private Label LblInfoCustomerWebsite;
+        private GroupBox GrpOrders;
+        private DataGridView DataGridViewCustomerOrders;
+        private Button CmdOpenSelectedOrder;
+        private Button CmdCreateNewOrder;
+        private Button CmdDeleteSelectedOrders;
+        private Label LblInfoSearchCustomerNumber;
+        private Label LblInfoSearchCustomerLastName;
+        private Label LblInfoSearchCustomerFirstName;
+        private Label LblInfoSearchCustomerAdress;
+        private Label LblInfoSearchCustomerCity;
+        private Label LblInfoSearchCustomerEmail;
+        private Label LblInfoSearchCustomerCountry;
+        private DataGridViewTextBoxColumn orderNumber;
+        private DataGridViewTextBoxColumn dateOfOrder;
+        private DataGridViewTextBoxColumn totalPriceOrder;
         private TextBox TxtSearchCustomerLastName;
         private TextBox TxtSearchCustomerFirstName;
         private TextBox TxtSearchCustomerAdress;
@@ -670,47 +710,16 @@
         private TextBox TxtSearchCustomerEmail;
         private TextBox TxtSearchCustomerCountry;
         private TextBox TxtSearchCustomerNumber;
-        private Button CmdResetSearchFilters;
-        private Button CmdSearchCustomers;
-        private Label LblInfoSearchCustomerLastName;
-        private Label LblInfoSearchCustomerFirstName;
-        private Label LblInfoSearchCustomerAdress;
-        private Label LblInfoSearchCustomerCity;
-        private Label LblInfoSearchCustomerEmail;
-        private Label LblInfoSearchCustomerNumber;
-        private Label LblInfoCustomerPostalCode;
-        private GroupBox GrpOrders;
-        private DataGridView DataGridViewCustomerOrders;
-        private DataGridViewTextBoxColumn orderNumber;
-        private DataGridViewTextBoxColumn dateOfOrder;
-        private DataGridViewTextBoxColumn totalPriceOrder;
-        private Button CmdOpenSelectedOrder;
-        private Button CmdCreateNewOrder;
-        private Button CmdDeleteSelectedOrders;
+        private TextBox TxtInputCustomerPassword;
         private TextBox TxtInputCustomerNumber;
         private TextBox TxtInputCustomerAdress;
         private TextBox TxtInputCustomerPostalCode;
         private TextBox TxtInputCustomerCity;
         private TextBox TxtInputCustomerCountry;
-        private GroupBox GrpResults;
-        private Label LblDataGridCustomersNoResults;
-        private DataGridView DataGridViewCustomersResults;
-        private Button CmdShowAllCustomers;
-        private Button CmdCreateEmptyCustomer;
-        private Button CmdDeleteSelectedCustomers;
-        private GroupBox GrpInformation;
         private TextBox TxtInputCustomerWebsite;
         private TextBox TxtInputCustomerEmail;
         private TextBox TxtInputCustomerLastName;
         private TextBox TxtInputCustomerFirstName;
-        private TextBox TxtInputCustomerPassword;
-        private Label LblInfoCustomerCountry;
-        private Label LblInfoCustomerLastName;
-        private Label LblInfoCustomerFirstName;
-        private Label LblInfoCustomerPassword;
-        private Label LblInfoCustomerNumber;
-        private Button CmdDeleteCustomer;
-        private Button CmdSaveChangesCustomer;
-        private Button CmdCreateNewCustomer;
+        private Label LblDataGridCustomersNoResults;
     }
 }
