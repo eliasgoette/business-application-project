@@ -13,12 +13,55 @@ namespace BusinessApplicationProject.View
         public UsrCtrlArticles()
         {
             InitializeComponent();
+
+            //Load all Articlegroups 
+            LoadArticleGroups();
+        }
+
+        private Controller<ArticleGroup> articleGroupController = new Controller<ArticleGroup>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<ArticleGroup>(context)
+        };
+
+        private Controller<Article> articleController = new Controller<Article>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Article>(context)
+        };
+
+
+        public void LoadArticleGroups()
+        {
+            CmbInputArticleGroup.Items.Clear();
+            CmbInputArticleGroupParent.Items.Clear();
+            CmbSearchArticleGroup.Items.Clear();
+
+            CmbInputArticleGroupParent.Items.Add(string.Empty);
+            CmbSearchArticleGroup.Items.Add(string.Empty);
+
+
+            List<ArticleGroup> articleGroups = [];
+
+            articleGroups = articleGroupController.GetAll();
+
+            foreach (ArticleGroup group in articleGroups)
+            {
+                CmbInputArticleGroup.Items.Add(group.Name);
+                CmbInputArticleGroupParent.Items.Add(group.Name);
+                CmbSearchArticleGroup.Items.Add(group.Name);
+            }
+
         }
 
         #region Search
         private void CmdSearchArticles_Click(object sender, EventArgs e)
         {
+            TreeViewArticles.Nodes.Clear();
+            LblSearchArticlesNoResult.Visible = false;
 
+            UpdateArticleGroups();
+            UpdateArticles();
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
@@ -85,35 +128,21 @@ namespace BusinessApplicationProject.View
             //---------------
 
 
-            UpdateArticleGroups(articleGroupsTest);
-            UpdateArticles(articlesTest);
+            UpdateArticleGroups();
+            UpdateArticles();
         }
 
         #region treeview
-        private Controller<ArticleGroup> articleGroupController = new Controller<ArticleGroup>
-        {
-            getContext = () => new AppDbContext(),
-            getRepository = context => new Repository<ArticleGroup>(context)
-        };
-
-        private Controller<Article> articleController = new Controller<Article>
-        {
-            getContext = () => new AppDbContext(),
-            getRepository = context => new Repository<Article>(context)
-        };
 
 
 
-        public void UpdateArticleGroups(List<ArticleGroup> articleGroupsTest)
+        public void UpdateArticleGroups()
         {
             try
             {
                 List<ArticleGroup> articleGroups = [];
                 //var filter = CreateFilterFunctionArticleGroup();
-                //articleGroups = articleGroupController.GetAll();
-
-                articleGroups = articleGroupsTest;
-
+                articleGroups = articleGroupController.GetAll();
 
                 if (articleGroups.Count > 0)
                 {
@@ -157,16 +186,13 @@ namespace BusinessApplicationProject.View
             }
         }
 
-        public void UpdateArticles(List<Article> articleTest)
+        public void UpdateArticles()
         {
             try
             {
                 List<Article> articles = [];
                 var filter = CreateFilterFunction();
-                //articles = articleController.Find(filter);
-
-                articles = articleTest;
-
+                articles = articleController.Find(filter);
 
                 if (articles.Count > 0)
                 {
@@ -242,8 +268,6 @@ namespace BusinessApplicationProject.View
             }
         }
 
-        /*-----*/
-
         private bool WarningDeletedObject()
         {
             DialogResult result = MessageBox.Show("Would you wish to delete all selected Objects?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -272,30 +296,5 @@ namespace BusinessApplicationProject.View
 
         }
         #endregion
-
-
-        #region Orders
-
-
-        private void CmdOpenSelectedOrder_Click(object sender, EventArgs e)
-        {
-            //Check if exactly one Order is selected
-            //Chance Form (Order) with selected Ordernumber already searched
-        }
-
-        private void CmdCreateNewOrder_Click(object sender, EventArgs e)
-        {
-            //Change Form (Order) with selected Customer already filled in
-        }
-
-        private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
-        {
-            //Throw warning
-            //Delete selected Orders
-        }
-
-
-        #endregion
-
     }
 }

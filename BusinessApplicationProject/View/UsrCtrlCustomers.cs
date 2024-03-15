@@ -150,6 +150,8 @@ namespace BusinessApplicationProject.View
         private void CmdShowAllCustomers_Click(object sender, EventArgs e)
         {
             //Load all Customers into Grid
+            EmptyFieldsCustomers();
+            UpdateSearchResults();
         }
 
         private void CmdCreateEmptyCustomer_Click(object sender, EventArgs e)

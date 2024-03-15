@@ -28,13 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode7 = new TreeNode("Apfel");
-            TreeNode treeNode8 = new TreeNode("Birne");
-            TreeNode treeNode9 = new TreeNode("Obst", new TreeNode[] { treeNode7, treeNode8 });
-            TreeNode treeNode10 = new TreeNode("Lebensmittel", new TreeNode[] { treeNode9 });
-            TreeNode treeNode11 = new TreeNode("Autos");
-            TreeNode treeNode12 = new TreeNode("Fahrzeuge", new TreeNode[] { treeNode11 });
             GrpResults = new GroupBox();
+            LblSearchArticlesNoResult = new Label();
             CmdShowAllArticles = new Button();
             CmdEditSelectedObject = new Button();
             CmdDeleteSelectedObject = new Button();
@@ -53,7 +48,6 @@
             GrpInformationArticleGroupName = new Label();
             GrpInformationArticleGroupParent = new Label();
             button4 = new Button();
-            button5 = new Button();
             button6 = new Button();
             CmbInputArticleGroupParent = new ComboBox();
             GrpInformationArticle = new GroupBox();
@@ -68,7 +62,6 @@
             button2 = new Button();
             button1 = new Button();
             CmbInputArticleGroup = new ComboBox();
-            LblSearchArticlesNoResult = new Label();
             GrpResults.SuspendLayout();
             GrpSearch.SuspendLayout();
             GrpInformationArticleGroup.SuspendLayout();
@@ -89,6 +82,15 @@
             GrpResults.TabIndex = 2;
             GrpResults.TabStop = false;
             GrpResults.Text = "Articles";
+            // 
+            // LblSearchArticlesNoResult
+            // 
+            LblSearchArticlesNoResult.AutoSize = true;
+            LblSearchArticlesNoResult.Location = new Point(226, 242);
+            LblSearchArticlesNoResult.Name = "LblSearchArticlesNoResult";
+            LblSearchArticlesNoResult.Size = new Size(58, 15);
+            LblSearchArticlesNoResult.TabIndex = 1;
+            LblSearchArticlesNoResult.Text = "No Result";
             // 
             // CmdShowAllArticles
             // 
@@ -124,19 +126,6 @@
             // 
             TreeViewArticles.Location = new Point(6, 22);
             TreeViewArticles.Name = "TreeViewArticles";
-            treeNode7.Name = "Apfel";
-            treeNode7.Text = "Apfel";
-            treeNode8.Name = "Birne";
-            treeNode8.Text = "Birne";
-            treeNode9.Name = "Obst";
-            treeNode9.Text = "Obst";
-            treeNode10.Name = "Lebensmittel";
-            treeNode10.Text = "Lebensmittel";
-            treeNode11.Name = "Autos";
-            treeNode11.Text = "Autos";
-            treeNode12.Name = "Fahrzeuge";
-            treeNode12.Text = "Fahrzeuge";
-            TreeViewArticles.Nodes.AddRange(new TreeNode[] { treeNode10, treeNode12 });
             TreeViewArticles.Size = new Size(516, 450);
             TreeViewArticles.TabIndex = 2;
             // 
@@ -207,7 +196,6 @@
             CmbSearchArticleGroup.BackColor = SystemColors.Window;
             CmbSearchArticleGroup.FormattingEnabled = true;
             CmbSearchArticleGroup.ItemHeight = 15;
-            CmbSearchArticleGroup.Items.AddRange(new object[] { "-", "Fahrzeuge", "Lebensmittel" });
             CmbSearchArticleGroup.Location = new Point(26, 50);
             CmbSearchArticleGroup.Name = "CmbSearchArticleGroup";
             CmbSearchArticleGroup.Size = new Size(145, 23);
@@ -238,7 +226,6 @@
             GrpInformationArticleGroup.Controls.Add(GrpInformationArticleGroupName);
             GrpInformationArticleGroup.Controls.Add(GrpInformationArticleGroupParent);
             GrpInformationArticleGroup.Controls.Add(button4);
-            GrpInformationArticleGroup.Controls.Add(button5);
             GrpInformationArticleGroup.Controls.Add(button6);
             GrpInformationArticleGroup.Controls.Add(CmbInputArticleGroupParent);
             GrpInformationArticleGroup.Location = new Point(555, 129);
@@ -285,15 +272,6 @@
             button4.Text = "Delete Group";
             button4.UseVisualStyleBackColor = true;
             // 
-            // button5
-            // 
-            button5.Location = new Point(307, 89);
-            button5.Name = "button5";
-            button5.Size = new Size(99, 23);
-            button5.TabIndex = 0;
-            button5.Text = "Save changes";
-            button5.UseVisualStyleBackColor = true;
-            // 
             // button6
             // 
             button6.Location = new Point(6, 89);
@@ -309,7 +287,6 @@
             CmbInputArticleGroupParent.BackColor = SystemColors.Window;
             CmbInputArticleGroupParent.FormattingEnabled = true;
             CmbInputArticleGroupParent.ItemHeight = 15;
-            CmbInputArticleGroupParent.Items.AddRange(new object[] { "-", "Fahrzeuge", "Lebensmittel" });
             CmbInputArticleGroupParent.Location = new Point(120, 25);
             CmbInputArticleGroupParent.Name = "CmbInputArticleGroupParent";
             CmbInputArticleGroupParent.Size = new Size(133, 23);
@@ -436,21 +413,11 @@
             CmbInputArticleGroup.BackColor = SystemColors.Window;
             CmbInputArticleGroup.FormattingEnabled = true;
             CmbInputArticleGroup.ItemHeight = 15;
-            CmbInputArticleGroup.Items.AddRange(new object[] { "Fahrzeuge", "Lebensmittel" });
             CmbInputArticleGroup.Location = new Point(120, 27);
             CmbInputArticleGroup.Name = "CmbInputArticleGroup";
             CmbInputArticleGroup.Size = new Size(133, 23);
             CmbInputArticleGroup.Sorted = true;
             CmbInputArticleGroup.TabIndex = 3;
-            // 
-            // LblSearchArticlesNoResult
-            // 
-            LblSearchArticlesNoResult.AutoSize = true;
-            LblSearchArticlesNoResult.Location = new Point(226, 242);
-            LblSearchArticlesNoResult.Name = "LblSearchArticlesNoResult";
-            LblSearchArticlesNoResult.Size = new Size(58, 15);
-            LblSearchArticlesNoResult.TabIndex = 1;
-            LblSearchArticlesNoResult.Text = "No Result";
             // 
             // UsrCtrlArticles
             // 
@@ -492,7 +459,6 @@
         private Label GrpInformationArticleGroupName;
         private Label GrpInformationArticleGroupParent;
         private Button button4;
-        private Button button5;
         private Button button6;
         private ComboBox CmbInputArticleGroupParent;
         private GroupBox GrpInformationArticle;

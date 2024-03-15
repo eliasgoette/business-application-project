@@ -85,6 +85,7 @@
             CmdShowAllOrders = new Button();
             DataGridViewOrdersResults = new DataGridView();
             GrpResults = new GroupBox();
+            LblGridViewOrdersNoResults = new Label();
             GrpPositions.SuspendLayout();
             GrpInformationSelectedPosition.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrderPositions).BeginInit();
@@ -674,6 +675,7 @@
             // 
             // GrpResults
             // 
+            GrpResults.Controls.Add(LblGridViewOrdersNoResults);
             GrpResults.Controls.Add(DataGridViewOrdersResults);
             GrpResults.Controls.Add(CmdShowAllOrders);
             GrpResults.Controls.Add(CmdEditSelectedOrder);
@@ -685,6 +687,15 @@
             GrpResults.TabIndex = 2;
             GrpResults.TabStop = false;
             GrpResults.Text = "Orders";
+            // 
+            // LblGridViewOrdersNoResults
+            // 
+            LblGridViewOrdersNoResults.AutoSize = true;
+            LblGridViewOrdersNoResults.Location = new Point(226, 182);
+            LblGridViewOrdersNoResults.Name = "LblGridViewOrdersNoResults";
+            LblGridViewOrdersNoResults.Size = new Size(63, 15);
+            LblGridViewOrdersNoResults.TabIndex = 1;
+            LblGridViewOrdersNoResults.Text = "No Results";
             // 
             // UsrCtrlOrders
             // 
@@ -705,6 +716,7 @@
             GrpSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewOrdersResults).EndInit();
             GrpResults.ResumeLayout(false);
+            GrpResults.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -771,6 +783,7 @@
         private Label LblInfoPositionArticleQuantity;
         private Label LblInfoPositionArticle;
         private ComboBox CmbInputArticle;
+        private Label LblGridViewOrdersNoResults;
         //private TextBox TxtInputOrderCustomerLastName;
     }
 }

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using BusinessApplicationProject.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +26,6 @@ namespace BusinessApplicationProject.View
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
             //Search Results with not empty filters
-            DisplaySearchResults();
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
@@ -40,18 +41,109 @@ namespace BusinessApplicationProject.View
             DatSearchOrdersUntil.Value = DatSearchOrdersUntil.MaxDate;
         }
 
-
-        //muss noch verschoben werden in andere Klasse
-        private void DisplaySearchResults()
+        /*
+        private TemporalController<Article> articleController = new TemporalController<Article>
         {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new TemporalRepository<Article>(context)
+        };
 
-            if (/*searchResults != null*/ true)
+        public void UpdateSearchResults()
+        {
+            DataGridViewInvoices.AutoGenerateColumns = false;
+            LblNoResults.Visible = false;
+            DataGridViewInvoices.DataSource = null;
+            DataGridViewInvoices.Columns.Clear();
+
+            try
             {
-                //Search and Visualize all results
-            }
+                List<Invoice> invoices = [];
+                var filter = CreateFilterFunction();
+                invoices = invoiceController.Find(filter);
 
+                if (invoices.Count > 0)
+                {
+                    DataGridViewTextBoxColumn invoiceNumberColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "invoiceNumberColumn",
+                        HeaderText = "Invoice Number",
+                        DataPropertyName = "InvoiceNumber"
+                    };
+
+                    DataGridViewTextBoxColumn dueDateColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "dueDateColumn",
+                        HeaderText = "Due Date",
+                        DataPropertyName = "DueDate"
+                    };
+
+                    DataGridViewTextBoxColumn paymentStatusColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "paymentStatusColumn",
+                        HeaderText = "Payment Status",
+                        DataPropertyName = "PaymentStatus"
+                    };
+
+                    DataGridViewTextBoxColumn paymentMethodColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "paymentMethodColumn",
+                        HeaderText = "Payment Method",
+                        DataPropertyName = "PaymentMethod"
+                    };
+
+                    DataGridViewTextBoxColumn discountColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "discountColumn",
+                        HeaderText = "Discount",
+                        DataPropertyName = "Discount"
+                    };
+
+                    DataGridViewTextBoxColumn taxPercentageColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "taxPercentageColumn",
+                        HeaderText = "Tax Percentage",
+                        DataPropertyName = "TaxPercentage"
+                    };
+
+                    DataGridViewInvoices.Columns.Add(invoiceNumberColumn);
+                    DataGridViewInvoices.Columns.Add(dueDateColumn);
+                    DataGridViewInvoices.Columns.Add(paymentStatusColumn);
+                    DataGridViewInvoices.Columns.Add(paymentMethodColumn);
+                    DataGridViewInvoices.Columns.Add(discountColumn);
+                    DataGridViewInvoices.Columns.Add(taxPercentageColumn);
+
+                    DataGridViewInvoices.DataSource = invoices;
+                }
+                else
+                {
+                    LblNoResults.Visible = true;
+                }
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Database connection failed. Connection timed out.");
+            }
+            catch
+            {
+                MessageBox.Show("An error occured.");
+            }
         }
 
+        private Expression<Func<Invoice, bool>> CreateFilterFunction()
+        {
+            return invoice =>
+                (string.IsNullOrEmpty(TxtSearchInvoiceNumber.Text) || invoice.InvoiceNumber.Contains(TxtSearchInvoiceNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || invoice.OrderInformations.CustomerDetails.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchOrderNumber.Text) || invoice.OrderInformations.OrderNumber.Contains(TxtSearchOrderNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchFirstName.Text) || invoice.OrderInformations.CustomerDetails.FirstName.Contains(TxtSearchFirstName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchLastName.Text) || invoice.OrderInformations.CustomerDetails.LastName.Contains(TxtSearchLastName.Text)) &&
+                (string.IsNullOrEmpty(TxtStreetAddress.Text) || invoice.BillingAddress.StreetAddress.Contains(TxtStreetAddress.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchZipCode.Text) || invoice.BillingAddress.ZipCode.Contains(TxtSearchZipCode.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCountry.Text) || invoice.BillingAddress.Country.Contains(TxtSearchCountry.Text)) &&
+                (DatPckInvoiceDateFrom.Value == DatPckInvoiceDateFrom.MinDate || invoice.OrderInformations.Date >= DatPckInvoiceDateFrom.Value) &&
+                (DatPckInvoiceDateTo.Value == DatPckInvoiceDateTo.MaxDate || invoice.OrderInformations.Date <= DatPckInvoiceDateTo.Value);
+        }
+        */
 
         #endregion
 
