@@ -64,6 +64,8 @@
             label1 = new Label();
             CmdSearchInvoices = new Button();
             groupBox3 = new GroupBox();
+            TxtEditCity = new TextBox();
+            label13 = new Label();
             label24 = new Label();
             CmbEditPaymentStatus = new ComboBox();
             label20 = new Label();
@@ -86,8 +88,6 @@
             TxtEditInvoiceNumber = new TextBox();
             label23 = new Label();
             CmdEditSave = new Button();
-            TxtEditCity = new TextBox();
-            label13 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewBillingAddress).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).BeginInit();
@@ -267,7 +267,7 @@
             groupBox2.Controls.Add(CmdSearchInvoices);
             groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(750, 317);
+            groupBox2.Size = new Size(750, 420);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Filter Invoices";
@@ -434,7 +434,7 @@
             // 
             // CmdResetFilters
             // 
-            CmdResetFilters.Location = new Point(386, 259);
+            CmdResetFilters.Location = new Point(386, 334);
             CmdResetFilters.Name = "CmdResetFilters";
             CmdResetFilters.Size = new Size(97, 34);
             CmdResetFilters.TabIndex = 7;
@@ -480,7 +480,7 @@
             // 
             // CmdSearchInvoices
             // 
-            CmdSearchInvoices.Location = new Point(489, 259);
+            CmdSearchInvoices.Location = new Point(489, 334);
             CmdSearchInvoices.Name = "CmdSearchInvoices";
             CmdSearchInvoices.Size = new Size(235, 34);
             CmdSearchInvoices.TabIndex = 0;
@@ -520,6 +520,24 @@
             groupBox3.TabIndex = 48;
             groupBox3.TabStop = false;
             groupBox3.Text = "Edit / Create Invoice";
+            // 
+            // TxtEditCity
+            // 
+            TxtEditCity.Location = new Point(250, 267);
+            TxtEditCity.Margin = new Padding(4, 5, 4, 5);
+            TxtEditCity.Name = "TxtEditCity";
+            TxtEditCity.Size = new Size(231, 31);
+            TxtEditCity.TabIndex = 60;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(250, 236);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(42, 25);
+            label13.TabIndex = 59;
+            label13.Text = "City";
             // 
             // label24
             // 
@@ -703,6 +721,7 @@
             // 
             // TxtEditInvoiceNumber
             // 
+            TxtEditInvoiceNumber.Enabled = false;
             TxtEditInvoiceNumber.Location = new Point(7, 58);
             TxtEditInvoiceNumber.Margin = new Padding(4, 5, 4, 5);
             TxtEditInvoiceNumber.Name = "TxtEditInvoiceNumber";
@@ -728,24 +747,6 @@
             CmdEditSave.Text = "Save";
             CmdEditSave.UseVisualStyleBackColor = true;
             CmdEditSave.Click += CmdEditSave_Click;
-            // 
-            // TxtEditCity
-            // 
-            TxtEditCity.Location = new Point(250, 267);
-            TxtEditCity.Margin = new Padding(4, 5, 4, 5);
-            TxtEditCity.Name = "TxtEditCity";
-            TxtEditCity.Size = new Size(231, 31);
-            TxtEditCity.TabIndex = 60;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(250, 236);
-            label13.Margin = new Padding(4, 0, 4, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(42, 25);
-            label13.TabIndex = 59;
-            label13.Text = "City";
             // 
             // UsrCtrlInvoices
             // 

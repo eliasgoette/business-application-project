@@ -205,7 +205,6 @@ namespace BusinessApplicationProject.View
             if (invoice != null)
             {
                 TxtEditInvoiceNumber.Text = invoice.InvoiceNumber;
-                TxtEditInvoiceNumber.Enabled = false;
                 TxtEditOrderNumber.Text = invoice.OrderInformations.OrderNumber;
                 TxtEditOrderNumber.Enabled = false;
 
@@ -221,12 +220,10 @@ namespace BusinessApplicationProject.View
 
                 CmbEditPaymentMethod.SelectedItem = invoice.PaymentMethod;
                 CmbEditPaymentStatus.SelectedItem = invoice.PaymentStatus;
-                CmdEditClear.Enabled = false;
             }
             else
             {
                 TxtEditInvoiceNumber.Text = String.Empty;
-                TxtEditInvoiceNumber.Enabled = true;
                 TxtEditOrderNumber.Text = String.Empty;
                 TxtEditOrderNumber.Enabled = true;
 
@@ -242,8 +239,6 @@ namespace BusinessApplicationProject.View
 
                 CmbEditPaymentMethod.SelectedIndex = 0;
                 CmbEditPaymentStatus.SelectedIndex = 0;
-
-                CmdEditClear.Enabled = true;
             }
         }
 
@@ -527,65 +522,106 @@ namespace BusinessApplicationProject.View
         {
             CmdEditSave.Enabled = false;
 
-            var inv = invoiceController.FindSingle(x => x.InvoiceNumber == TxtEditInvoiceNumber.Text);
-            var invExists = inv != null;
-
-            if (invExists)
+            try
             {
-                // Invoice already exists
-                inv.BillingAddress.StreetAddress = TxtEditStreetAddress.Text;
-                inv.BillingAddress.ZipCode = TxtEditZipCode.Text;
-                inv.BillingAddress.City = TxtEditCity.Text;
-                inv.BillingAddress.Country = TxtEditCountry.Text;
-                inv.Discount = (double)NumEditDiscount.Value;
-                inv.TaxPercentage = (double)NumEditTaxes.Value;
-                inv.PaymentMethod = CmbEditPaymentMethod?.SelectedItem?.ToString() ?? "";
-                inv.PaymentStatus = CmbEditPaymentStatus?.SelectedItem?.ToString() ?? "";
 
-                invoiceController.Update(inv);
-            }
-            else 
-            {
-                var order = orderController.FindSingle(x => x.OrderNumber == TxtEditOrderNumber.Text);
+                var inv = invoiceController.FindSingle(x => x.InvoiceNumber == TxtEditInvoiceNumber.Text);
+                var invExists = inv != null;
 
-                if (order != null)
+                if (invExists)
                 {
-                    Address? billingAddress;
+                    // Invoice already exists
+                    inv.BillingAddress.StreetAddress = TxtEditStreetAddress.Text;
+                    inv.BillingAddress.ZipCode = TxtEditZipCode.Text;
+                    inv.BillingAddress.City = TxtEditCity.Text;
+                    inv.BillingAddress.Country = TxtEditCountry.Text;
+                    inv.Discount = (double)NumEditDiscount.Value;
+                    inv.TaxPercentage = (double)NumEditTaxes.Value;
+                    inv.PaymentMethod = CmbEditPaymentMethod?.SelectedItem?.ToString() ?? "";
+                    inv.PaymentStatus = CmbEditPaymentStatus?.SelectedItem?.ToString() ?? "";
 
-                    if (ChkEditUseCustomerAddress.Checked)
+                    try
                     {
-                        billingAddress = new Address
-                        {
-                            StreetAddress = TxtEditStreetAddress.Text,
-                            ZipCode = TxtEditZipCode.Text,
-                            City = TxtEditCity.Text,
-                            Country = TxtEditCountry.Text
-                        };
+                        invoiceController.Update(inv);
+                        MessageBox.Show("Invoice updated.");
+                        SearchInvoice(inv);
                     }
-                    else
+                    catch (Exception)
                     {
-                        billingAddress = order.CustomerDetails.CustomerAddress;
+                        MessageBox.Show("Couldn't update ivoice.");
                     }
-
-                    inv = new Invoice
-                    {
-                        InvoiceNumber = TxtEditInvoiceNumber.Text,
-                        OrderInformations = order,
-                        BillingAddress = billingAddress,
-                        Discount = (double)NumEditDiscount.Value,
-                        TaxPercentage = (double)NumEditTaxes.Value,
-                        PaymentMethod = CmbEditPaymentMethod?.SelectedItem?.ToString() ?? "",
-                        PaymentStatus = CmbEditPaymentStatus?.SelectedItem?.ToString() ?? ""
-                    };
-
-                    await invoiceController.AddAsync(inv);
-                } else 
-                {
-                    MessageBox.Show("Order doesn't exist");
                 }
+                else 
+                {
+                    var order = orderController.FindSingle(x => x.OrderNumber == TxtEditOrderNumber.Text);
+
+                    if (order != null)
+                    {
+                        Address? billingAddress;
+
+                        if (ChkEditUseCustomerAddress.Checked)
+                        {
+                            billingAddress = new Address
+                            {
+                                StreetAddress = TxtEditStreetAddress.Text,
+                                ZipCode = TxtEditZipCode.Text,
+                                City = TxtEditCity.Text,
+                                Country = TxtEditCountry.Text
+                            };
+                        }
+                        else
+                        {
+                            billingAddress = order.CustomerDetails.CustomerAddress;
+                        }
+
+                        int maxInvNumber = invoiceController.GetAll()
+                            .Select(n => int.Parse(n.InvoiceNumber.Split('-')[1]))
+                            .Max();
+
+                        string invNumber = (++maxInvNumber).ToString().PadLeft(5, '0');
+
+                        inv = new Invoice
+                        {
+                            InvoiceNumber = invNumber,
+                            OrderInformations = order,
+                            BillingAddress = billingAddress,
+                            Discount = (double)NumEditDiscount.Value,
+                            TaxPercentage = (double)NumEditTaxes.Value,
+                            PaymentMethod = CmbEditPaymentMethod?.SelectedItem?.ToString() ?? "",
+                            PaymentStatus = CmbEditPaymentStatus?.SelectedItem?.ToString() ?? ""
+                        };
+
+                        try
+                        {
+                            await invoiceController.AddAsync(inv);
+                            MessageBox.Show("Invoice saved.");
+                            SearchInvoice(inv);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Couldn't save invoice.");
+                        }
+                    } else 
+                    {
+                        MessageBox.Show("Order doesn't exist");
+                    }
+                }
+            } catch(TimeoutException)
+            {
+                MessageBox.Show("A DB error occurred. Please check DB connection.");
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred.");
             }
 
             CmdEditSave.Enabled = true;
+        }
+
+        private void SearchInvoice(Invoice invoice)
+        {
+            TxtSearchInvoiceNumber.Text = invoice.InvoiceNumber;
+            UpdateSearchResults();
         }
 
         // Could potentially be outsourced into a service class
