@@ -47,7 +47,7 @@
             GrpNavigation.Controls.Add(CmdCustomers);
             GrpNavigation.Location = new Point(9, 8);
             GrpNavigation.Name = "GrpNavigation";
-            GrpNavigation.Size = new Size(110, 639);
+            GrpNavigation.Size = new Size(110, 634);
             GrpNavigation.TabIndex = 2;
             GrpNavigation.TabStop = false;
             GrpNavigation.Text = "Navigation";

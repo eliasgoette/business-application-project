@@ -534,7 +534,7 @@
             // 
             // TxtSearchCustomerFirstName
             // 
-            TxtSearchCustomerFirstName.BackColor = SystemColors.ScrollBar;
+            TxtSearchCustomerFirstName.BackColor = SystemColors.Window;
             TxtSearchCustomerFirstName.BorderStyle = BorderStyle.FixedSingle;
             TxtSearchCustomerFirstName.Location = new Point(192, 50);
             TxtSearchCustomerFirstName.Name = "TxtSearchCustomerFirstName";
@@ -543,7 +543,7 @@
             // 
             // TxtSearchCustomerLastName
             // 
-            TxtSearchCustomerLastName.BackColor = SystemColors.ScrollBar;
+            TxtSearchCustomerLastName.BackColor = SystemColors.Window;
             TxtSearchCustomerLastName.BorderStyle = BorderStyle.FixedSingle;
             TxtSearchCustomerLastName.Location = new Point(357, 50);
             TxtSearchCustomerLastName.Name = "TxtSearchCustomerLastName";
