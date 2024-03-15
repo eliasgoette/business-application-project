@@ -134,37 +134,9 @@ namespace BusinessApplicationProject.View
                 (string.IsNullOrEmpty(TxtSearchCustomerEmail.Text) || (customer.Email != null && customer.Email.Contains(TxtSearchCustomerEmail.Text))) &&
                 (string.IsNullOrEmpty(TxtSearchCustomerWebsite.Text) || (customer.Website != null && customer.Website.Contains(TxtSearchCustomerWebsite.Text)));
         }
-
         #endregion
 
         #region Customers
-
-        private void CmdShowAllCustomers_Click(object sender, EventArgs e)
-        {
-            //Load all Customers into Grid
-            EmptyFieldsCustomers();
-            UpdateSearchResults();
-        }
-
-        private void CmdCreateEmptyCustomer_Click(object sender, EventArgs e)
-        {
-            //Create Empty Customer
-            GrpInformation.Visible = true;
-            EmptyFieldsCustomers();
-            GenerateNewCustomerNumber();
-        }
-
-
-        private void CmdDeleteSelectedCustomers_Click(object sender, EventArgs e)
-        {
-            //Throw warning
-            if (WarningDeletedObject())
-            {
-                //delete all selected Objects
-            }
-        }
-
-        /*---------------------------------------*/
         private void EmptyFieldsCustomers()
         {
             TxtInputCustomerAdress.Text = string.Empty;
@@ -178,8 +150,6 @@ namespace BusinessApplicationProject.View
             TxtInputCustomerPostalCode.Text = string.Empty;
             TxtInputCustomerWebsite.Text = string.Empty;
         }
-        /*---------------------------------------*/
-
 
         private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
         {
@@ -318,8 +288,6 @@ namespace BusinessApplicationProject.View
                 }
             }
         }
-
-
         #endregion
 
         #region Orders
