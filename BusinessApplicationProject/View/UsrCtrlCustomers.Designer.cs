@@ -32,8 +32,6 @@
             LblDataGridCustomersNoResults = new Label();
             DataGridViewCustomersResults = new DataGridView();
             CmdShowAllCustomers = new Button();
-            CmdCreateEmptyCustomer = new Button();
-            CmdDeleteSelectedCustomers = new Button();
             GrpInformation = new GroupBox();
             LblInfoCustomerPostalCode = new Label();
             LblInfoCustomerCity = new Label();
@@ -96,8 +94,6 @@
             GrpResults.Controls.Add(LblDataGridCustomersNoResults);
             GrpResults.Controls.Add(DataGridViewCustomersResults);
             GrpResults.Controls.Add(CmdShowAllCustomers);
-            GrpResults.Controls.Add(CmdCreateEmptyCustomer);
-            GrpResults.Controls.Add(CmdDeleteSelectedCustomers);
             GrpResults.ForeColor = SystemColors.ControlText;
             GrpResults.Location = new Point(4, 418);
             GrpResults.Margin = new Padding(4, 5, 4, 5);
@@ -132,36 +128,10 @@
             // 
             // CmdShowAllCustomers
             // 
-            CmdShowAllCustomers.Location = new Point(9, 593);
-            CmdShowAllCustomers.Margin = new Padding(4, 5, 4, 5);
+            CmdShowAllCustomers.Location = new Point(0, 0);
             CmdShowAllCustomers.Name = "CmdShowAllCustomers";
-            CmdShowAllCustomers.Size = new Size(180, 38);
-            CmdShowAllCustomers.TabIndex = 0;
-            CmdShowAllCustomers.Text = "Show all Customers";
-            CmdShowAllCustomers.UseVisualStyleBackColor = true;
-            CmdShowAllCustomers.Click += CmdShowAllCustomers_Click;
-            // 
-            // CmdCreateEmptyCustomer
-            // 
-            CmdCreateEmptyCustomer.Location = new Point(309, 593);
-            CmdCreateEmptyCustomer.Margin = new Padding(4, 5, 4, 5);
-            CmdCreateEmptyCustomer.Name = "CmdCreateEmptyCustomer";
-            CmdCreateEmptyCustomer.Size = new Size(193, 38);
-            CmdCreateEmptyCustomer.TabIndex = 0;
-            CmdCreateEmptyCustomer.Text = "Create new Customer";
-            CmdCreateEmptyCustomer.UseVisualStyleBackColor = true;
-            CmdCreateEmptyCustomer.Click += CmdCreateEmptyCustomer_Click;
-            // 
-            // CmdDeleteSelectedCustomers
-            // 
-            CmdDeleteSelectedCustomers.Location = new Point(510, 593);
-            CmdDeleteSelectedCustomers.Margin = new Padding(4, 5, 4, 5);
-            CmdDeleteSelectedCustomers.Name = "CmdDeleteSelectedCustomers";
-            CmdDeleteSelectedCustomers.Size = new Size(236, 38);
-            CmdDeleteSelectedCustomers.TabIndex = 0;
-            CmdDeleteSelectedCustomers.Text = "Delete selected Customer(s)";
-            CmdDeleteSelectedCustomers.UseVisualStyleBackColor = true;
-            CmdDeleteSelectedCustomers.Click += CmdDeleteSelectedCustomers_Click;
+            CmdShowAllCustomers.Size = new Size(75, 23);
+            CmdShowAllCustomers.TabIndex = 2;
             // 
             // GrpInformation
             // 
@@ -729,8 +699,6 @@
         private GroupBox GrpInformation;
         private GroupBox GrpSearch;
         private Button CmdClearCustomer;
-        private Button CmdCreateEmptyCustomer;
-        private Button CmdDeleteSelectedCustomers;
         private Button CmdDeleteCustomer;
         private Button CmdSaveChangesCustomer;
         private DataGridView DataGridViewCustomersResults;
