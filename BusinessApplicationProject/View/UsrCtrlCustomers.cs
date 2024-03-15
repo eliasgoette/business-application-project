@@ -33,6 +33,7 @@ namespace BusinessApplicationProject.View
             TxtSearchCustomerFirstName.Text = string.Empty;
             TxtSearchCustomerLastName.Text = string.Empty;
             TxtSearchCustomerNumber.Text = string.Empty;
+            TxtSearchCustomerWebsite.Text = string.Empty;
         }
         #endregion
 
@@ -125,7 +126,8 @@ namespace BusinessApplicationProject.View
                 (string.IsNullOrEmpty(TxtSearchCustomerCountry.Text) || customer.CustomerAddress.Country.Contains(TxtSearchCustomerCountry.Text)) &&
                 (string.IsNullOrEmpty(TxtSearchCustomerCity.Text) || customer.CustomerAddress.City.Contains(TxtSearchCustomerCity.Text)) &&
                 (string.IsNullOrEmpty(TxtSearchCustomerAdress.Text) || customer.CustomerAddress.StreetAddress.Contains(TxtSearchCustomerAdress.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchCustomerEmail.Text) || customer.Email.Contains(TxtSearchCustomerEmail.Text));
+                (string.IsNullOrEmpty(TxtSearchCustomerEmail.Text) || (customer.Email != null && customer.Email.Contains(TxtSearchCustomerEmail.Text))) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerWebsite.Text) || (customer.Website != null && customer.Website.Contains(TxtSearchCustomerWebsite.Text)));
         }
 
         #endregion
