@@ -37,9 +37,6 @@
             LblInfoCustomerCity = new Label();
             GrpOrders = new GroupBox();
             DataGridViewCustomerOrders = new DataGridView();
-            orderNumber = new DataGridViewTextBoxColumn();
-            dateOfOrder = new DataGridViewTextBoxColumn();
-            totalPriceOrder = new DataGridViewTextBoxColumn();
             CmdCopyOrderNumber = new Button();
             LblInfoCustomerWebsite = new Label();
             LblInfoCustomerEmail = new Label();
@@ -120,7 +117,9 @@
             DataGridViewCustomersResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewCustomersResults.Location = new Point(9, 37);
             DataGridViewCustomersResults.Margin = new Padding(4, 5, 4, 5);
+            DataGridViewCustomersResults.MultiSelect = false;
             DataGridViewCustomersResults.Name = "DataGridViewCustomersResults";
+            DataGridViewCustomersResults.ReadOnly = true;
             DataGridViewCustomersResults.RowHeadersWidth = 62;
             DataGridViewCustomersResults.Size = new Size(737, 547);
             DataGridViewCustomersResults.TabIndex = 1;
@@ -207,38 +206,14 @@
             DataGridViewCustomerOrders.AllowUserToAddRows = false;
             DataGridViewCustomerOrders.AllowUserToDeleteRows = false;
             DataGridViewCustomerOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewCustomerOrders.Columns.AddRange(new DataGridViewColumn[] { orderNumber, dateOfOrder, totalPriceOrder });
             DataGridViewCustomerOrders.Location = new Point(9, 37);
             DataGridViewCustomerOrders.Margin = new Padding(4, 5, 4, 5);
+            DataGridViewCustomerOrders.MultiSelect = false;
             DataGridViewCustomerOrders.Name = "DataGridViewCustomerOrders";
             DataGridViewCustomerOrders.ReadOnly = true;
             DataGridViewCustomerOrders.RowHeadersWidth = 62;
             DataGridViewCustomerOrders.Size = new Size(737, 547);
             DataGridViewCustomerOrders.TabIndex = 1;
-            // 
-            // orderNumber
-            // 
-            orderNumber.HeaderText = "Order Number";
-            orderNumber.MinimumWidth = 8;
-            orderNumber.Name = "orderNumber";
-            orderNumber.ReadOnly = true;
-            orderNumber.Width = 150;
-            // 
-            // dateOfOrder
-            // 
-            dateOfOrder.HeaderText = "Date of Order";
-            dateOfOrder.MinimumWidth = 8;
-            dateOfOrder.Name = "dateOfOrder";
-            dateOfOrder.ReadOnly = true;
-            dateOfOrder.Width = 150;
-            // 
-            // totalPriceOrder
-            // 
-            totalPriceOrder.HeaderText = "Total Price";
-            totalPriceOrder.MinimumWidth = 8;
-            totalPriceOrder.Name = "totalPriceOrder";
-            totalPriceOrder.ReadOnly = true;
-            totalPriceOrder.Width = 150;
             // 
             // CmdCopyOrderNumber
             // 
@@ -725,9 +700,6 @@
         private Label LblInfoSearchCustomerCity;
         private Label LblInfoSearchCustomerEmail;
         private Label LblInfoSearchCustomerCountry;
-        private DataGridViewTextBoxColumn orderNumber;
-        private DataGridViewTextBoxColumn dateOfOrder;
-        private DataGridViewTextBoxColumn totalPriceOrder;
         private TextBox TxtSearchCustomerLastName;
         private TextBox TxtSearchCustomerFirstName;
         private TextBox TxtSearchCustomerAdress;
