@@ -2,6 +2,7 @@
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
 using System.Linq.Expressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace BusinessApplicationProject.View
 {
@@ -78,16 +79,25 @@ namespace BusinessApplicationProject.View
                         DataPropertyName = "LastName"
                     };
 
-                DataGridViewTextBoxColumn CustomerNumberColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "customerNumberColumn",
-                    HeaderText = "Customer Number",
-                    DataPropertyName = "customerNumber"
-                };
+                    DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "emailColumn",
+                        HeaderText = "Email Address",
+                        DataPropertyName = "Email"
+                    };
 
-                DataGridViewCustomersResults.Columns.Add(CustomerNumberColumn);
-                DataGridViewCustomersResults.Columns.Add(firstNameColumn);
-                DataGridViewCustomersResults.Columns.Add(lastNameColumn);
+                    DataGridViewTextBoxColumn websiteColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "websiteColumn",
+                        HeaderText = "Website",
+                        DataPropertyName = "Website"
+                    };
+
+                    DataGridViewCustomersResults.Columns.Add(customerNumberColumn);
+                    DataGridViewCustomersResults.Columns.Add(firstNameColumn);
+                    DataGridViewCustomersResults.Columns.Add(lastNameColumn);
+                    DataGridViewCustomersResults.Columns.Add(emailColumn);
+                    DataGridViewCustomersResults.Columns.Add(websiteColumn);
 
                     DataGridViewCustomersResults.DataSource = customers;
                 }
@@ -119,7 +129,6 @@ namespace BusinessApplicationProject.View
         }
 
         #endregion
-
 
         #region Customers
 
@@ -204,7 +213,6 @@ namespace BusinessApplicationProject.View
 
         #endregion
 
-
         #region Orders
 
 
@@ -230,7 +238,6 @@ namespace BusinessApplicationProject.View
 
 
         #endregion
-
 
         private bool WarningDeletedObject()
         {
