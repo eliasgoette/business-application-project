@@ -1,8 +1,6 @@
 ﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
-using Castle.Core.Resource;
-using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.View
 {
@@ -52,6 +50,8 @@ namespace BusinessApplicationProject.View
             TreeViewArticles.Nodes.Clear();
             LblSearchArticlesNoResult.Visible = false;
 
+
+            //-------------
             var artGrp1 = new ArticleGroup { Name = "Consumer Electronics" };
             var artGrp2 = new ArticleGroup { Parent = artGrp1, Name = "Personal Computing" };
             var artGrp3 = new ArticleGroup { Name = "Software" };
@@ -86,9 +86,11 @@ namespace BusinessApplicationProject.View
 
             articlesTest.Add(art1);
             articlesTest.Add(art2);
+            //---------------
+
 
             UpdateArticleGroups(articleGroupsTest);
-            //UpdateArticles();
+            UpdateArticles(articlesTest);
         }
 
         #region treeview
@@ -114,30 +116,33 @@ namespace BusinessApplicationProject.View
                 //articleGroups = articleGroupController.GetAll();
 
                 articleGroups = articleGroupsTest;
-                
+
 
                 if (articleGroups.Count > 0)
                 {
+                    List<ArticleGroup> articleGroupsWithParents = [];
                     foreach (var articleGroup in articleGroups)
                     {
-                        if(articleGroup.Parent == null)
+                        if (articleGroup.Parent == null)
                         {
                             TreeNode value = new TreeNode(articleGroup.Name);
                             TreeViewArticles.Nodes.Add(value);
                         }
-                    }
-
-                    foreach (var articleGroup in articleGroups)
-                    {
-                        if (articleGroup.Parent != null)
+                        else
                         {
-                            TreeNode value = new TreeNode(articleGroup.Name);
-                            foreach (TreeNode node in TreeViewArticles.Nodes)
-                            {
-                                if (node.Name.Equals(value.Name, StringComparison.OrdinalIgnoreCase)) { node.Nodes.Add(value); }
-                            }
+                            articleGroupsWithParents.Add(articleGroup);
                         }
                     }
+
+                    foreach (var articleGroup in articleGroupsWithParents)
+                    {
+                        TreeNode value = new TreeNode(articleGroup.Name);
+                        foreach (TreeNode node in TreeViewArticles.Nodes)
+                        {
+                            if (node.Text == articleGroup.Parent.Name) { node.Nodes.Add(value); }
+                        }
+                    }
+
                 }
                 else
                 {
@@ -148,11 +153,65 @@ namespace BusinessApplicationProject.View
             {
                 MessageBox.Show("Database connection failed. Connection timed out.");
             }
-            
+
             catch
             {
                 MessageBox.Show("An error occured.");
             }
+        }
+
+        public void UpdateArticles(List<Article> articleTest)
+        {
+            try
+            {
+                List<Article> articles = [];
+                //articles = articleController.GetAll();
+
+                articles = articleTest;
+
+
+                if (articles.Count > 0)
+                {
+                    foreach (var article in articles)
+                    {
+                        TreeNode value = new TreeNode(article.Name);
+
+                        TreeNode result = GetParentTreeNode(article.Group.Name, TreeViewArticles.Nodes);
+                        if (result != null)
+                        {
+                            result.Nodes.Add(value);
+                        }
+
+                    }
+
+                }
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Database connection failed. Connection timed out.");
+            }
+
+            catch
+            {
+                MessageBox.Show("An error occured.");
+            }
+        }
+
+        public TreeNode GetParentTreeNode(string name, TreeNodeCollection collection)
+        {
+            foreach (TreeNode node in collection)
+            {
+                if (node.Text == name) { return node; }
+
+                TreeNode foundNode = GetParentTreeNode(name, node.Nodes);
+
+                if(foundNode != null)
+                {
+                    return foundNode;
+                }
+            }
+
+            return null;
         }
 
         #endregion
