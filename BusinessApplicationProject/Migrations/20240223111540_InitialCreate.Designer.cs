@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessApplicationProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240218161809_AddDataSeeding")]
-    partial class AddDataSeeding
+    [Migration("20240223111540_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -81,14 +81,9 @@ namespace BusinessApplicationProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("ArticleNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -108,8 +103,6 @@ namespace BusinessApplicationProject.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
 
                     b.ToTable("Articles", (string)null);
 
@@ -137,12 +130,7 @@ namespace BusinessApplicationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("ArticleGroups");
                 });
@@ -151,11 +139,6 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerAddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerNumber")
@@ -181,8 +164,6 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerAddressId");
-
                     b.ToTable("Customers");
                 });
 
@@ -190,11 +171,6 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BillingAddressId")
                         .HasColumnType("int");
 
                     b.Property<double>("Discount")
@@ -206,9 +182,6 @@ namespace BusinessApplicationProject.Migrations
                     b.Property<string>("InvoiceNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderInformationsId")
-                        .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
@@ -223,10 +196,6 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BillingAddressId");
-
-                    b.HasIndex("OrderInformationsId");
-
                     b.ToTable("Invoices");
                 });
 
@@ -234,11 +203,6 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerDetailsId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -250,8 +214,6 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerDetailsId");
-
                     b.ToTable("Orders");
                 });
 
@@ -259,14 +221,6 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArticleDetailsId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("PositionNumber")
@@ -277,10 +231,6 @@ namespace BusinessApplicationProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArticleDetailsId");
-
-                    b.HasIndex("OrderId");
-
                     b.ToTable("Positions");
                 });
 
@@ -288,9 +238,7 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.ArticleGroup", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id");
 
                     b.Navigation("Group");
                 });
@@ -299,7 +247,7 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.ArticleGroup", "Parent")
                         .WithMany()
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("Id");
 
                     b.Navigation("Parent");
                 });
@@ -308,7 +256,7 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.Address", "CustomerAddress")
                         .WithMany()
-                        .HasForeignKey("CustomerAddressId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -319,13 +267,13 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.Address", "BillingAddress")
                         .WithMany()
-                        .HasForeignKey("BillingAddressId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BusinessApplicationProject.Model.Order", "OrderInformations")
                         .WithMany()
-                        .HasForeignKey("OrderInformationsId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -338,7 +286,7 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.Customer", "CustomerDetails")
                         .WithMany()
-                        .HasForeignKey("CustomerDetailsId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -349,13 +297,15 @@ namespace BusinessApplicationProject.Migrations
                 {
                     b.HasOne("BusinessApplicationProject.Model.Article", "ArticleDetails")
                         .WithMany()
-                        .HasForeignKey("ArticleDetailsId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BusinessApplicationProject.Model.Order", null)
                         .WithMany("Positions")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ArticleDetails");
                 });

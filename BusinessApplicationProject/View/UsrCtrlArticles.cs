@@ -1,41 +1,13 @@
-﻿namespace BusinessApplicationProject
+﻿namespace BusinessApplicationProject.View
 {
-    public partial class FormArticles : Form
+    public partial class UsrCtrlArticles : UserControl
     {
-        public FormArticles()
+        public static UsrCtrlArticles instance = new();
+
+        public UsrCtrlArticles()
         {
             InitializeComponent();
-
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
-
-        #region Navigation
-        private void CmdArticles_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Program.formArticles.Show();
-        }
-
-        private void CmdCustomers_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Program.formCustomers.Show();
-        }
-
-        private void CmdOrders_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Program.formOrders.Show();
-        }
-
-        private void CmdCloseProgram_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-
-        #endregion
-
 
         #region Search
         private void CmdSearchArticles_Click(object sender, EventArgs e)

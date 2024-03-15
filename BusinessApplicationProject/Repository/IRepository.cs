@@ -4,8 +4,8 @@ namespace BusinessApplicationProject.Repository
 {
     public interface IRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(int id);
-        Task<IEnumerable<T>> GetAllAsync();
+        //T? GetById(int id);
+        List<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> searchTerm);
         Task AddAsync(T entity);
         void Remove(T entity);

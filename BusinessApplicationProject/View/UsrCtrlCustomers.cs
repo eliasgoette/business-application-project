@@ -1,44 +1,18 @@
+﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
+using BusinessApplicationProject.Repository;
 using System.Linq.Expressions;
 
-namespace BusinessApplicationProject
+namespace BusinessApplicationProject.View
 {
-    public partial class FormCustomers : Form
+    public partial class UsrCtrlCustomers : UserControl
     {
-        public FormCustomers()
+        public static UsrCtrlCustomers instance = new();
+
+        public UsrCtrlCustomers()
         {
             InitializeComponent();
-
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
-
-        #region Navigation
-        private void CmdArticles_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Program.formArticles.Show();
-        }
-
-        private void CmdCustomers_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Program.formCustomers.Show();
-        }
-
-        private void CmdOrders_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Program.formOrders.Show();
-        }
-
-        private void CmdCloseProgram_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-
-        #endregion
-
 
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
@@ -266,8 +240,8 @@ namespace BusinessApplicationProject
         private void CmdCreateNewOrder_Click(object sender, EventArgs e)
         {
             //Change Form (Order) with selected Customer already filled in
-            this.Hide();
-            Program.formOrders.Show();
+            //this.Hide();
+            //Program.formOrders.Show();
         }
 
         private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
@@ -308,6 +282,5 @@ namespace BusinessApplicationProject
                 return false;
             }
         }
-
     }
 }
