@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode1 = new TreeNode("Apfel");
-            TreeNode treeNode2 = new TreeNode("Birne");
-            TreeNode treeNode3 = new TreeNode("Obst", new TreeNode[] { treeNode1, treeNode2 });
-            TreeNode treeNode4 = new TreeNode("Lebensmittel", new TreeNode[] { treeNode3 });
-            TreeNode treeNode5 = new TreeNode("Autos");
-            TreeNode treeNode6 = new TreeNode("Fahrzeuge", new TreeNode[] { treeNode5 });
+            TreeNode treeNode7 = new TreeNode("Apfel");
+            TreeNode treeNode8 = new TreeNode("Birne");
+            TreeNode treeNode9 = new TreeNode("Obst", new TreeNode[] { treeNode7, treeNode8 });
+            TreeNode treeNode10 = new TreeNode("Lebensmittel", new TreeNode[] { treeNode9 });
+            TreeNode treeNode11 = new TreeNode("Autos");
+            TreeNode treeNode12 = new TreeNode("Fahrzeuge", new TreeNode[] { treeNode11 });
             GrpResults = new GroupBox();
             CmdShowAllArticles = new Button();
             CmdEditSelectedObject = new Button();
@@ -68,6 +68,7 @@
             button2 = new Button();
             button1 = new Button();
             CmbInputArticleGroup = new ComboBox();
+            LblSearchArticlesNoResult = new Label();
             GrpResults.SuspendLayout();
             GrpSearch.SuspendLayout();
             GrpInformationArticleGroup.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // GrpResults
             // 
+            GrpResults.Controls.Add(LblSearchArticlesNoResult);
             GrpResults.Controls.Add(CmdShowAllArticles);
             GrpResults.Controls.Add(CmdEditSelectedObject);
             GrpResults.Controls.Add(CmdDeleteSelectedObject);
@@ -122,19 +124,19 @@
             // 
             TreeViewArticles.Location = new Point(6, 22);
             TreeViewArticles.Name = "TreeViewArticles";
-            treeNode1.Name = "Apfel";
-            treeNode1.Text = "Apfel";
-            treeNode2.Name = "Birne";
-            treeNode2.Text = "Birne";
-            treeNode3.Name = "Obst";
-            treeNode3.Text = "Obst";
-            treeNode4.Name = "Lebensmittel";
-            treeNode4.Text = "Lebensmittel";
-            treeNode5.Name = "Autos";
-            treeNode5.Text = "Autos";
-            treeNode6.Name = "Fahrzeuge";
-            treeNode6.Text = "Fahrzeuge";
-            TreeViewArticles.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode6 });
+            treeNode7.Name = "Apfel";
+            treeNode7.Text = "Apfel";
+            treeNode8.Name = "Birne";
+            treeNode8.Text = "Birne";
+            treeNode9.Name = "Obst";
+            treeNode9.Text = "Obst";
+            treeNode10.Name = "Lebensmittel";
+            treeNode10.Text = "Lebensmittel";
+            treeNode11.Name = "Autos";
+            treeNode11.Text = "Autos";
+            treeNode12.Name = "Fahrzeuge";
+            treeNode12.Text = "Fahrzeuge";
+            TreeViewArticles.Nodes.AddRange(new TreeNode[] { treeNode10, treeNode12 });
             TreeViewArticles.Size = new Size(516, 450);
             TreeViewArticles.TabIndex = 2;
             // 
@@ -441,6 +443,15 @@
             CmbInputArticleGroup.Sorted = true;
             CmbInputArticleGroup.TabIndex = 3;
             // 
+            // LblSearchArticlesNoResult
+            // 
+            LblSearchArticlesNoResult.AutoSize = true;
+            LblSearchArticlesNoResult.Location = new Point(226, 242);
+            LblSearchArticlesNoResult.Name = "LblSearchArticlesNoResult";
+            LblSearchArticlesNoResult.Size = new Size(58, 15);
+            LblSearchArticlesNoResult.TabIndex = 1;
+            LblSearchArticlesNoResult.Text = "No Result";
+            // 
             // UsrCtrlArticles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -452,6 +463,7 @@
             Name = "UsrCtrlArticles";
             Size = new Size(1085, 640);
             GrpResults.ResumeLayout(false);
+            GrpResults.PerformLayout();
             GrpSearch.ResumeLayout(false);
             GrpSearch.PerformLayout();
             GrpInformationArticleGroup.ResumeLayout(false);
@@ -496,5 +508,6 @@
         private Button button1;
         private ComboBox CmbInputArticleGroup;
         private ComboBox CmbSearchArticleGroup;
+        private Label LblSearchArticlesNoResult;
     }
 }

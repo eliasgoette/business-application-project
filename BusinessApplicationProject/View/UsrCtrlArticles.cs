@@ -1,4 +1,10 @@
-﻿namespace BusinessApplicationProject.View
+﻿using BusinessApplicationProject.Controller;
+using BusinessApplicationProject.Model;
+using BusinessApplicationProject.Repository;
+using Castle.Core.Resource;
+using System.Linq.Expressions;
+
+namespace BusinessApplicationProject.View
 {
     public partial class UsrCtrlArticles : UserControl
     {
@@ -43,7 +49,113 @@
         private void CmdShowAllArticles_Click(object sender, EventArgs e)
         {
             //Load all Articles into Treeview
+            TreeViewArticles.Nodes.Clear();
+            LblSearchArticlesNoResult.Visible = false;
+
+            var artGrp1 = new ArticleGroup { Name = "Consumer Electronics" };
+            var artGrp2 = new ArticleGroup { Parent = artGrp1, Name = "Personal Computing" };
+            var artGrp3 = new ArticleGroup { Name = "Software" };
+            var artGrp4 = new ArticleGroup { Parent = artGrp3, Name = "Subscription Based" };
+            var artGrp5 = new ArticleGroup { Parent = artGrp4, Name = "Productivity" };
+
+            var art1 = new Article()
+            {
+                ArticleNumber = "A-00001",
+                Name = "MacBook Air 13",
+                Price = 2100,
+                Group = artGrp2
+            };
+
+            var art2 = new Article()
+            {
+                ArticleNumber = "A-00002",
+                Name = "Chat GPT Pro 1 Mo",
+                Price = 20,
+                Group = artGrp5
+            };
+
+            List<ArticleGroup> articleGroupsTest = [];
+
+            articleGroupsTest.Add(artGrp1);
+            articleGroupsTest.Add(artGrp2);
+            articleGroupsTest.Add(artGrp3);
+            articleGroupsTest.Add(artGrp4);
+            articleGroupsTest.Add(artGrp5);
+
+            List<Article> articlesTest = new List<Article>();
+
+            articlesTest.Add(art1);
+            articlesTest.Add(art2);
+
+            UpdateArticleGroups(articleGroupsTest);
+            //UpdateArticles();
         }
+
+        #region treeview
+        private Controller<ArticleGroup> articleGroupController = new Controller<ArticleGroup>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<ArticleGroup>(context)
+        };
+
+        private Controller<Article> articleController = new Controller<Article>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Article>(context)
+        };
+
+
+
+        public void UpdateArticleGroups(List<ArticleGroup> articleGroupsTest)
+        {
+            try
+            {
+                List<ArticleGroup> articleGroups = [];
+                //articleGroups = articleGroupController.GetAll();
+
+                articleGroups = articleGroupsTest;
+                
+
+                if (articleGroups.Count > 0)
+                {
+                    foreach (var articleGroup in articleGroups)
+                    {
+                        if(articleGroup.Parent == null)
+                        {
+                            TreeNode value = new TreeNode(articleGroup.Name);
+                            TreeViewArticles.Nodes.Add(value);
+                        }
+                    }
+
+                    foreach (var articleGroup in articleGroups)
+                    {
+                        if (articleGroup.Parent != null)
+                        {
+                            TreeNode value = new TreeNode(articleGroup.Name);
+                            foreach (TreeNode node in TreeViewArticles.Nodes)
+                            {
+                                if (node.Name.Equals(value.Name, StringComparison.OrdinalIgnoreCase)) { node.Nodes.Add(value); }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    LblSearchArticlesNoResult.Visible = true;
+                }
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Database connection failed. Connection timed out.");
+            }
+            
+            catch
+            {
+                MessageBox.Show("An error occured.");
+            }
+        }
+
+        #endregion
 
         private void CmdEditSelectedObject_Click(object sender, EventArgs e)
         {

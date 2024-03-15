@@ -34,6 +34,12 @@ namespace BusinessApplicationProject.View
         #endregion
 
         #region SearchUpdate
+        private Controller<Customer> customerController = new Controller<Customer>
+        {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Customer>(context)
+        };
+
         public void UpdateSearchResults()
         {
             DataGridViewCustomersResults.AutoGenerateColumns = false;
@@ -45,9 +51,9 @@ namespace BusinessApplicationProject.View
             {
                 List<Customer> customers = [];
                 var filter = CreateFilterFunction();
-                //customers = invoiceController.Find(filter);
+                customers = customerController.Find(filter);
 
-                if (true /*customers.Count > 0*/)
+                if (customers.Count > 0)
                 {
                     DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
                     {
@@ -126,21 +132,14 @@ namespace BusinessApplicationProject.View
 
         private Expression<Func<Customer, bool>> CreateFilterFunction()
         {
-            /*
             return customer =>
-                (string.IsNullOrEmpty(TxtSearchInvoiceNumber.Text) || customer.InvoiceNumber.Contains(TxtSearchInvoiceNumber.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || customer.OrderInformations.CustomerDetails.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchOrderNumber.Text) || customer.OrderInformations.OrderNumber.Contains(TxtSearchOrderNumber.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchFirstName.Text) || customer.OrderInformations.CustomerDetails.FirstName.Contains(TxtSearchFirstName.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchLastName.Text) || customer.OrderInformations.CustomerDetails.LastName.Contains(TxtSearchLastName.Text)) &&
-                (string.IsNullOrEmpty(TxtStreetAddress.Text) || customer.BillingAddress.StreetAddress.Contains(TxtStreetAddress.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchZipCode.Text) || customer.BillingAddress.ZipCode.Contains(TxtSearchZipCode.Text)) &&
-                (string.IsNullOrEmpty(TxtSearchCountry.Text) || customer.BillingAddress.Country.Contains(TxtSearchCountry.Text)) &&
-                (DatPckInvoiceDateFrom.Value == DatPckInvoiceDateFrom.MinDate || customer.OrderInformations.Date >= DatPckInvoiceDateFrom.Value) &&
-                (DatPckInvoiceDateTo.Value == DatPckInvoiceDateTo.MaxDate || customer.OrderInformations.Date <= DatPckInvoiceDateTo.Value);
-            */
-
-            return null;
+                (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || customer.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerFirstName.Text) || customer.FirstName.Contains(TxtSearchCustomerFirstName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerLastName.Text) || customer.LastName.Contains(TxtSearchCustomerLastName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerCountry.Text) || customer.CustomerAddress.Country.Contains(TxtSearchCustomerCountry.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerCity.Text) || customer.CustomerAddress.City.Contains(TxtSearchCustomerCity.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerAdress.Text) || customer.CustomerAddress.StreetAddress.Contains(TxtSearchCustomerAdress.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerEmail.Text) || customer.Email.Contains(TxtSearchCustomerEmail.Text));
         }
 
         #endregion

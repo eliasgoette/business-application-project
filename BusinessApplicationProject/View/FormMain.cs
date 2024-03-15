@@ -14,6 +14,9 @@
         {
             InitializeComponent();
 
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+
             // Set default view to customers
             ToggleView(View.Customers, CmdCustomers);
         }
