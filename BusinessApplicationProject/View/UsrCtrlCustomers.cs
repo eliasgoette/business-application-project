@@ -266,5 +266,10 @@ namespace BusinessApplicationProject.View
                 return false;
             }
         }
+
+        private void DataGridViewCustomersResults_SelectionChanged(object sender, EventArgs e)
+        {
+            Customer? selection = Utils.GetSelectedItem<Customer>(DataGridViewCustomersResults);
+        }
     }
 }

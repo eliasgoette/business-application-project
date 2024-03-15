@@ -67,6 +67,8 @@
             CmdSaveChangesCustomer = new Button();
             CmdCreateNewCustomer = new Button();
             GrpSearch = new GroupBox();
+            TxtSearchCustomerWebsite = new TextBox();
+            label1 = new Label();
             TxtSearchCustomerLastName = new TextBox();
             TxtSearchCustomerFirstName = new TextBox();
             TxtSearchCustomerAdress = new TextBox();
@@ -83,8 +85,6 @@
             LblInfoSearchCustomerEmail = new Label();
             LblInfoSearchCustomerCountry = new Label();
             LblInfoSearchCustomerNumber = new Label();
-            TxtSearchCustomerWebsite = new TextBox();
-            label1 = new Label();
             GrpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).BeginInit();
             GrpInformation.SuspendLayout();
@@ -130,6 +130,7 @@
             DataGridViewCustomersResults.RowHeadersWidth = 62;
             DataGridViewCustomersResults.Size = new Size(737, 547);
             DataGridViewCustomersResults.TabIndex = 1;
+            DataGridViewCustomersResults.SelectionChanged += DataGridViewCustomersResults_SelectionChanged;
             // 
             // CmdShowAllCustomers
             // 
@@ -198,7 +199,6 @@
             GrpInformation.TabIndex = 2;
             GrpInformation.TabStop = false;
             GrpInformation.Text = "Information selected item";
-            GrpInformation.Visible = false;
             // 
             // LblInfoCustomerPostalCode
             // 
@@ -342,6 +342,7 @@
             TxtInputCustomerNumber.BackColor = SystemColors.ScrollBar;
             TxtInputCustomerNumber.BorderStyle = BorderStyle.None;
             TxtInputCustomerNumber.Cursor = Cursors.IBeam;
+            TxtInputCustomerNumber.Enabled = false;
             TxtInputCustomerNumber.Location = new Point(199, 50);
             TxtInputCustomerNumber.Margin = new Padding(4, 5, 4, 5);
             TxtInputCustomerNumber.Name = "TxtInputCustomerNumber";
@@ -561,6 +562,24 @@
             GrpSearch.TabStop = false;
             GrpSearch.Text = "Search";
             // 
+            // TxtSearchCustomerWebsite
+            // 
+            TxtSearchCustomerWebsite.Location = new Point(274, 273);
+            TxtSearchCustomerWebsite.Margin = new Padding(6, 8, 6, 8);
+            TxtSearchCustomerWebsite.Name = "TxtSearchCustomerWebsite";
+            TxtSearchCustomerWebsite.Size = new Size(205, 31);
+            TxtSearchCustomerWebsite.TabIndex = 4;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(274, 243);
+            label1.Margin = new Padding(6, 0, 6, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 25);
+            label1.TabIndex = 3;
+            label1.Text = "Website";
+            // 
             // TxtSearchCustomerLastName
             // 
             TxtSearchCustomerLastName.Location = new Point(510, 83);
@@ -708,24 +727,6 @@
             LblInfoSearchCustomerNumber.Size = new Size(159, 25);
             LblInfoSearchCustomerNumber.TabIndex = 1;
             LblInfoSearchCustomerNumber.Text = "Customer Number";
-            // 
-            // TxtSearchCustomerWebsite
-            // 
-            TxtSearchCustomerWebsite.Location = new Point(274, 273);
-            TxtSearchCustomerWebsite.Margin = new Padding(6, 8, 6, 8);
-            TxtSearchCustomerWebsite.Name = "TxtSearchCustomerWebsite";
-            TxtSearchCustomerWebsite.Size = new Size(205, 31);
-            TxtSearchCustomerWebsite.TabIndex = 4;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(274, 243);
-            label1.Margin = new Padding(6, 0, 6, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 25);
-            label1.TabIndex = 3;
-            label1.Text = "Website";
             // 
             // UsrCtrlCustomers
             // 
