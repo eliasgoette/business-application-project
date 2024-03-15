@@ -88,6 +88,7 @@
             TxtEditInvoiceNumber = new TextBox();
             label23 = new Label();
             CmdEditSave = new Button();
+            CmdEditDelete = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewBillingAddress).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewInvoices).BeginInit();
@@ -490,6 +491,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(CmdEditDelete);
             groupBox3.Controls.Add(TxtEditCity);
             groupBox3.Controls.Add(label13);
             groupBox3.Controls.Add(label24);
@@ -711,11 +713,11 @@
             // 
             // CmdEditClear
             // 
-            CmdEditClear.Location = new Point(489, 331);
+            CmdEditClear.Location = new Point(490, 331);
             CmdEditClear.Name = "CmdEditClear";
-            CmdEditClear.Size = new Size(97, 34);
+            CmdEditClear.Size = new Size(124, 34);
             CmdEditClear.TabIndex = 7;
-            CmdEditClear.Text = "Clear";
+            CmdEditClear.Text = "Clear / New";
             CmdEditClear.UseVisualStyleBackColor = true;
             CmdEditClear.Click += CmdEditClear_Click;
             // 
@@ -740,13 +742,23 @@
             // 
             // CmdEditSave
             // 
-            CmdEditSave.Location = new Point(592, 331);
+            CmdEditSave.Location = new Point(620, 331);
             CmdEditSave.Name = "CmdEditSave";
-            CmdEditSave.Size = new Size(132, 34);
+            CmdEditSave.Size = new Size(104, 34);
             CmdEditSave.TabIndex = 0;
             CmdEditSave.Text = "Save";
             CmdEditSave.UseVisualStyleBackColor = true;
             CmdEditSave.Click += CmdEditSave_Click;
+            // 
+            // CmdEditDelete
+            // 
+            CmdEditDelete.Location = new Point(386, 331);
+            CmdEditDelete.Name = "CmdEditDelete";
+            CmdEditDelete.Size = new Size(97, 34);
+            CmdEditDelete.TabIndex = 61;
+            CmdEditDelete.Text = "Delete";
+            CmdEditDelete.UseVisualStyleBackColor = true;
+            CmdEditDelete.Click += CmdEditDelete_Click;
             // 
             // UsrCtrlInvoices
             // 
@@ -837,5 +849,6 @@
         private ComboBox CmbEditPaymentStatus;
         private TextBox TxtEditCity;
         private Label label13;
+        private Button CmdEditDelete;
     }
 }

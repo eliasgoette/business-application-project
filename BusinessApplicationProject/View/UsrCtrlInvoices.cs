@@ -524,7 +524,6 @@ namespace BusinessApplicationProject.View
 
             try
             {
-
                 var inv = invoiceController.FindSingle(x => x.InvoiceNumber == TxtEditInvoiceNumber.Text);
                 var invExists = inv != null;
 
@@ -551,7 +550,7 @@ namespace BusinessApplicationProject.View
                         MessageBox.Show("Couldn't update ivoice.");
                     }
                 }
-                else 
+                else
                 {
                     var order = orderController.FindSingle(x => x.OrderNumber == TxtEditOrderNumber.Text);
 
@@ -574,11 +573,13 @@ namespace BusinessApplicationProject.View
                             billingAddress = order.CustomerDetails.CustomerAddress;
                         }
 
-                        int maxInvNumber = invoiceController.GetAll()
-                            .Select(n => int.Parse(n.InvoiceNumber.Split('-')[1]))
-                            .Max();
+                        var invoices = invoiceController.GetAll();
+                        int maxInvNumber = (invoices.Count > 0) ?
+                            invoices.Select(n => int.Parse(n.InvoiceNumber.Split('-')[1]))
+                            .Max() : 0;
 
                         string invNumber = (++maxInvNumber).ToString().PadLeft(5, '0');
+                        invNumber = "I-" + invNumber;
 
                         inv = new Invoice
                         {
@@ -601,12 +602,14 @@ namespace BusinessApplicationProject.View
                         {
                             MessageBox.Show("Couldn't save invoice.");
                         }
-                    } else 
+                    }
+                    else
                     {
                         MessageBox.Show("Order doesn't exist");
                     }
                 }
-            } catch(TimeoutException)
+            }
+            catch (TimeoutException)
             {
                 MessageBox.Show("A DB error occurred. Please check DB connection.");
             }
@@ -622,6 +625,42 @@ namespace BusinessApplicationProject.View
         {
             TxtSearchInvoiceNumber.Text = invoice.InvoiceNumber;
             UpdateSearchResults();
+        }
+
+        private void CmdEditDelete_Click(object sender, EventArgs e)
+        {
+            CmdEditDelete.Enabled = false;
+
+            try
+            {
+                if(TxtEditInvoiceNumber.Text != String.Empty)
+                {
+                    var inv = invoiceController.FindSingle(x => x.InvoiceNumber == TxtEditInvoiceNumber.Text);
+
+                    if(inv != null)
+                    {
+                        invoiceController.Remove(inv);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Couldn't find invoice.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No invoice selected.");
+                }
+            }
+            catch(TimeoutException) 
+            {
+                MessageBox.Show("A DB error occurred. Please check DB connection.");
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred.");
+            }
+
+            CmdEditDelete.Enabled = true;
         }
 
         // Could potentially be outsourced into a service class
