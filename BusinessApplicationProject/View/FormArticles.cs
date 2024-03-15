@@ -45,7 +45,7 @@
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
         {
-            TxtSearchArticleGroup.Text = string.Empty;
+            CmbSearchArticleGroup.Select();
             TxtSearchArticleName.Text = string.Empty;
             TxtSearchArticleNumber.Text = string.Empty;
         }

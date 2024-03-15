@@ -179,6 +179,8 @@ namespace BusinessApplicationProject
         private void CmdCreateNewOrder_Click(object sender, EventArgs e)
         {
             //Change Form (Order) with selected Customer already filled in
+            this.Hide();
+            Program.formOrders.Show();
         }
 
         private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)

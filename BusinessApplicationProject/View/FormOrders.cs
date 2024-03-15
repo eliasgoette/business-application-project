@@ -55,9 +55,9 @@ namespace BusinessApplicationProject
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
         {
-            TxtSearchArticleGroup.Text = string.Empty;
-            TxtSearchArticleName.Text = string.Empty;
-            TxtSearchArticleNumber.Text = string.Empty;
+            TxtSearchCustomerNumber.Text = string.Empty;
+            TxtSearchOrdersCustomerFirstName.Text = string.Empty;
+            TxtSearchOrdersCustomerLastName.Text = string.Empty;
         }
 
 
@@ -148,5 +148,18 @@ namespace BusinessApplicationProject
 
         #endregion
 
+        private void CmdAddNewPosition_Click(object sender, EventArgs e)
+        {
+            GrpInformationSelectedPosition.Visible = true;
+
+            //create new PositionID
+
+
+        }
+
+        private void CmdOpenSelectedPosition_Click(object sender, EventArgs e)
+        {
+            GrpInformationSelectedPosition.Visible = true;
+        }
     }
 }

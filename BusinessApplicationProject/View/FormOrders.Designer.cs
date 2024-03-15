@@ -33,52 +33,71 @@
             CmdOrders = new Button();
             GrpNavigation = new GroupBox();
             CmdCloseProgram = new Button();
-            GrpResults = new GroupBox();
-            DataGridViewOrdersResults = new DataGridView();
-            CmdShowAllOrders = new Button();
-            CmdCreateEmptyArticle = new Button();
-            CmdDeleteSelectedObject = new Button();
-            GrpInformationArticle = new GroupBox();
-            TxtInputArticleNumber = new TextBox();
-            TxtInputArticlePrice = new TextBox();
-            TxtInputArticleName = new TextBox();
-            LblInfoArticlePrice = new Label();
-            LblInfoArticleName = new Label();
-            LblInfoArticleNumber = new Label();
-            LblInfoArticleGroup = new Label();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            CmbInputArticleGroup = new ComboBox();
-            GrpSearch = new GroupBox();
-            TxtSearchArticleNumber = new TextBox();
-            TxtSearchArticleName = new TextBox();
-            TxtSearchArticleGroup = new TextBox();
-            CmdResetSearchFilters = new Button();
-            CmdSearchArticles = new Button();
-            LblInfoSearchOrdersCustomerLastName = new Label();
-            LblInfoSearchOrdersCustomerFirstName = new Label();
+            CmdDeleteOrder = new Button();
+            LblInfoOrderNumber = new Label();
+            LblInfoCustomerFirstName = new Label();
+            LblInfoOrderCustomerNumber = new Label();
+            LblInfoCustomerLastName = new Label();
+            TxtInputOrderCustomerFirstName = new TextBox();
+            TxtInputOrderCustomerLastName = new TextBox();
+            TxtInputOrderNumber = new TextBox();
+            TxtInputCustomerNumber = new TextBox();
+            GrpPositions = new GroupBox();
+            GrpInformationSelectedPosition = new GroupBox();
+            CmdDeletePosition = new Button();
+            CmdSavePositionChanges = new Button();
+            CmdSaveAsNewPosition = new Button();
+            TxtInputPositionNumber = new TextBox();
+            LblInfoPositionNumber = new Label();
+            DataGridViewOrderPositions = new DataGridView();
+            positionNumber = new DataGridViewTextBoxColumn();
+            article = new DataGridViewTextBoxColumn();
+            quantity = new DataGridViewTextBoxColumn();
+            CmdOpenSelectedPosition = new Button();
+            CmdAddNewPosition = new Button();
+            CmdDeleteSelectedPositions = new Button();
+            GrpInformation = new GroupBox();
+            CmdShowInvoice = new Button();
+            TxtInputOrderDate = new TextBox();
+            TxtInputInvoiceNumber = new TextBox();
+            LblInfoOrderDate = new Label();
+            LblInfoInvoiceNumber = new Label();
             LblInfoSearchOrdersCustomerNumber = new Label();
-            GrpInformationArticleGroup = new GroupBox();
-            TxtInputArticleGroupName = new TextBox();
-            GrpInformationArticleGroupName = new Label();
-            GrpInformationArticleGroupParent = new Label();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            TxtSearchCustomerAdress = new TextBox();
-            TxtSearchCustomerCity = new TextBox();
-            TxtSearchCustomerCountry = new TextBox();
-            LblInfoSearchCustomerAdress = new Label();
-            LblInfoSearchCustomerCity = new Label();
-            LblInfoSearchCustomerCountry = new Label();
-            CmbInputArticleGroupParent = new ComboBox();
+            LblInfoSearchOrdersCustomerFirstName = new Label();
+            LblInfoSearchOrdersPriceFrom = new Label();
+            LblInfoSearchOrdersCustomerLastName = new Label();
+            LblInfoSearchOrdersPriceTo = new Label();
+            CmdSearchOrders = new Button();
+            CmdResetSearchFilters = new Button();
+            TxtSearchCustomerNumber = new TextBox();
+            TxtSearchOrderPriceFrom = new TextBox();
+            TxtSearchOrderPriceTo = new TextBox();
+            TxtSearchOrdersCustomerFirstName = new TextBox();
+            TxtSearchOrdersCustomerLastName = new TextBox();
+            LblInfoSearchOrdersDateFrom = new Label();
+            LblInfoSearchOrdersDateUntil = new Label();
+            LblInfoSearchOrdersPositionNumber = new Label();
+            TxtSearchOrdersPositionNumber = new TextBox();
+            DatSearchOrdersFrom = new DateTimePicker();
+            DatSearchOrdersUntil = new DateTimePicker();
+            GrpSearch = new GroupBox();
+            CmdDeleteSelectedObject = new Button();
+            CmdCreateEmptyArticle = new Button();
+            CmdShowAllOrders = new Button();
+            DataGridViewOrdersResults = new DataGridView();
+            GrpResults = new GroupBox();
+            LblInfoPositionArticle = new Label();
+            LblInfoPositionArticleQuantity = new Label();
+            TxtInputOrderPositionArticleQuantity = new TextBox();
+            CmbInputArticle = new ComboBox();
             GrpNavigation.SuspendLayout();
-            GrpResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewOrdersResults).BeginInit();
-            GrpInformationArticle.SuspendLayout();
+            GrpPositions.SuspendLayout();
+            GrpInformationSelectedPosition.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewOrderPositions).BeginInit();
+            GrpInformation.SuspendLayout();
             GrpSearch.SuspendLayout();
-            GrpInformationArticleGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewOrdersResults).BeginInit();
+            GrpResults.SuspendLayout();
             SuspendLayout();
             // 
             // CmdCustomers
@@ -135,6 +154,534 @@
             CmdCloseProgram.UseVisualStyleBackColor = true;
             CmdCloseProgram.Click += CmdCloseProgram_Click;
             // 
+            // CmdDeleteOrder
+            // 
+            CmdDeleteOrder.Location = new Point(412, 106);
+            CmdDeleteOrder.Name = "CmdDeleteOrder";
+            CmdDeleteOrder.Size = new Size(110, 23);
+            CmdDeleteOrder.TabIndex = 0;
+            CmdDeleteOrder.Text = "Delete Order";
+            CmdDeleteOrder.UseVisualStyleBackColor = true;
+            // 
+            // LblInfoOrderNumber
+            // 
+            LblInfoOrderNumber.AutoSize = true;
+            LblInfoOrderNumber.Location = new Point(21, 30);
+            LblInfoOrderNumber.Name = "LblInfoOrderNumber";
+            LblInfoOrderNumber.Size = new Size(84, 15);
+            LblInfoOrderNumber.TabIndex = 1;
+            LblInfoOrderNumber.Text = "Order Number";
+            // 
+            // LblInfoCustomerFirstName
+            // 
+            LblInfoCustomerFirstName.AutoSize = true;
+            LblInfoCustomerFirstName.Location = new Point(264, 50);
+            LblInfoCustomerFirstName.Name = "LblInfoCustomerFirstName";
+            LblInfoCustomerFirstName.Size = new Size(64, 15);
+            LblInfoCustomerFirstName.TabIndex = 1;
+            LblInfoCustomerFirstName.Text = "First Name";
+            // 
+            // LblInfoOrderCustomerNumber
+            // 
+            LblInfoOrderCustomerNumber.AutoSize = true;
+            LblInfoOrderCustomerNumber.Location = new Point(263, 31);
+            LblInfoOrderCustomerNumber.Name = "LblInfoOrderCustomerNumber";
+            LblInfoOrderCustomerNumber.Size = new Size(106, 15);
+            LblInfoOrderCustomerNumber.TabIndex = 1;
+            LblInfoOrderCustomerNumber.Text = "Customer Number";
+            // 
+            // LblInfoCustomerLastName
+            // 
+            LblInfoCustomerLastName.AutoSize = true;
+            LblInfoCustomerLastName.Location = new Point(264, 69);
+            LblInfoCustomerLastName.Name = "LblInfoCustomerLastName";
+            LblInfoCustomerLastName.Size = new Size(63, 15);
+            LblInfoCustomerLastName.TabIndex = 1;
+            LblInfoCustomerLastName.Text = "Last Name";
+            // 
+            // TxtInputOrderCustomerFirstName
+            // 
+            TxtInputOrderCustomerFirstName.BackColor = SystemColors.ScrollBar;
+            TxtInputOrderCustomerFirstName.BorderStyle = BorderStyle.None;
+            TxtInputOrderCustomerFirstName.Cursor = Cursors.IBeam;
+            TxtInputOrderCustomerFirstName.Location = new Point(382, 50);
+            TxtInputOrderCustomerFirstName.Name = "TxtInputOrderCustomerFirstName";
+            TxtInputOrderCustomerFirstName.ReadOnly = true;
+            TxtInputOrderCustomerFirstName.Size = new Size(125, 16);
+            TxtInputOrderCustomerFirstName.TabIndex = 2;
+            // 
+            // TxtInputOrderCustomerLastName
+            // 
+            TxtInputOrderCustomerLastName.BackColor = SystemColors.ScrollBar;
+            TxtInputOrderCustomerLastName.BorderStyle = BorderStyle.None;
+            TxtInputOrderCustomerLastName.Cursor = Cursors.IBeam;
+            TxtInputOrderCustomerLastName.Location = new Point(382, 69);
+            TxtInputOrderCustomerLastName.Name = "TxtInputOrderCustomerLastName";
+            TxtInputOrderCustomerLastName.ReadOnly = true;
+            TxtInputOrderCustomerLastName.Size = new Size(125, 16);
+            TxtInputOrderCustomerLastName.TabIndex = 2;
+            // 
+            // TxtInputOrderNumber
+            // 
+            TxtInputOrderNumber.BackColor = SystemColors.ScrollBar;
+            TxtInputOrderNumber.BorderStyle = BorderStyle.None;
+            TxtInputOrderNumber.Cursor = Cursors.IBeam;
+            TxtInputOrderNumber.Location = new Point(133, 31);
+            TxtInputOrderNumber.Name = "TxtInputOrderNumber";
+            TxtInputOrderNumber.ReadOnly = true;
+            TxtInputOrderNumber.Size = new Size(125, 16);
+            TxtInputOrderNumber.TabIndex = 2;
+            // 
+            // TxtInputCustomerNumber
+            // 
+            TxtInputCustomerNumber.BackColor = SystemColors.ScrollBar;
+            TxtInputCustomerNumber.BorderStyle = BorderStyle.None;
+            TxtInputCustomerNumber.Cursor = Cursors.IBeam;
+            TxtInputCustomerNumber.Location = new Point(382, 31);
+            TxtInputCustomerNumber.Name = "TxtInputCustomerNumber";
+            TxtInputCustomerNumber.ReadOnly = true;
+            TxtInputCustomerNumber.Size = new Size(125, 16);
+            TxtInputCustomerNumber.TabIndex = 2;
+            // 
+            // GrpPositions
+            // 
+            GrpPositions.Controls.Add(GrpInformationSelectedPosition);
+            GrpPositions.Controls.Add(DataGridViewOrderPositions);
+            GrpPositions.Controls.Add(CmdOpenSelectedPosition);
+            GrpPositions.Controls.Add(CmdAddNewPosition);
+            GrpPositions.Controls.Add(CmdDeleteSelectedPositions);
+            GrpPositions.ForeColor = SystemColors.ControlText;
+            GrpPositions.Location = new Point(0, 144);
+            GrpPositions.Name = "GrpPositions";
+            GrpPositions.Size = new Size(528, 492);
+            GrpPositions.TabIndex = 2;
+            GrpPositions.TabStop = false;
+            GrpPositions.Text = "Positions";
+            // 
+            // GrpInformationSelectedPosition
+            // 
+            GrpInformationSelectedPosition.Controls.Add(CmbInputArticle);
+            GrpInformationSelectedPosition.Controls.Add(CmdDeletePosition);
+            GrpInformationSelectedPosition.Controls.Add(CmdSavePositionChanges);
+            GrpInformationSelectedPosition.Controls.Add(CmdSaveAsNewPosition);
+            GrpInformationSelectedPosition.Controls.Add(TxtInputOrderPositionArticleQuantity);
+            GrpInformationSelectedPosition.Controls.Add(LblInfoPositionArticleQuantity);
+            GrpInformationSelectedPosition.Controls.Add(LblInfoPositionArticle);
+            GrpInformationSelectedPosition.Controls.Add(TxtInputPositionNumber);
+            GrpInformationSelectedPosition.Controls.Add(LblInfoPositionNumber);
+            GrpInformationSelectedPosition.Location = new Point(0, 357);
+            GrpInformationSelectedPosition.Name = "GrpInformationSelectedPosition";
+            GrpInformationSelectedPosition.Size = new Size(528, 135);
+            GrpInformationSelectedPosition.TabIndex = 4;
+            GrpInformationSelectedPosition.TabStop = false;
+            GrpInformationSelectedPosition.Text = "Information selected Position";
+            GrpInformationSelectedPosition.Visible = false;
+            // 
+            // CmdDeletePosition
+            // 
+            CmdDeletePosition.Location = new Point(412, 106);
+            CmdDeletePosition.Name = "CmdDeletePosition";
+            CmdDeletePosition.Size = new Size(110, 23);
+            CmdDeletePosition.TabIndex = 0;
+            CmdDeletePosition.Text = "Delete Position";
+            CmdDeletePosition.UseVisualStyleBackColor = true;
+            // 
+            // CmdSavePositionChanges
+            // 
+            CmdSavePositionChanges.Location = new Point(307, 106);
+            CmdSavePositionChanges.Name = "CmdSavePositionChanges";
+            CmdSavePositionChanges.Size = new Size(99, 23);
+            CmdSavePositionChanges.TabIndex = 0;
+            CmdSavePositionChanges.Text = "Save changes";
+            CmdSavePositionChanges.UseVisualStyleBackColor = true;
+            // 
+            // CmdSaveAsNewPosition
+            // 
+            CmdSaveAsNewPosition.Location = new Point(6, 106);
+            CmdSaveAsNewPosition.Name = "CmdSaveAsNewPosition";
+            CmdSaveAsNewPosition.Size = new Size(156, 23);
+            CmdSaveAsNewPosition.TabIndex = 0;
+            CmdSaveAsNewPosition.Text = "Save as new Position";
+            CmdSaveAsNewPosition.UseVisualStyleBackColor = true;
+            // 
+            // TxtInputPositionNumber
+            // 
+            TxtInputPositionNumber.BackColor = SystemColors.ScrollBar;
+            TxtInputPositionNumber.BorderStyle = BorderStyle.None;
+            TxtInputPositionNumber.Cursor = Cursors.IBeam;
+            TxtInputPositionNumber.Location = new Point(133, 38);
+            TxtInputPositionNumber.Name = "TxtInputPositionNumber";
+            TxtInputPositionNumber.ReadOnly = true;
+            TxtInputPositionNumber.Size = new Size(133, 16);
+            TxtInputPositionNumber.TabIndex = 2;
+            // 
+            // LblInfoPositionNumber
+            // 
+            LblInfoPositionNumber.AutoSize = true;
+            LblInfoPositionNumber.Location = new Point(21, 38);
+            LblInfoPositionNumber.Name = "LblInfoPositionNumber";
+            LblInfoPositionNumber.Size = new Size(97, 15);
+            LblInfoPositionNumber.TabIndex = 1;
+            LblInfoPositionNumber.Text = "Position Number";
+            // 
+            // DataGridViewOrderPositions
+            // 
+            DataGridViewOrderPositions.AllowUserToAddRows = false;
+            DataGridViewOrderPositions.AllowUserToDeleteRows = false;
+            DataGridViewOrderPositions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewOrderPositions.Columns.AddRange(new DataGridViewColumn[] { positionNumber, article, quantity });
+            DataGridViewOrderPositions.Location = new Point(6, 22);
+            DataGridViewOrderPositions.Name = "DataGridViewOrderPositions";
+            DataGridViewOrderPositions.ReadOnly = true;
+            DataGridViewOrderPositions.Size = new Size(516, 291);
+            DataGridViewOrderPositions.TabIndex = 1;
+            // 
+            // positionNumber
+            // 
+            positionNumber.HeaderText = "Position Number";
+            positionNumber.Name = "positionNumber";
+            positionNumber.ReadOnly = true;
+            positionNumber.Width = 150;
+            // 
+            // article
+            // 
+            article.HeaderText = "Article";
+            article.Name = "article";
+            article.ReadOnly = true;
+            article.Width = 150;
+            // 
+            // quantity
+            // 
+            quantity.HeaderText = "Quantity";
+            quantity.Name = "quantity";
+            quantity.ReadOnly = true;
+            quantity.Width = 150;
+            // 
+            // CmdOpenSelectedPosition
+            // 
+            CmdOpenSelectedPosition.Location = new Point(6, 319);
+            CmdOpenSelectedPosition.Name = "CmdOpenSelectedPosition";
+            CmdOpenSelectedPosition.Size = new Size(142, 23);
+            CmdOpenSelectedPosition.TabIndex = 0;
+            CmdOpenSelectedPosition.Text = "Open selected Position";
+            CmdOpenSelectedPosition.UseVisualStyleBackColor = true;
+            CmdOpenSelectedPosition.Click += CmdOpenSelectedPosition_Click;
+            // 
+            // CmdAddNewPosition
+            // 
+            CmdAddNewPosition.Location = new Point(233, 319);
+            CmdAddNewPosition.Name = "CmdAddNewPosition";
+            CmdAddNewPosition.Size = new Size(114, 23);
+            CmdAddNewPosition.TabIndex = 0;
+            CmdAddNewPosition.Text = "Add new Position";
+            CmdAddNewPosition.UseVisualStyleBackColor = true;
+            CmdAddNewPosition.Click += CmdAddNewPosition_Click;
+            // 
+            // CmdDeleteSelectedPositions
+            // 
+            CmdDeleteSelectedPositions.Location = new Point(353, 319);
+            CmdDeleteSelectedPositions.Name = "CmdDeleteSelectedPositions";
+            CmdDeleteSelectedPositions.Size = new Size(169, 23);
+            CmdDeleteSelectedPositions.TabIndex = 0;
+            CmdDeleteSelectedPositions.Text = "Delete selected Positions(s)";
+            CmdDeleteSelectedPositions.UseVisualStyleBackColor = true;
+            // 
+            // GrpInformation
+            // 
+            GrpInformation.Controls.Add(GrpPositions);
+            GrpInformation.Controls.Add(TxtInputCustomerNumber);
+            GrpInformation.Controls.Add(CmdShowInvoice);
+            GrpInformation.Controls.Add(TxtInputOrderDate);
+            GrpInformation.Controls.Add(TxtInputInvoiceNumber);
+            GrpInformation.Controls.Add(TxtInputOrderNumber);
+            GrpInformation.Controls.Add(TxtInputOrderCustomerLastName);
+            GrpInformation.Controls.Add(TxtInputOrderCustomerFirstName);
+            GrpInformation.Controls.Add(LblInfoCustomerLastName);
+            GrpInformation.Controls.Add(LblInfoOrderCustomerNumber);
+            GrpInformation.Controls.Add(LblInfoOrderDate);
+            GrpInformation.Controls.Add(LblInfoInvoiceNumber);
+            GrpInformation.Controls.Add(LblInfoCustomerFirstName);
+            GrpInformation.Controls.Add(LblInfoOrderNumber);
+            GrpInformation.Controls.Add(CmdDeleteOrder);
+            GrpInformation.Location = new Point(695, 12);
+            GrpInformation.Name = "GrpInformation";
+            GrpInformation.Size = new Size(528, 636);
+            GrpInformation.TabIndex = 3;
+            GrpInformation.TabStop = false;
+            GrpInformation.Text = "Information selected Order";
+            // 
+            // CmdShowInvoice
+            // 
+            CmdShowInvoice.Location = new Point(6, 106);
+            CmdShowInvoice.Name = "CmdShowInvoice";
+            CmdShowInvoice.Size = new Size(179, 23);
+            CmdShowInvoice.TabIndex = 0;
+            CmdShowInvoice.Text = "Show corresponding Invoice";
+            CmdShowInvoice.UseVisualStyleBackColor = true;
+            // 
+            // TxtInputOrderDate
+            // 
+            TxtInputOrderDate.BackColor = SystemColors.ScrollBar;
+            TxtInputOrderDate.BorderStyle = BorderStyle.None;
+            TxtInputOrderDate.Cursor = Cursors.IBeam;
+            TxtInputOrderDate.Location = new Point(133, 50);
+            TxtInputOrderDate.Name = "TxtInputOrderDate";
+            TxtInputOrderDate.ReadOnly = true;
+            TxtInputOrderDate.Size = new Size(125, 16);
+            TxtInputOrderDate.TabIndex = 2;
+            // 
+            // TxtInputInvoiceNumber
+            // 
+            TxtInputInvoiceNumber.BackColor = SystemColors.ScrollBar;
+            TxtInputInvoiceNumber.BorderStyle = BorderStyle.None;
+            TxtInputInvoiceNumber.Cursor = Cursors.IBeam;
+            TxtInputInvoiceNumber.Location = new Point(133, 69);
+            TxtInputInvoiceNumber.Name = "TxtInputInvoiceNumber";
+            TxtInputInvoiceNumber.ReadOnly = true;
+            TxtInputInvoiceNumber.Size = new Size(125, 16);
+            TxtInputInvoiceNumber.TabIndex = 2;
+            // 
+            // LblInfoOrderDate
+            // 
+            LblInfoOrderDate.AutoSize = true;
+            LblInfoOrderDate.Location = new Point(21, 50);
+            LblInfoOrderDate.Name = "LblInfoOrderDate";
+            LblInfoOrderDate.Size = new Size(64, 15);
+            LblInfoOrderDate.TabIndex = 1;
+            LblInfoOrderDate.Text = "Order Date";
+            // 
+            // LblInfoInvoiceNumber
+            // 
+            LblInfoInvoiceNumber.AutoSize = true;
+            LblInfoInvoiceNumber.Location = new Point(21, 68);
+            LblInfoInvoiceNumber.Name = "LblInfoInvoiceNumber";
+            LblInfoInvoiceNumber.Size = new Size(92, 15);
+            LblInfoInvoiceNumber.TabIndex = 1;
+            LblInfoInvoiceNumber.Text = "Invoice Number";
+            // 
+            // LblInfoSearchOrdersCustomerNumber
+            // 
+            LblInfoSearchOrdersCustomerNumber.AutoSize = true;
+            LblInfoSearchOrdersCustomerNumber.Location = new Point(26, 30);
+            LblInfoSearchOrdersCustomerNumber.Name = "LblInfoSearchOrdersCustomerNumber";
+            LblInfoSearchOrdersCustomerNumber.Size = new Size(106, 15);
+            LblInfoSearchOrdersCustomerNumber.TabIndex = 1;
+            LblInfoSearchOrdersCustomerNumber.Text = "Customer Number";
+            // 
+            // LblInfoSearchOrdersCustomerFirstName
+            // 
+            LblInfoSearchOrdersCustomerFirstName.AutoSize = true;
+            LblInfoSearchOrdersCustomerFirstName.Location = new Point(192, 30);
+            LblInfoSearchOrdersCustomerFirstName.Name = "LblInfoSearchOrdersCustomerFirstName";
+            LblInfoSearchOrdersCustomerFirstName.Size = new Size(64, 15);
+            LblInfoSearchOrdersCustomerFirstName.TabIndex = 1;
+            LblInfoSearchOrdersCustomerFirstName.Text = "First Name";
+            // 
+            // LblInfoSearchOrdersPriceFrom
+            // 
+            LblInfoSearchOrdersPriceFrom.AutoSize = true;
+            LblInfoSearchOrdersPriceFrom.Location = new Point(26, 144);
+            LblInfoSearchOrdersPriceFrom.Name = "LblInfoSearchOrdersPriceFrom";
+            LblInfoSearchOrdersPriceFrom.Size = new Size(95, 15);
+            LblInfoSearchOrdersPriceFrom.TabIndex = 1;
+            LblInfoSearchOrdersPriceFrom.Text = "Order Price from";
+            // 
+            // LblInfoSearchOrdersCustomerLastName
+            // 
+            LblInfoSearchOrdersCustomerLastName.AutoSize = true;
+            LblInfoSearchOrdersCustomerLastName.Location = new Point(357, 30);
+            LblInfoSearchOrdersCustomerLastName.Name = "LblInfoSearchOrdersCustomerLastName";
+            LblInfoSearchOrdersCustomerLastName.Size = new Size(63, 15);
+            LblInfoSearchOrdersCustomerLastName.TabIndex = 1;
+            LblInfoSearchOrdersCustomerLastName.Text = "Last Name";
+            // 
+            // LblInfoSearchOrdersPriceTo
+            // 
+            LblInfoSearchOrdersPriceTo.AutoSize = true;
+            LblInfoSearchOrdersPriceTo.Location = new Point(192, 144);
+            LblInfoSearchOrdersPriceTo.Name = "LblInfoSearchOrdersPriceTo";
+            LblInfoSearchOrdersPriceTo.Size = new Size(97, 15);
+            LblInfoSearchOrdersPriceTo.TabIndex = 1;
+            LblInfoSearchOrdersPriceTo.Text = "Order Price up to";
+            // 
+            // CmdSearchOrders
+            // 
+            CmdSearchOrders.Location = new Point(396, 216);
+            CmdSearchOrders.Name = "CmdSearchOrders";
+            CmdSearchOrders.Size = new Size(126, 23);
+            CmdSearchOrders.TabIndex = 0;
+            CmdSearchOrders.Text = "Search Orders";
+            CmdSearchOrders.UseVisualStyleBackColor = true;
+            CmdSearchOrders.Click += CmdSearchCustomers_Click;
+            // 
+            // CmdResetSearchFilters
+            // 
+            CmdResetSearchFilters.Location = new Point(273, 216);
+            CmdResetSearchFilters.Name = "CmdResetSearchFilters";
+            CmdResetSearchFilters.Size = new Size(117, 23);
+            CmdResetSearchFilters.TabIndex = 0;
+            CmdResetSearchFilters.Text = "Reset search filters";
+            CmdResetSearchFilters.UseVisualStyleBackColor = true;
+            CmdResetSearchFilters.Click += CmdResetSearchFilters_Click;
+            // 
+            // TxtSearchCustomerNumber
+            // 
+            TxtSearchCustomerNumber.Location = new Point(26, 50);
+            TxtSearchCustomerNumber.Name = "TxtSearchCustomerNumber";
+            TxtSearchCustomerNumber.Size = new Size(145, 23);
+            TxtSearchCustomerNumber.TabIndex = 2;
+            // 
+            // TxtSearchOrderPriceFrom
+            // 
+            TxtSearchOrderPriceFrom.Location = new Point(26, 164);
+            TxtSearchOrderPriceFrom.Name = "TxtSearchOrderPriceFrom";
+            TxtSearchOrderPriceFrom.Size = new Size(145, 23);
+            TxtSearchOrderPriceFrom.TabIndex = 2;
+            // 
+            // TxtSearchOrderPriceTo
+            // 
+            TxtSearchOrderPriceTo.Location = new Point(192, 164);
+            TxtSearchOrderPriceTo.Name = "TxtSearchOrderPriceTo";
+            TxtSearchOrderPriceTo.Size = new Size(145, 23);
+            TxtSearchOrderPriceTo.TabIndex = 2;
+            // 
+            // TxtSearchOrdersCustomerFirstName
+            // 
+            TxtSearchOrdersCustomerFirstName.BackColor = SystemColors.ScrollBar;
+            TxtSearchOrdersCustomerFirstName.BorderStyle = BorderStyle.FixedSingle;
+            TxtSearchOrdersCustomerFirstName.Location = new Point(192, 50);
+            TxtSearchOrdersCustomerFirstName.Name = "TxtSearchOrdersCustomerFirstName";
+            TxtSearchOrdersCustomerFirstName.Size = new Size(145, 23);
+            TxtSearchOrdersCustomerFirstName.TabIndex = 2;
+            // 
+            // TxtSearchOrdersCustomerLastName
+            // 
+            TxtSearchOrdersCustomerLastName.BackColor = SystemColors.ScrollBar;
+            TxtSearchOrdersCustomerLastName.BorderStyle = BorderStyle.FixedSingle;
+            TxtSearchOrdersCustomerLastName.Location = new Point(357, 50);
+            TxtSearchOrdersCustomerLastName.Name = "TxtSearchOrdersCustomerLastName";
+            TxtSearchOrdersCustomerLastName.Size = new Size(145, 23);
+            TxtSearchOrdersCustomerLastName.TabIndex = 2;
+            // 
+            // LblInfoSearchOrdersDateFrom
+            // 
+            LblInfoSearchOrdersDateFrom.AutoSize = true;
+            LblInfoSearchOrdersDateFrom.Location = new Point(26, 89);
+            LblInfoSearchOrdersDateFrom.Name = "LblInfoSearchOrdersDateFrom";
+            LblInfoSearchOrdersDateFrom.Size = new Size(60, 15);
+            LblInfoSearchOrdersDateFrom.TabIndex = 5;
+            LblInfoSearchOrdersDateFrom.Text = "Date from";
+            // 
+            // LblInfoSearchOrdersDateUntil
+            // 
+            LblInfoSearchOrdersDateUntil.AutoSize = true;
+            LblInfoSearchOrdersDateUntil.Location = new Point(192, 89);
+            LblInfoSearchOrdersDateUntil.Name = "LblInfoSearchOrdersDateUntil";
+            LblInfoSearchOrdersDateUntil.Size = new Size(58, 15);
+            LblInfoSearchOrdersDateUntil.TabIndex = 4;
+            LblInfoSearchOrdersDateUntil.Text = "Date until";
+            // 
+            // LblInfoSearchOrdersPositionNumber
+            // 
+            LblInfoSearchOrdersPositionNumber.AutoSize = true;
+            LblInfoSearchOrdersPositionNumber.Location = new Point(357, 89);
+            LblInfoSearchOrdersPositionNumber.Name = "LblInfoSearchOrdersPositionNumber";
+            LblInfoSearchOrdersPositionNumber.Size = new Size(94, 15);
+            LblInfoSearchOrdersPositionNumber.TabIndex = 3;
+            LblInfoSearchOrdersPositionNumber.Text = "PositionNumber";
+            // 
+            // TxtSearchOrdersPositionNumber
+            // 
+            TxtSearchOrdersPositionNumber.Location = new Point(357, 107);
+            TxtSearchOrdersPositionNumber.Name = "TxtSearchOrdersPositionNumber";
+            TxtSearchOrdersPositionNumber.Size = new Size(145, 23);
+            TxtSearchOrdersPositionNumber.TabIndex = 6;
+            // 
+            // DatSearchOrdersFrom
+            // 
+            DatSearchOrdersFrom.CustomFormat = "HTML Format";
+            DatSearchOrdersFrom.Location = new Point(26, 107);
+            DatSearchOrdersFrom.Name = "DatSearchOrdersFrom";
+            DatSearchOrdersFrom.Size = new Size(145, 23);
+            DatSearchOrdersFrom.TabIndex = 9;
+            DatSearchOrdersFrom.Value = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            // 
+            // DatSearchOrdersUntil
+            // 
+            DatSearchOrdersUntil.CustomFormat = "HTML Format";
+            DatSearchOrdersUntil.Location = new Point(192, 107);
+            DatSearchOrdersUntil.Name = "DatSearchOrdersUntil";
+            DatSearchOrdersUntil.Size = new Size(145, 23);
+            DatSearchOrdersUntil.TabIndex = 9;
+            DatSearchOrdersUntil.Value = new DateTime(2100, 1, 1, 0, 0, 0, 0);
+            // 
+            // GrpSearch
+            // 
+            GrpSearch.Controls.Add(DatSearchOrdersUntil);
+            GrpSearch.Controls.Add(DatSearchOrdersFrom);
+            GrpSearch.Controls.Add(TxtSearchOrdersPositionNumber);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersPositionNumber);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersDateUntil);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersDateFrom);
+            GrpSearch.Controls.Add(TxtSearchOrdersCustomerLastName);
+            GrpSearch.Controls.Add(TxtSearchOrdersCustomerFirstName);
+            GrpSearch.Controls.Add(TxtSearchOrderPriceTo);
+            GrpSearch.Controls.Add(TxtSearchOrderPriceFrom);
+            GrpSearch.Controls.Add(TxtSearchCustomerNumber);
+            GrpSearch.Controls.Add(CmdResetSearchFilters);
+            GrpSearch.Controls.Add(CmdSearchOrders);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersPriceTo);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersCustomerLastName);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersPriceFrom);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersCustomerFirstName);
+            GrpSearch.Controls.Add(LblInfoSearchOrdersCustomerNumber);
+            GrpSearch.ForeColor = SystemColors.ControlText;
+            GrpSearch.Location = new Point(143, 12);
+            GrpSearch.Name = "GrpSearch";
+            GrpSearch.Size = new Size(528, 245);
+            GrpSearch.TabIndex = 2;
+            GrpSearch.TabStop = false;
+            GrpSearch.Text = "Search";
+            // 
+            // CmdDeleteSelectedObject
+            // 
+            CmdDeleteSelectedObject.Location = new Point(358, 356);
+            CmdDeleteSelectedObject.Name = "CmdDeleteSelectedObject";
+            CmdDeleteSelectedObject.Size = new Size(165, 23);
+            CmdDeleteSelectedObject.TabIndex = 0;
+            CmdDeleteSelectedObject.Text = "Delete selected Object";
+            CmdDeleteSelectedObject.UseVisualStyleBackColor = true;
+            CmdDeleteSelectedObject.Click += CmdDeleteSelectedCustomers_Click;
+            // 
+            // CmdCreateEmptyArticle
+            // 
+            CmdCreateEmptyArticle.Location = new Point(217, 356);
+            CmdCreateEmptyArticle.Name = "CmdCreateEmptyArticle";
+            CmdCreateEmptyArticle.Size = new Size(135, 23);
+            CmdCreateEmptyArticle.TabIndex = 0;
+            CmdCreateEmptyArticle.Text = "Create new Order";
+            CmdCreateEmptyArticle.UseVisualStyleBackColor = true;
+            CmdCreateEmptyArticle.Click += CmdCreateEmptyCustomer_Click;
+            // 
+            // CmdShowAllOrders
+            // 
+            CmdShowAllOrders.Location = new Point(7, 356);
+            CmdShowAllOrders.Name = "CmdShowAllOrders";
+            CmdShowAllOrders.Size = new Size(126, 23);
+            CmdShowAllOrders.TabIndex = 0;
+            CmdShowAllOrders.Text = "Show all Orders";
+            CmdShowAllOrders.UseVisualStyleBackColor = true;
+            CmdShowAllOrders.Click += CmdShowAllCustomers_Click;
+            // 
+            // DataGridViewOrdersResults
+            // 
+            DataGridViewOrdersResults.AllowUserToDeleteRows = false;
+            DataGridViewOrdersResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewOrdersResults.Location = new Point(7, 22);
+            DataGridViewOrdersResults.Name = "DataGridViewOrdersResults";
+            DataGridViewOrdersResults.Size = new Size(516, 328);
+            DataGridViewOrdersResults.TabIndex = 2;
+            // 
             // GrpResults
             // 
             GrpResults.Controls.Add(DataGridViewOrdersResults);
@@ -149,427 +696,69 @@
             GrpResults.TabStop = false;
             GrpResults.Text = "Orders";
             // 
-            // DataGridViewOrdersResults
-            // 
-            DataGridViewOrdersResults.AllowUserToDeleteRows = false;
-            DataGridViewOrdersResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewOrdersResults.Location = new Point(7, 22);
-            DataGridViewOrdersResults.Name = "DataGridViewOrdersResults";
-            DataGridViewOrdersResults.Size = new Size(516, 328);
-            DataGridViewOrdersResults.TabIndex = 2;
-            // 
-            // CmdShowAllOrders
-            // 
-            CmdShowAllOrders.Location = new Point(7, 356);
-            CmdShowAllOrders.Name = "CmdShowAllOrders";
-            CmdShowAllOrders.Size = new Size(126, 23);
-            CmdShowAllOrders.TabIndex = 0;
-            CmdShowAllOrders.Text = "Show all Orders";
-            CmdShowAllOrders.UseVisualStyleBackColor = true;
-            CmdShowAllOrders.Click += CmdShowAllCustomers_Click;
-            // 
-            // CmdCreateEmptyArticle
-            // 
-            CmdCreateEmptyArticle.Location = new Point(217, 356);
-            CmdCreateEmptyArticle.Name = "CmdCreateEmptyArticle";
-            CmdCreateEmptyArticle.Size = new Size(135, 23);
-            CmdCreateEmptyArticle.TabIndex = 0;
-            CmdCreateEmptyArticle.Text = "Create new Order";
-            CmdCreateEmptyArticle.UseVisualStyleBackColor = true;
-            CmdCreateEmptyArticle.Click += CmdCreateEmptyCustomer_Click;
-            // 
-            // CmdDeleteSelectedObject
-            // 
-            CmdDeleteSelectedObject.Location = new Point(358, 356);
-            CmdDeleteSelectedObject.Name = "CmdDeleteSelectedObject";
-            CmdDeleteSelectedObject.Size = new Size(165, 23);
-            CmdDeleteSelectedObject.TabIndex = 0;
-            CmdDeleteSelectedObject.Text = "Delete selected Object";
-            CmdDeleteSelectedObject.UseVisualStyleBackColor = true;
-            CmdDeleteSelectedObject.Click += CmdDeleteSelectedCustomers_Click;
-            // 
-            // GrpInformationArticle
-            // 
-            GrpInformationArticle.Controls.Add(TxtInputArticleNumber);
-            GrpInformationArticle.Controls.Add(TxtInputArticlePrice);
-            GrpInformationArticle.Controls.Add(TxtInputArticleName);
-            GrpInformationArticle.Controls.Add(LblInfoArticlePrice);
-            GrpInformationArticle.Controls.Add(LblInfoArticleName);
-            GrpInformationArticle.Controls.Add(LblInfoArticleNumber);
-            GrpInformationArticle.Controls.Add(LblInfoArticleGroup);
-            GrpInformationArticle.Controls.Add(button3);
-            GrpInformationArticle.Controls.Add(button2);
-            GrpInformationArticle.Controls.Add(button1);
-            GrpInformationArticle.Controls.Add(CmbInputArticleGroup);
-            GrpInformationArticle.Location = new Point(695, 12);
-            GrpInformationArticle.Name = "GrpInformationArticle";
-            GrpInformationArticle.Size = new Size(528, 123);
-            GrpInformationArticle.TabIndex = 2;
-            GrpInformationArticle.TabStop = false;
-            GrpInformationArticle.Text = "Information selected Article";
-            // 
-            // TxtInputArticleNumber
-            // 
-            TxtInputArticleNumber.BackColor = SystemColors.ScrollBar;
-            TxtInputArticleNumber.BorderStyle = BorderStyle.None;
-            TxtInputArticleNumber.Cursor = Cursors.IBeam;
-            TxtInputArticleNumber.Location = new Point(374, 30);
-            TxtInputArticleNumber.Name = "TxtInputArticleNumber";
-            TxtInputArticleNumber.ReadOnly = true;
-            TxtInputArticleNumber.Size = new Size(133, 16);
-            TxtInputArticleNumber.TabIndex = 2;
-            // 
-            // TxtInputArticlePrice
-            // 
-            TxtInputArticlePrice.BackColor = SystemColors.Window;
-            TxtInputArticlePrice.BorderStyle = BorderStyle.None;
-            TxtInputArticlePrice.Cursor = Cursors.IBeam;
-            TxtInputArticlePrice.Location = new Point(374, 57);
-            TxtInputArticlePrice.Name = "TxtInputArticlePrice";
-            TxtInputArticlePrice.Size = new Size(133, 16);
-            TxtInputArticlePrice.TabIndex = 2;
-            // 
-            // TxtInputArticleName
-            // 
-            TxtInputArticleName.BackColor = SystemColors.Window;
-            TxtInputArticleName.BorderStyle = BorderStyle.None;
-            TxtInputArticleName.Cursor = Cursors.IBeam;
-            TxtInputArticleName.Location = new Point(120, 57);
-            TxtInputArticleName.Name = "TxtInputArticleName";
-            TxtInputArticleName.Size = new Size(133, 16);
-            TxtInputArticleName.TabIndex = 2;
-            // 
-            // LblInfoArticlePrice
-            // 
-            LblInfoArticlePrice.AutoSize = true;
-            LblInfoArticlePrice.Location = new Point(275, 58);
-            LblInfoArticlePrice.Name = "LblInfoArticlePrice";
-            LblInfoArticlePrice.Size = new Size(70, 15);
-            LblInfoArticlePrice.TabIndex = 1;
-            LblInfoArticlePrice.Text = "Article Price";
-            // 
-            // LblInfoArticleName
-            // 
-            LblInfoArticleName.AutoSize = true;
-            LblInfoArticleName.Location = new Point(21, 58);
-            LblInfoArticleName.Name = "LblInfoArticleName";
-            LblInfoArticleName.Size = new Size(76, 15);
-            LblInfoArticleName.TabIndex = 1;
-            LblInfoArticleName.Text = "Article Name";
-            // 
-            // LblInfoArticleNumber
-            // 
-            LblInfoArticleNumber.AutoSize = true;
-            LblInfoArticleNumber.Location = new Point(275, 30);
-            LblInfoArticleNumber.Name = "LblInfoArticleNumber";
-            LblInfoArticleNumber.Size = new Size(88, 15);
-            LblInfoArticleNumber.TabIndex = 1;
-            LblInfoArticleNumber.Text = "Article Number";
-            // 
-            // LblInfoArticleGroup
-            // 
-            LblInfoArticleGroup.AutoSize = true;
-            LblInfoArticleGroup.Location = new Point(21, 30);
-            LblInfoArticleGroup.Name = "LblInfoArticleGroup";
-            LblInfoArticleGroup.Size = new Size(77, 15);
-            LblInfoArticleGroup.TabIndex = 1;
-            LblInfoArticleGroup.Text = "Article Group";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(412, 89);
-            button3.Name = "button3";
-            button3.Size = new Size(110, 23);
-            button3.TabIndex = 0;
-            button3.Text = "Delete Article";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += CmdDeleteCustomer_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(307, 89);
-            button2.Name = "button2";
-            button2.Size = new Size(99, 23);
-            button2.TabIndex = 0;
-            button2.Text = "Save changes";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += CmdSaveChangesCustomer_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(6, 89);
-            button1.Name = "button1";
-            button1.Size = new Size(156, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Save as new Article";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += CmdCreateNewCustomer_Click;
-            // 
-            // CmbInputArticleGroup
-            // 
-            CmbInputArticleGroup.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CmbInputArticleGroup.BackColor = SystemColors.Window;
-            CmbInputArticleGroup.FormattingEnabled = true;
-            CmbInputArticleGroup.ItemHeight = 15;
-            CmbInputArticleGroup.Items.AddRange(new object[] { "Fahrzeuge", "Lebensmittel" });
-            CmbInputArticleGroup.Location = new Point(120, 27);
-            CmbInputArticleGroup.Name = "CmbInputArticleGroup";
-            CmbInputArticleGroup.Size = new Size(133, 23);
-            CmbInputArticleGroup.Sorted = true;
-            CmbInputArticleGroup.TabIndex = 3;
-            // 
-            // GrpSearch
-            // 
-            GrpSearch.Controls.Add(TxtSearchCustomerAdress);
-            GrpSearch.Controls.Add(TxtSearchCustomerCity);
-            GrpSearch.Controls.Add(TxtSearchCustomerCountry);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerAdress);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerCity);
-            GrpSearch.Controls.Add(LblInfoSearchCustomerCountry);
-            GrpSearch.Controls.Add(TxtSearchArticleNumber);
-            GrpSearch.Controls.Add(TxtSearchArticleName);
-            GrpSearch.Controls.Add(TxtSearchArticleGroup);
-            GrpSearch.Controls.Add(CmdResetSearchFilters);
-            GrpSearch.Controls.Add(CmdSearchArticles);
-            GrpSearch.Controls.Add(LblInfoSearchOrdersCustomerLastName);
-            GrpSearch.Controls.Add(LblInfoSearchOrdersCustomerFirstName);
-            GrpSearch.Controls.Add(LblInfoSearchOrdersCustomerNumber);
-            GrpSearch.ForeColor = SystemColors.ControlText;
-            GrpSearch.Location = new Point(143, 12);
-            GrpSearch.Name = "GrpSearch";
-            GrpSearch.Size = new Size(528, 245);
-            GrpSearch.TabIndex = 2;
-            GrpSearch.TabStop = false;
-            GrpSearch.Text = "Search";
-            // 
-            // TxtSearchArticleNumber
-            // 
-            TxtSearchArticleNumber.BackColor = SystemColors.ScrollBar;
-            TxtSearchArticleNumber.BorderStyle = BorderStyle.FixedSingle;
-            TxtSearchArticleNumber.Location = new Point(357, 50);
-            TxtSearchArticleNumber.Name = "TxtSearchArticleNumber";
-            TxtSearchArticleNumber.Size = new Size(145, 23);
-            TxtSearchArticleNumber.TabIndex = 2;
-            // 
-            // TxtSearchArticleName
-            // 
-            TxtSearchArticleName.BackColor = SystemColors.ScrollBar;
-            TxtSearchArticleName.BorderStyle = BorderStyle.FixedSingle;
-            TxtSearchArticleName.Location = new Point(192, 50);
-            TxtSearchArticleName.Name = "TxtSearchArticleName";
-            TxtSearchArticleName.Size = new Size(145, 23);
-            TxtSearchArticleName.TabIndex = 2;
-            // 
-            // TxtSearchArticleGroup
-            // 
-            TxtSearchArticleGroup.Location = new Point(26, 50);
-            TxtSearchArticleGroup.Name = "TxtSearchArticleGroup";
-            TxtSearchArticleGroup.Size = new Size(145, 23);
-            TxtSearchArticleGroup.TabIndex = 2;
-            // 
-            // CmdResetSearchFilters
-            // 
-            CmdResetSearchFilters.Location = new Point(273, 216);
-            CmdResetSearchFilters.Name = "CmdResetSearchFilters";
-            CmdResetSearchFilters.Size = new Size(117, 23);
-            CmdResetSearchFilters.TabIndex = 0;
-            CmdResetSearchFilters.Text = "Reset search filters";
-            CmdResetSearchFilters.UseVisualStyleBackColor = true;
-            CmdResetSearchFilters.Click += CmdResetSearchFilters_Click;
-            // 
-            // CmdSearchArticles
-            // 
-            CmdSearchArticles.Location = new Point(396, 216);
-            CmdSearchArticles.Name = "CmdSearchArticles";
-            CmdSearchArticles.Size = new Size(126, 23);
-            CmdSearchArticles.TabIndex = 0;
-            CmdSearchArticles.Text = "Search Articles";
-            CmdSearchArticles.UseVisualStyleBackColor = true;
-            CmdSearchArticles.Click += CmdSearchCustomers_Click;
-            // 
-            // LblInfoSearchOrdersCustomerLastName
-            // 
-            LblInfoSearchOrdersCustomerLastName.AutoSize = true;
-            LblInfoSearchOrdersCustomerLastName.Location = new Point(357, 30);
-            LblInfoSearchOrdersCustomerLastName.Name = "LblInfoSearchOrdersCustomerLastName";
-            LblInfoSearchOrdersCustomerLastName.Size = new Size(75, 15);
-            LblInfoSearchOrdersCustomerLastName.TabIndex = 1;
-            LblInfoSearchOrdersCustomerLastName.Text = "Last Number";
-            // 
-            // LblInfoSearchOrdersCustomerFirstName
-            // 
-            LblInfoSearchOrdersCustomerFirstName.AutoSize = true;
-            LblInfoSearchOrdersCustomerFirstName.Location = new Point(192, 30);
-            LblInfoSearchOrdersCustomerFirstName.Name = "LblInfoSearchOrdersCustomerFirstName";
-            LblInfoSearchOrdersCustomerFirstName.Size = new Size(64, 15);
-            LblInfoSearchOrdersCustomerFirstName.TabIndex = 1;
-            LblInfoSearchOrdersCustomerFirstName.Text = "First Name";
-            // 
-            // LblInfoSearchOrdersCustomerNumber
-            // 
-            LblInfoSearchOrdersCustomerNumber.AutoSize = true;
-            LblInfoSearchOrdersCustomerNumber.Location = new Point(26, 30);
-            LblInfoSearchOrdersCustomerNumber.Name = "LblInfoSearchOrdersCustomerNumber";
-            LblInfoSearchOrdersCustomerNumber.Size = new Size(106, 15);
-            LblInfoSearchOrdersCustomerNumber.TabIndex = 1;
-            LblInfoSearchOrdersCustomerNumber.Text = "Customer Number";
-            // 
-            // GrpInformationArticleGroup
-            // 
-            GrpInformationArticleGroup.Controls.Add(TxtInputArticleGroupName);
-            GrpInformationArticleGroup.Controls.Add(GrpInformationArticleGroupName);
-            GrpInformationArticleGroup.Controls.Add(GrpInformationArticleGroupParent);
-            GrpInformationArticleGroup.Controls.Add(button4);
-            GrpInformationArticleGroup.Controls.Add(button5);
-            GrpInformationArticleGroup.Controls.Add(button6);
-            GrpInformationArticleGroup.Controls.Add(CmbInputArticleGroupParent);
-            GrpInformationArticleGroup.Location = new Point(695, 141);
-            GrpInformationArticleGroup.Name = "GrpInformationArticleGroup";
-            GrpInformationArticleGroup.Size = new Size(528, 123);
-            GrpInformationArticleGroup.TabIndex = 2;
-            GrpInformationArticleGroup.TabStop = false;
-            GrpInformationArticleGroup.Text = "Information selected Article Group";
-            // 
-            // TxtInputArticleGroupName
-            // 
-            TxtInputArticleGroupName.BackColor = SystemColors.Window;
-            TxtInputArticleGroupName.BorderStyle = BorderStyle.None;
-            TxtInputArticleGroupName.Cursor = Cursors.IBeam;
-            TxtInputArticleGroupName.Location = new Point(120, 54);
-            TxtInputArticleGroupName.Name = "TxtInputArticleGroupName";
-            TxtInputArticleGroupName.Size = new Size(133, 16);
-            TxtInputArticleGroupName.TabIndex = 2;
-            // 
-            // GrpInformationArticleGroupName
-            // 
-            GrpInformationArticleGroupName.AutoSize = true;
-            GrpInformationArticleGroupName.Location = new Point(21, 55);
-            GrpInformationArticleGroupName.Name = "GrpInformationArticleGroupName";
-            GrpInformationArticleGroupName.Size = new Size(75, 15);
-            GrpInformationArticleGroupName.TabIndex = 1;
-            GrpInformationArticleGroupName.Text = "Group Name";
-            // 
-            // GrpInformationArticleGroupParent
-            // 
-            GrpInformationArticleGroupParent.AutoSize = true;
-            GrpInformationArticleGroupParent.Location = new Point(21, 30);
-            GrpInformationArticleGroupParent.Name = "GrpInformationArticleGroupParent";
-            GrpInformationArticleGroupParent.Size = new Size(77, 15);
-            GrpInformationArticleGroupParent.TabIndex = 1;
-            GrpInformationArticleGroupParent.Text = "Group Parent";
-            // 
-            // button4
-            // 
-            button4.Location = new Point(412, 89);
-            button4.Name = "button4";
-            button4.Size = new Size(110, 23);
-            button4.TabIndex = 0;
-            button4.Text = "Delete Group";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += CmdDeleteCustomer_Click;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(307, 89);
-            button5.Name = "button5";
-            button5.Size = new Size(99, 23);
-            button5.TabIndex = 0;
-            button5.Text = "Save changes";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += CmdSaveChangesCustomer_Click;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(6, 89);
-            button6.Name = "button6";
-            button6.Size = new Size(156, 23);
-            button6.TabIndex = 0;
-            button6.Text = "Save as new Article Group";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += CmdCreateNewCustomer_Click;
-            // 
-            // TxtSearchCustomerAdress
-            // 
-            TxtSearchCustomerAdress.Location = new Point(357, 107);
-            TxtSearchCustomerAdress.Name = "TxtSearchCustomerAdress";
-            TxtSearchCustomerAdress.Size = new Size(145, 23);
-            TxtSearchCustomerAdress.TabIndex = 6;
-            // 
-            // TxtSearchCustomerCity
-            // 
-            TxtSearchCustomerCity.Location = new Point(192, 107);
-            TxtSearchCustomerCity.Name = "TxtSearchCustomerCity";
-            TxtSearchCustomerCity.Size = new Size(145, 23);
-            TxtSearchCustomerCity.TabIndex = 7;
-            // 
-            // TxtSearchCustomerCountry
-            // 
-            TxtSearchCustomerCountry.Location = new Point(26, 107);
-            TxtSearchCustomerCountry.Name = "TxtSearchCustomerCountry";
-            TxtSearchCustomerCountry.Size = new Size(145, 23);
-            TxtSearchCustomerCountry.TabIndex = 8;
-            // 
-            // LblInfoSearchCustomerAdress
-            // 
-            LblInfoSearchCustomerAdress.AutoSize = true;
-            LblInfoSearchCustomerAdress.Location = new Point(357, 89);
-            LblInfoSearchCustomerAdress.Name = "LblInfoSearchCustomerAdress";
-            LblInfoSearchCustomerAdress.Size = new Size(42, 15);
-            LblInfoSearchCustomerAdress.TabIndex = 3;
-            LblInfoSearchCustomerAdress.Text = "Adress";
-            // 
-            // LblInfoSearchCustomerCity
-            // 
-            LblInfoSearchCustomerCity.AutoSize = true;
-            LblInfoSearchCustomerCity.Location = new Point(192, 89);
-            LblInfoSearchCustomerCity.Name = "LblInfoSearchCustomerCity";
-            LblInfoSearchCustomerCity.Size = new Size(28, 15);
-            LblInfoSearchCustomerCity.TabIndex = 4;
-            LblInfoSearchCustomerCity.Text = "City";
-            // 
-            // LblInfoSearchCustomerCountry
-            // 
-            LblInfoSearchCustomerCountry.AutoSize = true;
-            LblInfoSearchCustomerCountry.Location = new Point(26, 89);
-            LblInfoSearchCustomerCountry.Name = "LblInfoSearchCustomerCountry";
-            LblInfoSearchCustomerCountry.Size = new Size(50, 15);
-            LblInfoSearchCustomerCountry.TabIndex = 5;
-            LblInfoSearchCustomerCountry.Text = "Country";
-            // 
-            // CmbInputArticleGroupParent
-            // 
-            CmbInputArticleGroupParent.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CmbInputArticleGroupParent.BackColor = SystemColors.Window;
-            CmbInputArticleGroupParent.FormattingEnabled = true;
-            CmbInputArticleGroupParent.ItemHeight = 15;
-            CmbInputArticleGroupParent.Items.AddRange(new object[] { "Fahrzeuge", "Lebensmittel" });
-            CmbInputArticleGroupParent.Location = new Point(120, 25);
-            CmbInputArticleGroupParent.Name = "CmbInputArticleGroupParent";
-            CmbInputArticleGroupParent.Size = new Size(133, 23);
-            CmbInputArticleGroupParent.Sorted = true;
-            CmbInputArticleGroupParent.TabIndex = 3;
+            // LblInfoPositionArticle
+            // 
+            LblInfoPositionArticle.AutoSize = true;
+            LblInfoPositionArticle.Location = new Point(21, 63);
+            LblInfoPositionArticle.Name = "LblInfoPositionArticle";
+            LblInfoPositionArticle.Size = new Size(88, 15);
+            LblInfoPositionArticle.TabIndex = 1;
+            LblInfoPositionArticle.Text = "Selected Article";
+            // 
+            // LblInfoPositionArticleQuantity
+            // 
+            LblInfoPositionArticleQuantity.AutoSize = true;
+            LblInfoPositionArticleQuantity.Location = new Point(286, 63);
+            LblInfoPositionArticleQuantity.Name = "LblInfoPositionArticleQuantity";
+            LblInfoPositionArticleQuantity.Size = new Size(90, 15);
+            LblInfoPositionArticleQuantity.TabIndex = 1;
+            LblInfoPositionArticleQuantity.Text = "Article Quantity";
+            // 
+            // TxtInputOrderPositionArticleQuantity
+            // 
+            TxtInputOrderPositionArticleQuantity.BackColor = SystemColors.Window;
+            TxtInputOrderPositionArticleQuantity.BorderStyle = BorderStyle.None;
+            TxtInputOrderPositionArticleQuantity.Cursor = Cursors.IBeam;
+            TxtInputOrderPositionArticleQuantity.Location = new Point(382, 64);
+            TxtInputOrderPositionArticleQuantity.Name = "TxtInputOrderPositionArticleQuantity";
+            TxtInputOrderPositionArticleQuantity.Size = new Size(125, 16);
+            TxtInputOrderPositionArticleQuantity.TabIndex = 2;
+            // 
+            // CmbInputArticle
+            // 
+            CmbInputArticle.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CmbInputArticle.BackColor = SystemColors.Window;
+            CmbInputArticle.FormattingEnabled = true;
+            CmbInputArticle.ItemHeight = 15;
+            CmbInputArticle.Items.AddRange(new object[] { "-", "Fahrzeuge", "Lebensmittel" });
+            CmbInputArticle.Location = new Point(133, 60);
+            CmbInputArticle.Name = "CmbInputArticle";
+            CmbInputArticle.Size = new Size(145, 23);
+            CmbInputArticle.Sorted = true;
+            CmbInputArticle.TabIndex = 4;
             // 
             // FormOrders
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
-            Controls.Add(GrpInformationArticleGroup);
-            Controls.Add(GrpInformationArticle);
+            Controls.Add(GrpInformation);
             Controls.Add(GrpSearch);
             Controls.Add(GrpResults);
             Controls.Add(GrpNavigation);
             Name = "FormOrders";
-            Text = "FormArticles";
+            Text = "FormOrders";
             GrpNavigation.ResumeLayout(false);
-            GrpResults.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)DataGridViewOrdersResults).EndInit();
-            GrpInformationArticle.ResumeLayout(false);
-            GrpInformationArticle.PerformLayout();
+            GrpPositions.ResumeLayout(false);
+            GrpInformationSelectedPosition.ResumeLayout(false);
+            GrpInformationSelectedPosition.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewOrderPositions).EndInit();
+            GrpInformation.ResumeLayout(false);
+            GrpInformation.PerformLayout();
             GrpSearch.ResumeLayout(false);
             GrpSearch.PerformLayout();
-            GrpInformationArticleGroup.ResumeLayout(false);
-            GrpInformationArticleGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewOrdersResults).EndInit();
+            GrpResults.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -579,47 +768,69 @@
         private Button CmdArticles;
         private Button CmdOrders;
         private GroupBox GrpNavigation;
-        private GroupBox GrpResults;
-        private GroupBox GrpInformationArticle;
-        private GroupBox GrpSearch;
-        private Button CmdCreateEmptyArticle;
-        private Button CmdDeleteSelectedObject;
-        private Button CmdShowAllOrders;
-        private Button CmdResetSearchFilters;
-        private Button CmdSearchArticles;
         private Button CmdCloseProgram;
-        private Label LblInfoArticleGroup;
-        private Label LblInfoArticleName;
-        private Label LblInfoSearchOrdersCustomerNumber;
-        private Label LblInfoSearchOrdersCustomerLastName;
-        private Label LblInfoSearchOrdersCustomerFirstName;
-        private TextBox TxtSearchArticleNumber;
-        private TextBox TxtSearchArticleName;
-        private TextBox TxtSearchArticleGroup;
-        private TextBox TxtInputArticleName;
-        private TextBox TxtInputArticleNumber;
-        private TextBox TxtInputArticlePrice;
-        private Label LblInfoArticlePrice;
-        private Label LblInfoArticleNumber;
-        private Button button3;
-        private Button button2;
-        private Button button1;
-        private GroupBox GrpInformationArticleGroup;
         private TextBox TxtInputArticleGroupParent;
-        private Label GrpInformationArticleGroupParent;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private TextBox TxtInputArticleGroupName;
-        private Label GrpInformationArticleGroupName;
-        private ComboBox CmbInputArticleGroup;
+        private Button CmdCreateNewOrder;
+        private Button CmdSaveChangesCustomer;
+        private Button CmdDeleteOrder;
+        private Label LblInfoOrderNumber;
+        private Label LblInfoCustomerFirstName;
+        private Label LblInfoOrderCustomerNumber;
+        private Label LblInfoCustomerLastName;
+        private TextBox TxtInputOrderCustomerFirstName;
+        private TextBox TxtInputOrderCustomerLastName;
+        private TextBox TxtInputOrderNumber;
+        private TextBox TxtInputCustomerNumber;
+        private GroupBox GrpPositions;
+        private DataGridView DataGridViewOrderPositions;
+        private Button CmdOpenSelectedPosition;
+        private Button CmdAddNewPosition;
+        private Button CmdDeleteSelectedPositions;
+        private GroupBox GrpInformation;
+        private Label LblInfoSearchOrdersCustomerNumber;
+        private Label LblInfoSearchOrdersCustomerFirstName;
+        private Label LblInfoSearchOrdersPriceFrom;
+        private Label LblInfoSearchOrdersCustomerLastName;
+        private Label LblInfoSearchOrdersPriceTo;
+        private Button CmdSearchOrders;
+        private Button CmdResetSearchFilters;
+        private TextBox TxtSearchCustomerNumber;
+        private TextBox TxtSearchOrderPriceFrom;
+        private TextBox TxtSearchOrderPriceTo;
+        private TextBox TxtSearchOrdersCustomerFirstName;
+        private TextBox TxtSearchOrdersCustomerLastName;
+        private Label LblInfoSearchOrdersDateFrom;
+        private Label LblInfoSearchOrdersDateUntil;
+        private Label LblInfoSearchOrdersPositionNumber;
+        private TextBox TxtSearchOrdersPositionNumber;
+        private DateTimePicker DatSearchOrdersFrom;
+        private DateTimePicker DatSearchOrdersUntil;
+        private GroupBox GrpSearch;
+        private Button CmdDeleteSelectedObject;
+        private Button CmdCreateEmptyArticle;
+        private Button CmdShowAllOrders;
         private DataGridView DataGridViewOrdersResults;
-        private TextBox TxtSearchCustomerAdress;
-        private TextBox TxtSearchCustomerCity;
-        private TextBox TxtSearchCustomerCountry;
-        private Label LblInfoSearchCustomerAdress;
-        private Label LblInfoSearchCustomerCity;
-        private Label LblInfoSearchCustomerCountry;
-        private ComboBox CmbInputArticleGroupParent;
+        private GroupBox GrpResults;
+        private TextBox TxtInputOrderDate;
+        private Label LblInfoOrderDate;
+        private GroupBox GrpInformationSelectedPosition;
+        private Button CmdDeletePosition;
+        private Button CmdSavePositionChanges;
+        private Button CmdSaveAsNewPosition;
+        private DataGridViewTextBoxColumn positionNumber;
+        private DataGridViewTextBoxColumn article;
+        private DataGridViewTextBoxColumn quantity;
+        private TextBox TxtInputPositionNumber;
+        private Label LblInfoPositionNumber;
+        private Button CmdShowInvoice;
+        private TextBox TxtInputInvoiceNumber;
+        private Label LblInfoInvoiceNumber;
+        private TextBox TxtInputCustomerFirstName;
+        private TextBox TxtInputCustomerPassword;
+        private TextBox TxtInputOrderPositionArticleQuantity;
+        private Label LblInfoPositionArticleQuantity;
+        private Label LblInfoPositionArticle;
+        private ComboBox CmbInputArticle;
+        //private TextBox TxtInputOrderCustomerLastName;
     }
 }
