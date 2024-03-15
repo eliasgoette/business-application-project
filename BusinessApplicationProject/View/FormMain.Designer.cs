@@ -45,21 +45,18 @@
             GrpNavigation.Controls.Add(CmdCloseProgram);
             GrpNavigation.Controls.Add(CmdOrders);
             GrpNavigation.Controls.Add(CmdCustomers);
-            GrpNavigation.Location = new Point(13, 14);
-            GrpNavigation.Margin = new Padding(4, 5, 4, 5);
+            GrpNavigation.Location = new Point(9, 8);
             GrpNavigation.Name = "GrpNavigation";
-            GrpNavigation.Padding = new Padding(4, 5, 4, 5);
-            GrpNavigation.Size = new Size(157, 1016);
+            GrpNavigation.Size = new Size(110, 639);
             GrpNavigation.TabIndex = 2;
             GrpNavigation.TabStop = false;
             GrpNavigation.Text = "Navigation";
             // 
             // CmdInvoices
             // 
-            CmdInvoices.Location = new Point(8, 178);
-            CmdInvoices.Margin = new Padding(4, 5, 4, 5);
+            CmdInvoices.Location = new Point(6, 107);
             CmdInvoices.Name = "CmdInvoices";
-            CmdInvoices.Size = new Size(141, 38);
+            CmdInvoices.Size = new Size(99, 23);
             CmdInvoices.TabIndex = 1;
             CmdInvoices.Text = "Invoices";
             CmdInvoices.UseVisualStyleBackColor = true;
@@ -67,10 +64,9 @@
             // 
             // CmdArticles
             // 
-            CmdArticles.Location = new Point(8, 34);
-            CmdArticles.Margin = new Padding(4, 5, 4, 5);
+            CmdArticles.Location = new Point(6, 20);
             CmdArticles.Name = "CmdArticles";
-            CmdArticles.Size = new Size(141, 38);
+            CmdArticles.Size = new Size(99, 23);
             CmdArticles.TabIndex = 0;
             CmdArticles.Text = "Articles";
             CmdArticles.UseVisualStyleBackColor = true;
@@ -78,10 +74,9 @@
             // 
             // CmdCloseProgram
             // 
-            CmdCloseProgram.Location = new Point(8, 274);
-            CmdCloseProgram.Margin = new Padding(4, 5, 4, 5);
+            CmdCloseProgram.Location = new Point(6, 164);
             CmdCloseProgram.Name = "CmdCloseProgram";
-            CmdCloseProgram.Size = new Size(141, 38);
+            CmdCloseProgram.Size = new Size(99, 23);
             CmdCloseProgram.TabIndex = 0;
             CmdCloseProgram.Text = "Exit";
             CmdCloseProgram.UseVisualStyleBackColor = true;
@@ -89,10 +84,9 @@
             // 
             // CmdOrders
             // 
-            CmdOrders.Location = new Point(8, 130);
-            CmdOrders.Margin = new Padding(4, 5, 4, 5);
+            CmdOrders.Location = new Point(6, 78);
             CmdOrders.Name = "CmdOrders";
-            CmdOrders.Size = new Size(141, 38);
+            CmdOrders.Size = new Size(99, 23);
             CmdOrders.TabIndex = 0;
             CmdOrders.Text = "Orders";
             CmdOrders.UseVisualStyleBackColor = true;
@@ -100,10 +94,9 @@
             // 
             // CmdCustomers
             // 
-            CmdCustomers.Location = new Point(8, 82);
-            CmdCustomers.Margin = new Padding(4, 5, 4, 5);
+            CmdCustomers.Location = new Point(6, 49);
             CmdCustomers.Name = "CmdCustomers";
-            CmdCustomers.Size = new Size(141, 38);
+            CmdCustomers.Size = new Size(99, 23);
             CmdCustomers.TabIndex = 0;
             CmdCustomers.Text = "Customers";
             CmdCustomers.UseVisualStyleBackColor = true;
@@ -111,18 +104,20 @@
             // 
             // PnlMainView
             // 
-            PnlMainView.Location = new Point(177, 12);
+            PnlMainView.Location = new Point(124, 7);
+            PnlMainView.Margin = new Padding(2);
             PnlMainView.Name = "PnlMainView";
-            PnlMainView.Size = new Size(1589, 1020);
+            PnlMainView.Size = new Size(1085, 640);
             PnlMainView.TabIndex = 3;
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1778, 1044);
+            ClientSize = new Size(1264, 681);
             Controls.Add(PnlMainView);
             Controls.Add(GrpNavigation);
+            Margin = new Padding(2);
             Name = "FormMain";
             Text = "FormMain";
             GrpNavigation.ResumeLayout(false);

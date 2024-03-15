@@ -14,6 +14,9 @@
         {
             InitializeComponent();
 
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+
             // Set default view to customers
             ToggleView(View.Customers, CmdCustomers);
         }
@@ -40,7 +43,7 @@
 
         private void CmdCloseProgram_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void ToggleView(View nextView, object sender)

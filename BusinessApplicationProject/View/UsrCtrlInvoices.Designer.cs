@@ -35,17 +35,20 @@
             // 
             label1.AutoSize = true;
             label1.Location = new Point(0, 0);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(137, 25);
+            label1.Size = new Size(91, 15);
             label1.TabIndex = 0;
             label1.Text = "Inv. placeholder";
             // 
             // UsrCtrlInvoices
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "UsrCtrlInvoices";
+            Size = new Size(1280, 720);
             ResumeLayout(false);
             PerformLayout();
         }

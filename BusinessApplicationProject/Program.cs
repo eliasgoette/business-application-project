@@ -1,4 +1,5 @@
 using BusinessApplicationProject.View;
+using Microsoft.Identity.Client;
 
 namespace BusinessApplicationProject
 {

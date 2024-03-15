@@ -1,6 +1,7 @@
 ﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
+using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.View
 {
@@ -13,20 +14,15 @@ namespace BusinessApplicationProject.View
             InitializeComponent();
         }
 
-        private Controller<Customer> customerController = new Controller<Customer>
-        {
-            getContext = () => new AppDbContext(),
-            getRepository = context => new Repository<Customer>(context)
-        };
-
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
-            DisplaySearchResults();
+            UpdateSearchResults();
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
         {
+            //Empty fields
             TxtSearchCustomerAdress.Text = string.Empty;
             TxtSearchCustomerCity.Text = string.Empty;
             TxtSearchCustomerCountry.Text = string.Empty;
@@ -35,49 +31,116 @@ namespace BusinessApplicationProject.View
             TxtSearchCustomerLastName.Text = string.Empty;
             TxtSearchCustomerNumber.Text = string.Empty;
         }
+        #endregion
 
-
-        //muss noch verschoben werden in andere Klasse
-        private void DisplaySearchResults()
+        #region SearchUpdate
+        private Controller<Customer> customerController = new Controller<Customer>
         {
+            getContext = () => new AppDbContext(),
+            getRepository = context => new Repository<Customer>(context)
+        };
+
+        public void UpdateSearchResults()
+        {
+            DataGridViewCustomersResults.AutoGenerateColumns = false;
+            LblDataGridCustomersNoResults.Visible = false;
             DataGridViewCustomersResults.DataSource = null;
             DataGridViewCustomersResults.Columns.Clear();
 
-            var searchResults = new List<Customer>();
-
-            if (/* filters all clear */ true) searchResults = customerController.GetAll();
-
-            if (searchResults.Count > 0)
+            try
             {
-                DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
+                List<Customer> customers = [];
+                var filter = CreateFilterFunction();
+                customers = customerController.Find(filter);
+
+                if (customers.Count > 0)
                 {
-                    Name = "firstNameColumn",
-                    HeaderText = "First Name",
-                    DataPropertyName = "firstName"
-                };
+                    DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "customerNumberColumn",
+                        HeaderText = "Customer Number",
+                        DataPropertyName = "CustomerNumber"
+                    };
 
-                DataGridViewTextBoxColumn lastNameColumn = new DataGridViewTextBoxColumn
+                    DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "firstNameColumn",
+                        HeaderText = "First Name",
+                        DataPropertyName = "FirstName"
+                    };
+
+                    DataGridViewTextBoxColumn lastNameColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "lastNameColumn",
+                        HeaderText = "Last Name",
+                        DataPropertyName = "LastName"
+                    };
+
+                    DataGridViewTextBoxColumn countryColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "countryColumn",
+                        HeaderText = "Country",
+                        DataPropertyName = "Country"
+                    };
+
+                    DataGridViewTextBoxColumn cityColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "cityColumn",
+                        HeaderText = "City",
+                        DataPropertyName = "City"
+                    };
+
+                    DataGridViewTextBoxColumn adressColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "adressColumn",
+                        HeaderText = "Adress",
+                        DataPropertyName = "Adress"
+                    };
+
+                    DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "emailColumn",
+                        HeaderText = "Email",
+                        DataPropertyName = "Email"
+                    };
+
+
+                    DataGridViewCustomersResults.Columns.Add(customerNumberColumn);
+                    DataGridViewCustomersResults.Columns.Add(firstNameColumn);
+                    DataGridViewCustomersResults.Columns.Add(lastNameColumn);
+                    DataGridViewCustomersResults.Columns.Add(countryColumn);
+                    DataGridViewCustomersResults.Columns.Add(cityColumn);
+                    DataGridViewCustomersResults.Columns.Add(adressColumn);
+                    DataGridViewCustomersResults.Columns.Add(emailColumn);
+
+                    DataGridViewCustomersResults.DataSource = customers;
+                }
+                else
                 {
-                    Name = "lastNameColumn",
-                    HeaderText = "Last Name",
-                    DataPropertyName = "lastName"
-                };
-
-                DataGridViewTextBoxColumn CustomerNumberColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "customerNumberColumn",
-                    HeaderText = "Customer Number",
-                    DataPropertyName = "customerNumber"
-                };
-
-                DataGridViewCustomersResults.Columns.Add(CustomerNumberColumn);
-                DataGridViewCustomersResults.Columns.Add(firstNameColumn);
-                DataGridViewCustomersResults.Columns.Add(lastNameColumn);
-
-                DataGridViewCustomersResults.DataSource = searchResults;
+                    LblDataGridCustomersNoResults.Visible = true;
+                }
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Database connection failed. Connection timed out.");
+            }
+            catch
+            {
+                MessageBox.Show("An error occured.");
             }
         }
 
+        private Expression<Func<Customer, bool>> CreateFilterFunction()
+        {
+            return customer =>
+                (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || customer.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerFirstName.Text) || customer.FirstName.Contains(TxtSearchCustomerFirstName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerLastName.Text) || customer.LastName.Contains(TxtSearchCustomerLastName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerCountry.Text) || customer.CustomerAddress.Country.Contains(TxtSearchCustomerCountry.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerCity.Text) || customer.CustomerAddress.City.Contains(TxtSearchCustomerCity.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerAdress.Text) || customer.CustomerAddress.StreetAddress.Contains(TxtSearchCustomerAdress.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerEmail.Text) || customer.Email.Contains(TxtSearchCustomerEmail.Text));
+        }
 
         #endregion
 
@@ -87,6 +150,8 @@ namespace BusinessApplicationProject.View
         private void CmdShowAllCustomers_Click(object sender, EventArgs e)
         {
             //Load all Customers into Grid
+            EmptyFieldsCustomers();
+            UpdateSearchResults();
         }
 
         private void CmdCreateEmptyCustomer_Click(object sender, EventArgs e)
@@ -100,7 +165,11 @@ namespace BusinessApplicationProject.View
 
         private void CmdDeleteSelectedCustomers_Click(object sender, EventArgs e)
         {
-            //Delete all selected Customer
+            //Throw warning
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
         /*-----*/
@@ -122,7 +191,8 @@ namespace BusinessApplicationProject.View
 
         private void GenerateNewCustomerNumber()
         {
-            throw new NotImplementedException();
+            //Get next Number
+            TxtInputCustomerNumber.Text = 3.ToString();
         }
 
         /*---------------------------------------*/
@@ -138,14 +208,21 @@ namespace BusinessApplicationProject.View
         {
             //Check if nessesary Fields contain Content
             //Check if something changed
+
             //Throw warning
-            //Update Customer with Inputfields
+            if (WarningUpdatedObject())
+            {
+                //update selected Object with inputfields
+            }
         }
 
         private void CmdDeleteCustomer_Click(object sender, EventArgs e)
         {
             //Throw warning
-            //Delete selected Customer
+            if (WarningDeletedObject())
+            {
+                //delete all selected Customer
+            }
         }
 
 
@@ -164,15 +241,47 @@ namespace BusinessApplicationProject.View
         private void CmdCreateNewOrder_Click(object sender, EventArgs e)
         {
             //Change Form (Order) with selected Customer already filled in
+            //this.Hide();
+            //Program.formOrders.Show();
         }
 
         private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
         {
             //Throw warning
-            //Delete selected Orders
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
 
         #endregion
+
+
+        private bool WarningDeletedObject()
+        {
+            DialogResult result = MessageBox.Show("Would you wish to delete all selected Objects?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool WarningUpdatedObject()
+        {
+            DialogResult result = MessageBox.Show("Would you wish to update the selected Object?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
