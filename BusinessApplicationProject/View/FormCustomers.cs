@@ -1,3 +1,6 @@
+using BusinessApplicationProject.Model;
+using System.Linq.Expressions;
+
 namespace BusinessApplicationProject
 {
     public partial class FormCustomers : Form
@@ -40,7 +43,7 @@ namespace BusinessApplicationProject
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
-            DisplaySearchResults();
+            UpdateSearchResults();
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
@@ -54,46 +57,117 @@ namespace BusinessApplicationProject
             TxtSearchCustomerLastName.Text = string.Empty;
             TxtSearchCustomerNumber.Text = string.Empty;
         }
+        #endregion
 
-
-        //muss noch verschoben werden in andere Klasse
-        private void DisplaySearchResults()
+        #region SearchUpdate
+        public void UpdateSearchResults()
         {
+            DataGridViewCustomersResults.AutoGenerateColumns = false;
+            LblDataGridCustomersNoResults.Visible = false;
+            DataGridViewCustomersResults.DataSource = null;
             DataGridViewCustomersResults.Columns.Clear();
 
-            if (/*searchResults != null*/ true)
+            try
             {
-                DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
+                List<Customer> customers = [];
+                var filter = CreateFilterFunction();
+                //customers = invoiceController.Find(filter);
+
+                if (true /*customers.Count > 0*/)
                 {
-                    Name = "firstNameColumn",
-                    HeaderText = "First Name",
-                    DataPropertyName = "firstName"
-                };
+                    DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "customerNumberColumn",
+                        HeaderText = "Customer Number",
+                        DataPropertyName = "CustomerNumber"
+                    };
 
-                DataGridViewTextBoxColumn lastNameColumn = new DataGridViewTextBoxColumn
+                    DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "firstNameColumn",
+                        HeaderText = "First Name",
+                        DataPropertyName = "FirstName"
+                    };
+
+                    DataGridViewTextBoxColumn lastNameColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "lastNameColumn",
+                        HeaderText = "Last Name",
+                        DataPropertyName = "LastName"
+                    };
+
+                    DataGridViewTextBoxColumn countryColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "countryColumn",
+                        HeaderText = "Country",
+                        DataPropertyName = "Country"
+                    };
+
+                    DataGridViewTextBoxColumn cityColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "cityColumn",
+                        HeaderText = "City",
+                        DataPropertyName = "City"
+                    };
+
+                    DataGridViewTextBoxColumn adressColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "adressColumn",
+                        HeaderText = "Adress",
+                        DataPropertyName = "Adress"
+                    };
+
+                    DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "emailColumn",
+                        HeaderText = "Email",
+                        DataPropertyName = "Email"
+                    };
+
+
+                    DataGridViewCustomersResults.Columns.Add(customerNumberColumn);
+                    DataGridViewCustomersResults.Columns.Add(firstNameColumn);
+                    DataGridViewCustomersResults.Columns.Add(lastNameColumn);
+                    DataGridViewCustomersResults.Columns.Add(countryColumn);
+                    DataGridViewCustomersResults.Columns.Add(cityColumn);
+                    DataGridViewCustomersResults.Columns.Add(adressColumn);
+                    DataGridViewCustomersResults.Columns.Add(emailColumn);
+
+                    DataGridViewCustomersResults.DataSource = customers;
+                }
+                else
                 {
-                    Name = "lastNameColumn",
-                    HeaderText = "Last Name",
-                    DataPropertyName = "lastName"
-                };
-
-                DataGridViewTextBoxColumn CustomerNumberColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "customerNumberColumn",
-                    HeaderText = "Customer Number",
-                    DataPropertyName = "customerNumber"
-                };
-
-                DataGridViewCustomersResults.Columns.Add(CustomerNumberColumn);
-                DataGridViewCustomersResults.Columns.Add(firstNameColumn);
-                DataGridViewCustomersResults.Columns.Add(lastNameColumn);
-
-
-
+                    LblDataGridCustomersNoResults.Visible = true;
+                }
             }
-
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Database connection failed. Connection timed out.");
+            }
+            catch
+            {
+                MessageBox.Show("An error occured.");
+            }
         }
 
+        private Expression<Func<Customer, bool>> CreateFilterFunction()
+        {
+            /*
+            return customer =>
+                (string.IsNullOrEmpty(TxtSearchInvoiceNumber.Text) || customer.InvoiceNumber.Contains(TxtSearchInvoiceNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCustomerNumber.Text) || customer.OrderInformations.CustomerDetails.CustomerNumber.Contains(TxtSearchCustomerNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchOrderNumber.Text) || customer.OrderInformations.OrderNumber.Contains(TxtSearchOrderNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchFirstName.Text) || customer.OrderInformations.CustomerDetails.FirstName.Contains(TxtSearchFirstName.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchLastName.Text) || customer.OrderInformations.CustomerDetails.LastName.Contains(TxtSearchLastName.Text)) &&
+                (string.IsNullOrEmpty(TxtStreetAddress.Text) || customer.BillingAddress.StreetAddress.Contains(TxtStreetAddress.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchZipCode.Text) || customer.BillingAddress.ZipCode.Contains(TxtSearchZipCode.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchCountry.Text) || customer.BillingAddress.Country.Contains(TxtSearchCountry.Text)) &&
+                (DatPckInvoiceDateFrom.Value == DatPckInvoiceDateFrom.MinDate || customer.OrderInformations.Date >= DatPckInvoiceDateFrom.Value) &&
+                (DatPckInvoiceDateTo.Value == DatPckInvoiceDateTo.MaxDate || customer.OrderInformations.Date <= DatPckInvoiceDateTo.Value);
+            */
+
+            return null;
+        }
 
         #endregion
 

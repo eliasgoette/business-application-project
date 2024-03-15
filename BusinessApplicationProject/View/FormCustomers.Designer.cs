@@ -87,6 +87,7 @@
             LblInfoSearchCustomerEmail = new Label();
             LblInfoSearchCustomerCountry = new Label();
             LblInfoSearchCustomerNumber = new Label();
+            LblDataGridCustomersNoResults = new Label();
             GrpNavigation.SuspendLayout();
             GrpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).BeginInit();
@@ -152,6 +153,7 @@
             // 
             // GrpResults
             // 
+            GrpResults.Controls.Add(LblDataGridCustomersNoResults);
             GrpResults.Controls.Add(DataGridViewCustomersResults);
             GrpResults.Controls.Add(CmdShowAllCustomers);
             GrpResults.Controls.Add(CmdCreateEmptyCustomer);
@@ -693,6 +695,15 @@
             LblInfoSearchCustomerNumber.TabIndex = 1;
             LblInfoSearchCustomerNumber.Text = "Customer Number";
             // 
+            // LblDataGridCustomersNoResults
+            // 
+            LblDataGridCustomersNoResults.AutoSize = true;
+            LblDataGridCustomersNoResults.Location = new Point(233, 181);
+            LblDataGridCustomersNoResults.Name = "LblDataGridCustomersNoResults";
+            LblDataGridCustomersNoResults.Size = new Size(63, 15);
+            LblDataGridCustomersNoResults.TabIndex = 1;
+            LblDataGridCustomersNoResults.Text = "No Results";
+            // 
             // FormCustomers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -706,6 +717,7 @@
             Text = "FormCustomers";
             GrpNavigation.ResumeLayout(false);
             GrpResults.ResumeLayout(false);
+            GrpResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewCustomersResults).EndInit();
             GrpInformation.ResumeLayout(false);
             GrpInformation.PerformLayout();
@@ -777,5 +789,6 @@
         private TextBox TxtInputCustomerEmail;
         private TextBox TxtInputCustomerLastName;
         private TextBox TxtInputCustomerFirstName;
+        private Label LblDataGridCustomersNoResults;
     }
 }
