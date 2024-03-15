@@ -5,7 +5,7 @@ namespace BusinessApplicationProject
 {
     public static class DataSeeder
     {
-        public static async Task InsertSeedData(AppDbContext context)
+        public static void InsertSeedData(AppDbContext context)
         {
             var addr1 = new Address
             {
@@ -125,10 +125,10 @@ namespace BusinessApplicationProject
 
             var invRepo = new Repository<Invoice>(context);
 
-            await invRepo.AddAsync(inv1);
-            await invRepo.AddAsync(inv2);
+            invRepo.AddAsync(inv1);
+            invRepo.AddAsync(inv2);
 
-            await context.SaveChangesAsync();
+            context.SaveChangesAsync();
         }
     }
 }

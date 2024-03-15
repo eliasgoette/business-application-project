@@ -51,12 +51,17 @@ namespace BusinessApplicationProject.View
             getRepository = context => new TemporalRepository<Article>(context)
         };
 
-        public void UpdateSearchResults()
+        private void ClearSearchResults()
         {
             DataGridViewInvoices.AutoGenerateColumns = false;
             LblNoResults.Visible = false;
             DataGridViewInvoices.DataSource = null;
             DataGridViewInvoices.Columns.Clear();
+        }
+
+        private void UpdateSearchResults()
+        {
+            ClearSearchResults();
 
             try
             {
@@ -166,6 +171,8 @@ namespace BusinessApplicationProject.View
             TxtSearchCountry.Text = string.Empty;
             DatPckInvoiceDateFrom.Value = DatPckInvoiceDateFrom.MinDate;
             DatPckInvoiceDateTo.Value = DatPckInvoiceDateTo.MaxDate;
+
+            UpdateSearchResults();
         }
 
         private void CmdCopyCustomerNumber_Click(object sender, EventArgs e)
@@ -515,6 +522,7 @@ namespace BusinessApplicationProject.View
 
         private void CmdEditClear_Click(object sender, EventArgs e)
         {
+            ClearSearchResults();
             UpdateEditProperties(null);
         }
 
