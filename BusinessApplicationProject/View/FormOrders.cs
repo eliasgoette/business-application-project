@@ -50,14 +50,21 @@ namespace BusinessApplicationProject
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
+            //Search Results with not empty filters
             DisplaySearchResults();
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
         {
+            //Reset Filters
             TxtSearchCustomerNumber.Text = string.Empty;
-            TxtSearchOrdersCustomerFirstName.Text = string.Empty;
-            TxtSearchOrdersCustomerLastName.Text = string.Empty;
+            TxtSearchCustomerFirstName.Text = string.Empty;
+            TxtSearchCustomerLastName.Text = string.Empty;
+            TxtSearchOrderPriceFrom.Text = string.Empty;
+            TxtSearchOrderPriceTo.Text = string.Empty;
+            TxtSearchOrdersPositionNumber.Text = string.Empty;
+            DatSearchOrdersFrom.Value = DatSearchOrdersFrom.MinDate;
+            DatSearchOrdersUntil.Value = DatSearchOrdersUntil.MaxDate;
         }
 
 
@@ -76,77 +83,49 @@ namespace BusinessApplicationProject
         #endregion
 
 
-        #region Customers
-
-        private void CmdShowAllCustomers_Click(object sender, EventArgs e)
-        {
-            //Load all Customers into Grid
-        }
-
-        private void CmdCreateEmptyCustomer_Click(object sender, EventArgs e)
-        {
-            //Create Empty Customer
-        }
-
-
-        private void CmdDeleteSelectedCustomers_Click(object sender, EventArgs e)
-        {
-            //Delete all selected Customer
-        }
-
-        /*-----*/
-
-
-
-        /*---------------------------------------*/
-
-
-        private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
-        {
-            //Check if nessesary Fields contain Content
-            //Create new Customer with Inputfields
-        }
-
-        private void CmdSaveChangesCustomer_Click(object sender, EventArgs e)
-        {
-            //Check if nessesary Fields contain Content
-            //Check if something changed
-            //Throw warning
-            //Update Customer with Inputfields
-        }
-
-        private void CmdDeleteCustomer_Click(object sender, EventArgs e)
-        {
-            //Throw warning
-            //Delete selected Customer
-        }
-
-
-        #endregion
-
-
         #region Orders
 
-
-        private void CmdOpenSelectedOrder_Click(object sender, EventArgs e)
+        private void CmdShowAllOrders_Click(object sender, EventArgs e)
         {
-            //Check if exactly one Order is selected
-            //Chance Form (Order) with selected Ordernumber already searched
+            //Load all Orders into Grid
         }
 
-        private void CmdCreateNewOrder_Click(object sender, EventArgs e)
+        private void CmdEditSelectedOrder_Click(object sender, EventArgs e)
         {
-            //Change Form (Order) with selected Customer already filled in
+            //Load Ordernumber, Customernumber, Firstname, Lastname, Date and Invoice
+
         }
 
-        private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
+
+        private void CmdDeleteSelectedObject_Click(object sender, EventArgs e)
         {
             //Throw warning
             //Delete selected Orders
         }
 
+        private void CmdShowInvoice_Click(object sender, EventArgs e)
+        {
+            //change Form to Invoice with selected Order
+        }
+
+        private void CmdDeleteOrder_Click(object sender, EventArgs e)
+        {
+            //Throw warning
+            //Delete selected Order
+        }
+
 
         #endregion
+
+
+        #region Positions
+        private void CmdOpenSelectedPosition_Click(object sender, EventArgs e)
+        {
+            GrpInformationSelectedPosition.Visible = true;
+
+            //check if only one Position is selected
+            //
+        }
 
         private void CmdAddNewPosition_Click(object sender, EventArgs e)
         {
@@ -154,12 +133,65 @@ namespace BusinessApplicationProject
 
             //create new PositionID
 
-
+            //Empty all values
+            CmbInputArticle.Select();
+            TxtInputOrderPositionArticleQuantity.Text = string.Empty;
         }
 
-        private void CmdOpenSelectedPosition_Click(object sender, EventArgs e)
+        private void CmdDeleteSelectedPositions_Click(object sender, EventArgs e)
         {
-            GrpInformationSelectedPosition.Visible = true;
+
         }
+
+        private void CmdSavePositionChanges_Click(object sender, EventArgs e)
+        {
+            //values to check if valid Inputs
+            int number;
+            bool isNumeric = int.TryParse(TxtInputOrderPositionArticleQuantity.Text, out number);
+
+            //checks if article is selected
+            if (CmbInputArticle.SelectedItem == null)
+            {
+                //if not send error
+                MessageBox.Show("Select a valid Article");
+
+            }
+            else if (isNumeric && number >= 1 && number <= 100)
+            {
+                //Change the selected Position with the new values
+
+            }
+            else
+            {
+                MessageBox.Show("Select a valid Quantity of Articles");
+            }
+        }
+
+        private void CmdSaveAsNewPosition_Click(object sender, EventArgs e)
+        {
+            //values to check if valid Inputs
+            int number;
+            bool isNumeric = int.TryParse(TxtInputOrderPositionArticleQuantity.Text, out number);
+
+            //checks if article is selected
+            if (CmbInputArticle.SelectedItem == null)
+            {
+                //if not send error
+                MessageBox.Show("Select a valid Article");
+
+            }
+            else if (isNumeric && number >= 1 && number <= 100)
+            {
+                //Save as new position in selected Order
+
+            }
+            else
+            {
+                MessageBox.Show("Select a valid Quantity of Articles");
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -44,9 +44,13 @@
             TxtInputCustomerNumber = new TextBox();
             GrpPositions = new GroupBox();
             GrpInformationSelectedPosition = new GroupBox();
+            CmbInputArticle = new ComboBox();
             CmdDeletePosition = new Button();
             CmdSavePositionChanges = new Button();
             CmdSaveAsNewPosition = new Button();
+            TxtInputOrderPositionArticleQuantity = new TextBox();
+            LblInfoPositionArticleQuantity = new Label();
+            LblInfoPositionArticle = new Label();
             TxtInputPositionNumber = new TextBox();
             LblInfoPositionNumber = new Label();
             DataGridViewOrderPositions = new DataGridView();
@@ -72,8 +76,8 @@
             TxtSearchCustomerNumber = new TextBox();
             TxtSearchOrderPriceFrom = new TextBox();
             TxtSearchOrderPriceTo = new TextBox();
-            TxtSearchOrdersCustomerFirstName = new TextBox();
-            TxtSearchOrdersCustomerLastName = new TextBox();
+            TxtSearchCustomerFirstName = new TextBox();
+            TxtSearchCustomerLastName = new TextBox();
             LblInfoSearchOrdersDateFrom = new Label();
             LblInfoSearchOrdersDateUntil = new Label();
             LblInfoSearchOrdersPositionNumber = new Label();
@@ -82,14 +86,10 @@
             DatSearchOrdersUntil = new DateTimePicker();
             GrpSearch = new GroupBox();
             CmdDeleteSelectedObject = new Button();
-            CmdCreateEmptyArticle = new Button();
+            CmdEditSelectedOrder = new Button();
             CmdShowAllOrders = new Button();
             DataGridViewOrdersResults = new DataGridView();
             GrpResults = new GroupBox();
-            LblInfoPositionArticle = new Label();
-            LblInfoPositionArticleQuantity = new Label();
-            TxtInputOrderPositionArticleQuantity = new TextBox();
-            CmbInputArticle = new ComboBox();
             GrpNavigation.SuspendLayout();
             GrpPositions.SuspendLayout();
             GrpInformationSelectedPosition.SuspendLayout();
@@ -162,6 +162,7 @@
             CmdDeleteOrder.TabIndex = 0;
             CmdDeleteOrder.Text = "Delete Order";
             CmdDeleteOrder.UseVisualStyleBackColor = true;
+            CmdDeleteOrder.Click += CmdDeleteOrder_Click;
             // 
             // LblInfoOrderNumber
             // 
@@ -277,6 +278,19 @@
             GrpInformationSelectedPosition.Text = "Information selected Position";
             GrpInformationSelectedPosition.Visible = false;
             // 
+            // CmbInputArticle
+            // 
+            CmbInputArticle.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CmbInputArticle.BackColor = SystemColors.Window;
+            CmbInputArticle.FormattingEnabled = true;
+            CmbInputArticle.ItemHeight = 15;
+            CmbInputArticle.Items.AddRange(new object[] { "-", "Fahrzeuge", "Lebensmittel" });
+            CmbInputArticle.Location = new Point(133, 60);
+            CmbInputArticle.Name = "CmbInputArticle";
+            CmbInputArticle.Size = new Size(145, 23);
+            CmbInputArticle.Sorted = true;
+            CmbInputArticle.TabIndex = 4;
+            // 
             // CmdDeletePosition
             // 
             CmdDeletePosition.Location = new Point(412, 106);
@@ -294,6 +308,7 @@
             CmdSavePositionChanges.TabIndex = 0;
             CmdSavePositionChanges.Text = "Save changes";
             CmdSavePositionChanges.UseVisualStyleBackColor = true;
+            CmdSavePositionChanges.Click += CmdSavePositionChanges_Click;
             // 
             // CmdSaveAsNewPosition
             // 
@@ -303,6 +318,35 @@
             CmdSaveAsNewPosition.TabIndex = 0;
             CmdSaveAsNewPosition.Text = "Save as new Position";
             CmdSaveAsNewPosition.UseVisualStyleBackColor = true;
+            CmdSaveAsNewPosition.Click += CmdSaveAsNewPosition_Click;
+            // 
+            // TxtInputOrderPositionArticleQuantity
+            // 
+            TxtInputOrderPositionArticleQuantity.BackColor = SystemColors.Window;
+            TxtInputOrderPositionArticleQuantity.BorderStyle = BorderStyle.None;
+            TxtInputOrderPositionArticleQuantity.Cursor = Cursors.IBeam;
+            TxtInputOrderPositionArticleQuantity.Location = new Point(382, 64);
+            TxtInputOrderPositionArticleQuantity.Name = "TxtInputOrderPositionArticleQuantity";
+            TxtInputOrderPositionArticleQuantity.Size = new Size(125, 16);
+            TxtInputOrderPositionArticleQuantity.TabIndex = 2;
+            // 
+            // LblInfoPositionArticleQuantity
+            // 
+            LblInfoPositionArticleQuantity.AutoSize = true;
+            LblInfoPositionArticleQuantity.Location = new Point(286, 63);
+            LblInfoPositionArticleQuantity.Name = "LblInfoPositionArticleQuantity";
+            LblInfoPositionArticleQuantity.Size = new Size(90, 15);
+            LblInfoPositionArticleQuantity.TabIndex = 1;
+            LblInfoPositionArticleQuantity.Text = "Article Quantity";
+            // 
+            // LblInfoPositionArticle
+            // 
+            LblInfoPositionArticle.AutoSize = true;
+            LblInfoPositionArticle.Location = new Point(21, 63);
+            LblInfoPositionArticle.Name = "LblInfoPositionArticle";
+            LblInfoPositionArticle.Size = new Size(88, 15);
+            LblInfoPositionArticle.TabIndex = 1;
+            LblInfoPositionArticle.Text = "Selected Article";
             // 
             // TxtInputPositionNumber
             // 
@@ -385,6 +429,7 @@
             CmdDeleteSelectedPositions.TabIndex = 0;
             CmdDeleteSelectedPositions.Text = "Delete selected Positions(s)";
             CmdDeleteSelectedPositions.UseVisualStyleBackColor = true;
+            CmdDeleteSelectedPositions.Click += CmdDeleteSelectedPositions_Click;
             // 
             // GrpInformation
             // 
@@ -418,6 +463,7 @@
             CmdShowInvoice.TabIndex = 0;
             CmdShowInvoice.Text = "Show corresponding Invoice";
             CmdShowInvoice.UseVisualStyleBackColor = true;
+            CmdShowInvoice.Click += CmdShowInvoice_Click;
             // 
             // TxtInputOrderDate
             // 
@@ -545,23 +591,23 @@
             TxtSearchOrderPriceTo.Size = new Size(145, 23);
             TxtSearchOrderPriceTo.TabIndex = 2;
             // 
-            // TxtSearchOrdersCustomerFirstName
+            // TxtSearchCustomerFirstName
             // 
-            TxtSearchOrdersCustomerFirstName.BackColor = SystemColors.ScrollBar;
-            TxtSearchOrdersCustomerFirstName.BorderStyle = BorderStyle.FixedSingle;
-            TxtSearchOrdersCustomerFirstName.Location = new Point(192, 50);
-            TxtSearchOrdersCustomerFirstName.Name = "TxtSearchOrdersCustomerFirstName";
-            TxtSearchOrdersCustomerFirstName.Size = new Size(145, 23);
-            TxtSearchOrdersCustomerFirstName.TabIndex = 2;
+            TxtSearchCustomerFirstName.BackColor = SystemColors.ScrollBar;
+            TxtSearchCustomerFirstName.BorderStyle = BorderStyle.FixedSingle;
+            TxtSearchCustomerFirstName.Location = new Point(192, 50);
+            TxtSearchCustomerFirstName.Name = "TxtSearchCustomerFirstName";
+            TxtSearchCustomerFirstName.Size = new Size(145, 23);
+            TxtSearchCustomerFirstName.TabIndex = 2;
             // 
-            // TxtSearchOrdersCustomerLastName
+            // TxtSearchCustomerLastName
             // 
-            TxtSearchOrdersCustomerLastName.BackColor = SystemColors.ScrollBar;
-            TxtSearchOrdersCustomerLastName.BorderStyle = BorderStyle.FixedSingle;
-            TxtSearchOrdersCustomerLastName.Location = new Point(357, 50);
-            TxtSearchOrdersCustomerLastName.Name = "TxtSearchOrdersCustomerLastName";
-            TxtSearchOrdersCustomerLastName.Size = new Size(145, 23);
-            TxtSearchOrdersCustomerLastName.TabIndex = 2;
+            TxtSearchCustomerLastName.BackColor = SystemColors.ScrollBar;
+            TxtSearchCustomerLastName.BorderStyle = BorderStyle.FixedSingle;
+            TxtSearchCustomerLastName.Location = new Point(357, 50);
+            TxtSearchCustomerLastName.Name = "TxtSearchCustomerLastName";
+            TxtSearchCustomerLastName.Size = new Size(145, 23);
+            TxtSearchCustomerLastName.TabIndex = 2;
             // 
             // LblInfoSearchOrdersDateFrom
             // 
@@ -601,6 +647,7 @@
             // 
             DatSearchOrdersFrom.CustomFormat = "HTML Format";
             DatSearchOrdersFrom.Location = new Point(26, 107);
+            DatSearchOrdersFrom.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             DatSearchOrdersFrom.Name = "DatSearchOrdersFrom";
             DatSearchOrdersFrom.Size = new Size(145, 23);
             DatSearchOrdersFrom.TabIndex = 9;
@@ -610,6 +657,7 @@
             // 
             DatSearchOrdersUntil.CustomFormat = "HTML Format";
             DatSearchOrdersUntil.Location = new Point(192, 107);
+            DatSearchOrdersUntil.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             DatSearchOrdersUntil.Name = "DatSearchOrdersUntil";
             DatSearchOrdersUntil.Size = new Size(145, 23);
             DatSearchOrdersUntil.TabIndex = 9;
@@ -623,8 +671,8 @@
             GrpSearch.Controls.Add(LblInfoSearchOrdersPositionNumber);
             GrpSearch.Controls.Add(LblInfoSearchOrdersDateUntil);
             GrpSearch.Controls.Add(LblInfoSearchOrdersDateFrom);
-            GrpSearch.Controls.Add(TxtSearchOrdersCustomerLastName);
-            GrpSearch.Controls.Add(TxtSearchOrdersCustomerFirstName);
+            GrpSearch.Controls.Add(TxtSearchCustomerLastName);
+            GrpSearch.Controls.Add(TxtSearchCustomerFirstName);
             GrpSearch.Controls.Add(TxtSearchOrderPriceTo);
             GrpSearch.Controls.Add(TxtSearchOrderPriceFrom);
             GrpSearch.Controls.Add(TxtSearchCustomerNumber);
@@ -651,17 +699,17 @@
             CmdDeleteSelectedObject.TabIndex = 0;
             CmdDeleteSelectedObject.Text = "Delete selected Object";
             CmdDeleteSelectedObject.UseVisualStyleBackColor = true;
-            CmdDeleteSelectedObject.Click += CmdDeleteSelectedCustomers_Click;
+            CmdDeleteSelectedObject.Click += CmdDeleteSelectedObject_Click;
             // 
-            // CmdCreateEmptyArticle
+            // CmdEditSelectedOrder
             // 
-            CmdCreateEmptyArticle.Location = new Point(217, 356);
-            CmdCreateEmptyArticle.Name = "CmdCreateEmptyArticle";
-            CmdCreateEmptyArticle.Size = new Size(135, 23);
-            CmdCreateEmptyArticle.TabIndex = 0;
-            CmdCreateEmptyArticle.Text = "Create new Order";
-            CmdCreateEmptyArticle.UseVisualStyleBackColor = true;
-            CmdCreateEmptyArticle.Click += CmdCreateEmptyCustomer_Click;
+            CmdEditSelectedOrder.Location = new Point(217, 356);
+            CmdEditSelectedOrder.Name = "CmdEditSelectedOrder";
+            CmdEditSelectedOrder.Size = new Size(135, 23);
+            CmdEditSelectedOrder.TabIndex = 0;
+            CmdEditSelectedOrder.Text = "Edit selected Order";
+            CmdEditSelectedOrder.UseVisualStyleBackColor = true;
+            CmdEditSelectedOrder.Click += CmdEditSelectedOrder_Click;
             // 
             // CmdShowAllOrders
             // 
@@ -671,7 +719,7 @@
             CmdShowAllOrders.TabIndex = 0;
             CmdShowAllOrders.Text = "Show all Orders";
             CmdShowAllOrders.UseVisualStyleBackColor = true;
-            CmdShowAllOrders.Click += CmdShowAllCustomers_Click;
+            CmdShowAllOrders.Click += CmdShowAllOrders_Click;
             // 
             // DataGridViewOrdersResults
             // 
@@ -686,7 +734,7 @@
             // 
             GrpResults.Controls.Add(DataGridViewOrdersResults);
             GrpResults.Controls.Add(CmdShowAllOrders);
-            GrpResults.Controls.Add(CmdCreateEmptyArticle);
+            GrpResults.Controls.Add(CmdEditSelectedOrder);
             GrpResults.Controls.Add(CmdDeleteSelectedObject);
             GrpResults.ForeColor = SystemColors.ControlText;
             GrpResults.Location = new Point(143, 263);
@@ -695,47 +743,6 @@
             GrpResults.TabIndex = 2;
             GrpResults.TabStop = false;
             GrpResults.Text = "Orders";
-            // 
-            // LblInfoPositionArticle
-            // 
-            LblInfoPositionArticle.AutoSize = true;
-            LblInfoPositionArticle.Location = new Point(21, 63);
-            LblInfoPositionArticle.Name = "LblInfoPositionArticle";
-            LblInfoPositionArticle.Size = new Size(88, 15);
-            LblInfoPositionArticle.TabIndex = 1;
-            LblInfoPositionArticle.Text = "Selected Article";
-            // 
-            // LblInfoPositionArticleQuantity
-            // 
-            LblInfoPositionArticleQuantity.AutoSize = true;
-            LblInfoPositionArticleQuantity.Location = new Point(286, 63);
-            LblInfoPositionArticleQuantity.Name = "LblInfoPositionArticleQuantity";
-            LblInfoPositionArticleQuantity.Size = new Size(90, 15);
-            LblInfoPositionArticleQuantity.TabIndex = 1;
-            LblInfoPositionArticleQuantity.Text = "Article Quantity";
-            // 
-            // TxtInputOrderPositionArticleQuantity
-            // 
-            TxtInputOrderPositionArticleQuantity.BackColor = SystemColors.Window;
-            TxtInputOrderPositionArticleQuantity.BorderStyle = BorderStyle.None;
-            TxtInputOrderPositionArticleQuantity.Cursor = Cursors.IBeam;
-            TxtInputOrderPositionArticleQuantity.Location = new Point(382, 64);
-            TxtInputOrderPositionArticleQuantity.Name = "TxtInputOrderPositionArticleQuantity";
-            TxtInputOrderPositionArticleQuantity.Size = new Size(125, 16);
-            TxtInputOrderPositionArticleQuantity.TabIndex = 2;
-            // 
-            // CmbInputArticle
-            // 
-            CmbInputArticle.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CmbInputArticle.BackColor = SystemColors.Window;
-            CmbInputArticle.FormattingEnabled = true;
-            CmbInputArticle.ItemHeight = 15;
-            CmbInputArticle.Items.AddRange(new object[] { "-", "Fahrzeuge", "Lebensmittel" });
-            CmbInputArticle.Location = new Point(133, 60);
-            CmbInputArticle.Name = "CmbInputArticle";
-            CmbInputArticle.Size = new Size(145, 23);
-            CmbInputArticle.Sorted = true;
-            CmbInputArticle.TabIndex = 4;
             // 
             // FormOrders
             // 
@@ -797,8 +804,8 @@
         private TextBox TxtSearchCustomerNumber;
         private TextBox TxtSearchOrderPriceFrom;
         private TextBox TxtSearchOrderPriceTo;
-        private TextBox TxtSearchOrdersCustomerFirstName;
-        private TextBox TxtSearchOrdersCustomerLastName;
+        private TextBox TxtSearchCustomerFirstName;
+        private TextBox TxtSearchCustomerLastName;
         private Label LblInfoSearchOrdersDateFrom;
         private Label LblInfoSearchOrdersDateUntil;
         private Label LblInfoSearchOrdersPositionNumber;
@@ -807,7 +814,7 @@
         private DateTimePicker DatSearchOrdersUntil;
         private GroupBox GrpSearch;
         private Button CmdDeleteSelectedObject;
-        private Button CmdCreateEmptyArticle;
+        private Button CmdEditSelectedOrder;
         private Button CmdShowAllOrders;
         private DataGridView DataGridViewOrdersResults;
         private GroupBox GrpResults;

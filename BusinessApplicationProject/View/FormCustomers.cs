@@ -45,6 +45,7 @@ namespace BusinessApplicationProject
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
         {
+            //Empty fields
             TxtSearchCustomerAdress.Text = string.Empty;
             TxtSearchCustomerCity.Text = string.Empty;
             TxtSearchCustomerCountry.Text = string.Empty;
@@ -58,6 +59,7 @@ namespace BusinessApplicationProject
         //muss noch verschoben werden in andere Klasse
         private void DisplaySearchResults()
         {
+            DataGridViewCustomersResults.Columns.Clear();
 
             if (/*searchResults != null*/ true)
             {
@@ -114,7 +116,11 @@ namespace BusinessApplicationProject
 
         private void CmdDeleteSelectedCustomers_Click(object sender, EventArgs e)
         {
-            //Delete all selected Customer
+            //Throw warning
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
         /*-----*/
@@ -153,14 +159,21 @@ namespace BusinessApplicationProject
         {
             //Check if nessesary Fields contain Content
             //Check if something changed
+
             //Throw warning
-            //Update Customer with Inputfields
+            if (WarningUpdatedObject())
+            {
+                //update selected Object with inputfields
+            }
         }
 
         private void CmdDeleteCustomer_Click(object sender, EventArgs e)
         {
             //Throw warning
-            //Delete selected Customer
+            if (WarningDeletedObject())
+            {
+                //delete all selected Customer
+            }
         }
 
 
@@ -186,11 +199,41 @@ namespace BusinessApplicationProject
         private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
         {
             //Throw warning
-            //Delete selected Orders
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
 
         #endregion
+
+
+        private bool WarningDeletedObject()
+        {
+            DialogResult result = MessageBox.Show("Would you wish to delete all selected Objects?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool WarningUpdatedObject()
+        {
+            DialogResult result = MessageBox.Show("Would you wish to update the selected Object?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
