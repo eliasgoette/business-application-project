@@ -91,6 +91,181 @@
             GrpSearch.SuspendLayout();
             SuspendLayout();
             // 
+            // GrpSearch
+            // 
+            GrpSearch.Controls.Add(TxtSearchCustomerLastName);
+            GrpSearch.Controls.Add(TxtSearchCustomerFirstName);
+            GrpSearch.Controls.Add(TxtSearchCustomerAdress);
+            GrpSearch.Controls.Add(TxtSearchCustomerCity);
+            GrpSearch.Controls.Add(TxtSearchCustomerEmail);
+            GrpSearch.Controls.Add(TxtSearchCustomerCountry);
+            GrpSearch.Controls.Add(TxtSearchCustomerNumber);
+            GrpSearch.Controls.Add(CmdResetSearchFilters);
+            GrpSearch.Controls.Add(CmdSearchCustomers);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerLastName);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerFirstName);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerAdress);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerCity);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerEmail);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerCountry);
+            GrpSearch.Controls.Add(LblInfoSearchCustomerNumber);
+            GrpSearch.ForeColor = SystemColors.ControlText;
+            GrpSearch.Location = new Point(4, 5);
+            GrpSearch.Margin = new Padding(4, 5, 4, 5);
+            GrpSearch.Name = "GrpSearch";
+            GrpSearch.Padding = new Padding(4, 5, 4, 5);
+            GrpSearch.Size = new Size(754, 408);
+            GrpSearch.TabIndex = 3;
+            GrpSearch.TabStop = false;
+            GrpSearch.Text = "Search";
+            // 
+            // TxtSearchCustomerLastName
+            // 
+            TxtSearchCustomerLastName.Location = new Point(510, 83);
+            TxtSearchCustomerLastName.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerLastName.Name = "TxtSearchCustomerLastName";
+            TxtSearchCustomerLastName.Size = new Size(205, 31);
+            TxtSearchCustomerLastName.TabIndex = 2;
+            // 
+            // TxtSearchCustomerFirstName
+            // 
+            TxtSearchCustomerFirstName.Location = new Point(274, 83);
+            TxtSearchCustomerFirstName.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerFirstName.Name = "TxtSearchCustomerFirstName";
+            TxtSearchCustomerFirstName.Size = new Size(205, 31);
+            TxtSearchCustomerFirstName.TabIndex = 2;
+            // 
+            // TxtSearchCustomerAdress
+            // 
+            TxtSearchCustomerAdress.Location = new Point(510, 178);
+            TxtSearchCustomerAdress.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerAdress.Name = "TxtSearchCustomerAdress";
+            TxtSearchCustomerAdress.Size = new Size(205, 31);
+            TxtSearchCustomerAdress.TabIndex = 2;
+            // 
+            // TxtSearchCustomerCity
+            // 
+            TxtSearchCustomerCity.Location = new Point(274, 178);
+            TxtSearchCustomerCity.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerCity.Name = "TxtSearchCustomerCity";
+            TxtSearchCustomerCity.Size = new Size(205, 31);
+            TxtSearchCustomerCity.TabIndex = 2;
+            // 
+            // TxtSearchCustomerEmail
+            // 
+            TxtSearchCustomerEmail.Location = new Point(37, 273);
+            TxtSearchCustomerEmail.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerEmail.Name = "TxtSearchCustomerEmail";
+            TxtSearchCustomerEmail.Size = new Size(205, 31);
+            TxtSearchCustomerEmail.TabIndex = 2;
+            // 
+            // TxtSearchCustomerCountry
+            // 
+            TxtSearchCustomerCountry.Location = new Point(37, 178);
+            TxtSearchCustomerCountry.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerCountry.Name = "TxtSearchCustomerCountry";
+            TxtSearchCustomerCountry.Size = new Size(205, 31);
+            TxtSearchCustomerCountry.TabIndex = 2;
+            // 
+            // TxtSearchCustomerNumber
+            // 
+            TxtSearchCustomerNumber.Location = new Point(37, 83);
+            TxtSearchCustomerNumber.Margin = new Padding(4, 5, 4, 5);
+            TxtSearchCustomerNumber.Name = "TxtSearchCustomerNumber";
+            TxtSearchCustomerNumber.Size = new Size(205, 31);
+            TxtSearchCustomerNumber.TabIndex = 2;
+            // 
+            // CmdResetSearchFilters
+            // 
+            CmdResetSearchFilters.Location = new Point(390, 360);
+            CmdResetSearchFilters.Margin = new Padding(4, 5, 4, 5);
+            CmdResetSearchFilters.Name = "CmdResetSearchFilters";
+            CmdResetSearchFilters.Size = new Size(167, 38);
+            CmdResetSearchFilters.TabIndex = 0;
+            CmdResetSearchFilters.Text = "Reset search filters";
+            CmdResetSearchFilters.UseVisualStyleBackColor = true;
+            // 
+            // CmdSearchCustomers
+            // 
+            CmdSearchCustomers.Location = new Point(566, 360);
+            CmdSearchCustomers.Margin = new Padding(4, 5, 4, 5);
+            CmdSearchCustomers.Name = "CmdSearchCustomers";
+            CmdSearchCustomers.Size = new Size(180, 38);
+            CmdSearchCustomers.TabIndex = 0;
+            CmdSearchCustomers.Text = "Search Customers";
+            CmdSearchCustomers.UseVisualStyleBackColor = true;
+            CmdSearchCustomers.Click += CmdSearchCustomers_Click;
+            // 
+            // LblInfoSearchCustomerLastName
+            // 
+            LblInfoSearchCustomerLastName.AutoSize = true;
+            LblInfoSearchCustomerLastName.Location = new Point(511, 52);
+            LblInfoSearchCustomerLastName.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerLastName.Name = "LblInfoSearchCustomerLastName";
+            LblInfoSearchCustomerLastName.Size = new Size(95, 25);
+            LblInfoSearchCustomerLastName.TabIndex = 1;
+            LblInfoSearchCustomerLastName.Text = "Last Name";
+            // 
+            // LblInfoSearchCustomerFirstName
+            // 
+            LblInfoSearchCustomerFirstName.AutoSize = true;
+            LblInfoSearchCustomerFirstName.Location = new Point(275, 52);
+            LblInfoSearchCustomerFirstName.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerFirstName.Name = "LblInfoSearchCustomerFirstName";
+            LblInfoSearchCustomerFirstName.Size = new Size(97, 25);
+            LblInfoSearchCustomerFirstName.TabIndex = 1;
+            LblInfoSearchCustomerFirstName.Text = "First Name";
+            // 
+            // LblInfoSearchCustomerAdress
+            // 
+            LblInfoSearchCustomerAdress.AutoSize = true;
+            LblInfoSearchCustomerAdress.Location = new Point(511, 150);
+            LblInfoSearchCustomerAdress.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerAdress.Name = "LblInfoSearchCustomerAdress";
+            LblInfoSearchCustomerAdress.Size = new Size(66, 25);
+            LblInfoSearchCustomerAdress.TabIndex = 1;
+            LblInfoSearchCustomerAdress.Text = "Adress";
+            // 
+            // LblInfoSearchCustomerCity
+            // 
+            LblInfoSearchCustomerCity.AutoSize = true;
+            LblInfoSearchCustomerCity.Location = new Point(275, 150);
+            LblInfoSearchCustomerCity.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerCity.Name = "LblInfoSearchCustomerCity";
+            LblInfoSearchCustomerCity.Size = new Size(42, 25);
+            LblInfoSearchCustomerCity.TabIndex = 1;
+            LblInfoSearchCustomerCity.Text = "City";
+            // 
+            // LblInfoSearchCustomerEmail
+            // 
+            LblInfoSearchCustomerEmail.AutoSize = true;
+            LblInfoSearchCustomerEmail.Location = new Point(38, 245);
+            LblInfoSearchCustomerEmail.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerEmail.Name = "LblInfoSearchCustomerEmail";
+            LblInfoSearchCustomerEmail.Size = new Size(54, 25);
+            LblInfoSearchCustomerEmail.TabIndex = 1;
+            LblInfoSearchCustomerEmail.Text = "Email";
+            // 
+            // LblInfoSearchCustomerCountry
+            // 
+            LblInfoSearchCustomerCountry.AutoSize = true;
+            LblInfoSearchCustomerCountry.Location = new Point(38, 150);
+            LblInfoSearchCustomerCountry.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerCountry.Name = "LblInfoSearchCustomerCountry";
+            LblInfoSearchCustomerCountry.Size = new Size(75, 25);
+            LblInfoSearchCustomerCountry.TabIndex = 1;
+            LblInfoSearchCustomerCountry.Text = "Country";
+            // 
+            // LblInfoSearchCustomerNumber
+            // 
+            LblInfoSearchCustomerNumber.AutoSize = true;
+            LblInfoSearchCustomerNumber.Location = new Point(38, 52);
+            LblInfoSearchCustomerNumber.Margin = new Padding(4, 0, 4, 0);
+            LblInfoSearchCustomerNumber.Name = "LblInfoSearchCustomerNumber";
+            LblInfoSearchCustomerNumber.Size = new Size(159, 25);
+            LblInfoSearchCustomerNumber.TabIndex = 1;
+            LblInfoSearchCustomerNumber.Text = "Customer Number";
+            // 
             // GrpResults
             // 
             GrpResults.Controls.Add(LblDataGridCustomersNoResults);

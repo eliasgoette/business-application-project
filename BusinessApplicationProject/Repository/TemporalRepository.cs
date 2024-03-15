@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.Repository
 {
@@ -11,7 +12,7 @@ namespace BusinessApplicationProject.Repository
             return Context.Set<T>().TemporalAsOf(timestamp);
         }
 
-        public IEnumerable<T> FindAsOf(DateTime timestamp, Func<T, bool> condition)
+        public IEnumerable<T> FindAsOf(DateTime timestamp, Expression<Func<T, bool>> condition)
         {
             return Context.Set<T>().TemporalAsOf(timestamp).Where<T>(condition);
         }

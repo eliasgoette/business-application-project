@@ -1,7 +1,6 @@
 ﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
-using Castle.Core.Resource;
 using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.View
@@ -229,7 +228,7 @@ namespace BusinessApplicationProject.View
 
                 TreeNode foundNode = GetParentTreeNode(name, node.Nodes);
 
-                if(foundNode != null)
+                if (foundNode != null)
                 {
                     return foundNode;
                 }

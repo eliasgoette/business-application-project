@@ -17,7 +17,9 @@ namespace BusinessApplicationProject.View
         #region Search
         private void CmdSearchCustomers_Click(object sender, EventArgs e)
         {
+            CmdSearchCustomers.Enabled = false;
             UpdateSearchResults();
+            CmdSearchCustomers.Enabled = true;
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
@@ -76,42 +78,16 @@ namespace BusinessApplicationProject.View
                         DataPropertyName = "LastName"
                     };
 
-                    DataGridViewTextBoxColumn countryColumn = new DataGridViewTextBoxColumn
-                    {
-                        Name = "countryColumn",
-                        HeaderText = "Country",
-                        DataPropertyName = "Country"
-                    };
+                DataGridViewTextBoxColumn CustomerNumberColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "customerNumberColumn",
+                    HeaderText = "Customer Number",
+                    DataPropertyName = "customerNumber"
+                };
 
-                    DataGridViewTextBoxColumn cityColumn = new DataGridViewTextBoxColumn
-                    {
-                        Name = "cityColumn",
-                        HeaderText = "City",
-                        DataPropertyName = "City"
-                    };
-
-                    DataGridViewTextBoxColumn adressColumn = new DataGridViewTextBoxColumn
-                    {
-                        Name = "adressColumn",
-                        HeaderText = "Adress",
-                        DataPropertyName = "Adress"
-                    };
-
-                    DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn
-                    {
-                        Name = "emailColumn",
-                        HeaderText = "Email",
-                        DataPropertyName = "Email"
-                    };
-
-
-                    DataGridViewCustomersResults.Columns.Add(customerNumberColumn);
-                    DataGridViewCustomersResults.Columns.Add(firstNameColumn);
-                    DataGridViewCustomersResults.Columns.Add(lastNameColumn);
-                    DataGridViewCustomersResults.Columns.Add(countryColumn);
-                    DataGridViewCustomersResults.Columns.Add(cityColumn);
-                    DataGridViewCustomersResults.Columns.Add(adressColumn);
-                    DataGridViewCustomersResults.Columns.Add(emailColumn);
+                DataGridViewCustomersResults.Columns.Add(CustomerNumberColumn);
+                DataGridViewCustomersResults.Columns.Add(firstNameColumn);
+                DataGridViewCustomersResults.Columns.Add(lastNameColumn);
 
                     DataGridViewCustomersResults.DataSource = customers;
                 }
@@ -241,8 +217,6 @@ namespace BusinessApplicationProject.View
         private void CmdCreateNewOrder_Click(object sender, EventArgs e)
         {
             //Change Form (Order) with selected Customer already filled in
-            //this.Hide();
-            //Program.formOrders.Show();
         }
 
         private void CmdDeleteSelectedOrders_Click(object sender, EventArgs e)
