@@ -586,6 +586,7 @@
             // DatSearchOrdersFrom
             // 
             DatSearchOrdersFrom.CustomFormat = "HTML Format";
+            DatSearchOrdersFrom.Format = DateTimePickerFormat.Short;
             DatSearchOrdersFrom.Location = new Point(26, 107);
             DatSearchOrdersFrom.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             DatSearchOrdersFrom.Name = "DatSearchOrdersFrom";
@@ -596,6 +597,7 @@
             // DatSearchOrdersUntil
             // 
             DatSearchOrdersUntil.CustomFormat = "HTML Format";
+            DatSearchOrdersUntil.Format = DateTimePickerFormat.Short;
             DatSearchOrdersUntil.Location = new Point(192, 107);
             DatSearchOrdersUntil.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             DatSearchOrdersUntil.Name = "DatSearchOrdersUntil";

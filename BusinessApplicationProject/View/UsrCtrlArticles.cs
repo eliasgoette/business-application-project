@@ -1,6 +1,8 @@
 ﻿using BusinessApplicationProject.Controller;
 using BusinessApplicationProject.Model;
 using BusinessApplicationProject.Repository;
+using Castle.Core.Resource;
+using System.Linq.Expressions;
 
 namespace BusinessApplicationProject.View
 {
@@ -16,28 +18,20 @@ namespace BusinessApplicationProject.View
         #region Search
         private void CmdSearchArticles_Click(object sender, EventArgs e)
         {
-            DisplaySearchResults();
+
         }
 
         private void CmdResetSearchFilters_Click(object sender, EventArgs e)
         {
-            CmbSearchArticleGroup.Select();
+            EmptyFieldsArticles();
+        }
+
+        private void EmptyFieldsArticles()
+        {
+            CmbSearchArticleGroup.Text = string.Empty;
             TxtSearchArticleName.Text = string.Empty;
             TxtSearchArticleNumber.Text = string.Empty;
         }
-
-
-        //muss noch verschoben werden in andere Klasse
-        private void DisplaySearchResults()
-        {
-
-            if (/*searchResults != null*/ true)
-            {
-                //Search and Visualize all results
-            }
-
-        }
-
 
         #endregion
 
@@ -48,6 +42,8 @@ namespace BusinessApplicationProject.View
         {
             //Load all Articles into Treeview
             TreeViewArticles.Nodes.Clear();
+            EmptyFieldsArticles();
+
             LblSearchArticlesNoResult.Visible = false;
 
 
@@ -113,6 +109,7 @@ namespace BusinessApplicationProject.View
             try
             {
                 List<ArticleGroup> articleGroups = [];
+                //var filter = CreateFilterFunctionArticleGroup();
                 //articleGroups = articleGroupController.GetAll();
 
                 articleGroups = articleGroupsTest;
@@ -165,7 +162,8 @@ namespace BusinessApplicationProject.View
             try
             {
                 List<Article> articles = [];
-                //articles = articleController.GetAll();
+                var filter = CreateFilterFunction();
+                //articles = articleController.Find(filter);
 
                 articles = articleTest;
 
@@ -212,6 +210,14 @@ namespace BusinessApplicationProject.View
             }
 
             return null;
+        }
+
+        private Expression<Func<Article, bool>> CreateFilterFunction()
+        {
+            return article =>
+                (string.IsNullOrEmpty(TxtSearchArticleNumber.Text) || article.ArticleNumber.Contains(TxtSearchArticleNumber.Text)) &&
+                (string.IsNullOrEmpty(TxtSearchArticleName.Text) || article.Name.Contains(TxtSearchArticleName.Text)) &&
+                (string.IsNullOrEmpty(CmbSearchArticleGroup.Text) || article.Group.Name.Contains(CmbSearchArticleGroup.Text));
         }
 
         #endregion
@@ -265,31 +271,6 @@ namespace BusinessApplicationProject.View
             }
 
         }
-
-        /*---------------------------------------*/
-
-
-        private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
-        {
-            //Check if nessesary Fields contain Content
-            //Create new Customer with Inputfields
-        }
-
-        private void CmdSaveChangesCustomer_Click(object sender, EventArgs e)
-        {
-            //Check if nessesary Fields contain Content
-            //Check if something changed
-            //Throw warning
-            //Update Customer with Inputfields
-        }
-
-        private void CmdDeleteCustomer_Click(object sender, EventArgs e)
-        {
-            //Throw warning
-            //Delete selected Customer
-        }
-
-
         #endregion
 
 

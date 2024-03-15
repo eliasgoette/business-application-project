@@ -17,6 +17,7 @@ namespace BusinessApplicationProject.View
         public UsrCtrlOrders()
         {
             InitializeComponent();
+
         }
 
         #region Search
@@ -64,15 +65,22 @@ namespace BusinessApplicationProject.View
 
         private void CmdEditSelectedOrder_Click(object sender, EventArgs e)
         {
-            //Load Ordernumber, Customernumber, Firstname, Lastname, Date and Invoice
-
+            //Throw warning
+            if (WarningUpdatedObject())
+            {
+                //Load Ordernumber, Customernumber, Firstname, Lastname, Date and Invoice
+                //update selected Object with inputfields
+            }
         }
 
 
         private void CmdDeleteSelectedObject_Click(object sender, EventArgs e)
         {
             //Throw warning
-            //Delete selected Orders
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
         private void CmdShowInvoice_Click(object sender, EventArgs e)
@@ -82,8 +90,10 @@ namespace BusinessApplicationProject.View
 
         private void CmdDeleteOrder_Click(object sender, EventArgs e)
         {
-            //Throw warning
-            //Delete selected Order
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
 
@@ -112,7 +122,10 @@ namespace BusinessApplicationProject.View
 
         private void CmdDeleteSelectedPositions_Click(object sender, EventArgs e)
         {
-
+            if (WarningDeletedObject())
+            {
+                //delete all selected Objects
+            }
         }
 
         private void CmdSavePositionChanges_Click(object sender, EventArgs e)
@@ -130,8 +143,11 @@ namespace BusinessApplicationProject.View
             }
             else if (isNumeric && number >= 1 && number <= 100)
             {
-                //Change the selected Position with the new values
-
+                //Throw warning
+                if (WarningUpdatedObject())
+                {
+                    //Change the selected Position with the new values
+                }
             }
             else
             {
@@ -155,7 +171,6 @@ namespace BusinessApplicationProject.View
             else if (isNumeric && number >= 1 && number <= 100)
             {
                 //Save as new position in selected Order
-
             }
             else
             {
@@ -164,6 +179,33 @@ namespace BusinessApplicationProject.View
         }
 
         #endregion
+
+
+        private bool WarningDeletedObject()
+        {
+            DialogResult result = MessageBox.Show("Would you wish to delete all selected Objects?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool WarningUpdatedObject()
+        {
+            DialogResult result = MessageBox.Show("Would you wish to update the selected Object?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
