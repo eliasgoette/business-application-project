@@ -7,7 +7,7 @@ namespace BusinessApplicationProject.Controller
     public class Controller<T> where T : class
     {
         public delegate AppDbContext AppDbContextFactory();
-        public delegate Repository<T> RepositoryFactory(AppDbContext context);
+        public delegate IRepository<T> RepositoryFactory(AppDbContext context);
 
         public AppDbContextFactory getContext { get; init; }
         public RepositoryFactory getRepository { get; init; }
